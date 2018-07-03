@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "qibublog.www", "qibublog.www\qibublog.www.csproj", "{67FAF953-6F69-4699-82AE-75D23533D7B4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05.web", "05.web", "{1B6C329D-E6F1-4F9C-A05B-16AC9B8E4089}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04.service", "04.service", "{2EEFB51D-5E3B-4043-8D17-301CC8FB8DB6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03.model", "03.model", "{75BA25D9-231F-48F1-AC61-C6E1F621DBA9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02.com", "02.com", "{EC3A807A-C011-4075-996F-CC83DC5C6B6F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "qibublog.com", "qibublog.com\qibublog.com.csproj", "{49FEA1E5-5C25-4FFD-84A3-E216789B5514}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "qibublog.model", "qibublog.model\qibublog.model.csproj", "{2D9FD804-1684-4B6F-9294-CE7D721B569F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "qibublog.service", "qibublog.service\qibublog.service.csproj", "{89841F88-88C6-4AA6-97D9-5AF94AFFE4CA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{67FAF953-6F69-4699-82AE-75D23533D7B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67FAF953-6F69-4699-82AE-75D23533D7B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67FAF953-6F69-4699-82AE-75D23533D7B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67FAF953-6F69-4699-82AE-75D23533D7B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49FEA1E5-5C25-4FFD-84A3-E216789B5514}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49FEA1E5-5C25-4FFD-84A3-E216789B5514}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49FEA1E5-5C25-4FFD-84A3-E216789B5514}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49FEA1E5-5C25-4FFD-84A3-E216789B5514}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D9FD804-1684-4B6F-9294-CE7D721B569F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D9FD804-1684-4B6F-9294-CE7D721B569F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D9FD804-1684-4B6F-9294-CE7D721B569F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D9FD804-1684-4B6F-9294-CE7D721B569F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89841F88-88C6-4AA6-97D9-5AF94AFFE4CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89841F88-88C6-4AA6-97D9-5AF94AFFE4CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89841F88-88C6-4AA6-97D9-5AF94AFFE4CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89841F88-88C6-4AA6-97D9-5AF94AFFE4CA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{67FAF953-6F69-4699-82AE-75D23533D7B4} = {1B6C329D-E6F1-4F9C-A05B-16AC9B8E4089}
+		{89841F88-88C6-4AA6-97D9-5AF94AFFE4CA} = {2EEFB51D-5E3B-4043-8D17-301CC8FB8DB6}
+		{2D9FD804-1684-4B6F-9294-CE7D721B569F} = {75BA25D9-231F-48F1-AC61-C6E1F621DBA9}
+		{49FEA1E5-5C25-4FFD-84A3-E216789B5514} = {EC3A807A-C011-4075-996F-CC83DC5C6B6F}
+	EndGlobalSection
+EndGlobal
