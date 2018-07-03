@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace qibublog.com
+namespace QiBuBlog.Com
 {
     public abstract class Singleton<T> where T : Singleton<T>
     {

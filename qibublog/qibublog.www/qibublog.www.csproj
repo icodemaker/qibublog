@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>qibublog.www</RootNamespace>
-    <AssemblyName>qibublog.www</AssemblyName>
+    <RootNamespace>QiBuBlog.WWW</RootNamespace>
+    <AssemblyName>QiBuBlog.WWW</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -20,6 +20,8 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -167,17 +169,17 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\qibublog.com\qibublog.com.csproj">
+    <ProjectReference Include="..\qibublog.com\QiBuBlog.Com.csproj">
       <Project>{49fea1e5-5c25-4ffd-84a3-e216789b5514}</Project>
-      <Name>qibublog.com</Name>
+      <Name>QiBuBlog.Com</Name>
     </ProjectReference>
-    <ProjectReference Include="..\qibublog.model\qibublog.model.csproj">
+    <ProjectReference Include="..\qibublog.model\QiBuBlog.Model.csproj">
       <Project>{2d9fd804-1684-4b6f-9294-ce7d721b569f}</Project>
-      <Name>qibublog.model</Name>
+      <Name>QiBuBlog.Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\qibublog.service\qibublog.service.csproj">
+    <ProjectReference Include="..\qibublog.service\QiBuBlog.Service.csproj">
       <Project>{89841f88-88c6-4aa6-97d9-5af94affe4ca}</Project>
-      <Name>qibublog.service</Name>
+      <Name>QiBuBlog.Service</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

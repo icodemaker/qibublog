@@ -13,7 +13,6 @@ E:\CodeMaker\qibublog\qibublog\qibublog.model\bin\Debug\qibublog.model.pdb
 E:\CodeMaker\qibublog\qibublog\qibublog.model\bin\Debug\EntityFramework.dll
 E:\CodeMaker\qibublog\qibublog\qibublog.model\bin\Debug\EntityFramework.xml
 E:\CodeMaker\qibublog\qibublog\qibublog.model\bin\Debug\zh-Hans\EntityFramework.resources.dll
-E:\CodeMaker\qibublog\qibublog\qibublog.model\obj\Debug\qibublog.model.csprojAssemblyReference.cache
 E:\CodeMaker\qibublog\qibublog\qibublog.model\obj\Debug\qibublog.model.csproj.CoreCompileInputs.cache
 E:\CodeMaker\qibublog\qibublog\qibublog.model\obj\Debug\qibublog.model.csproj.CopyComplete
 E:\CodeMaker\qibublog\qibublog\qibublog.model\obj\Debug\qibublog.model.dll

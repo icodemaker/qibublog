@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace qibublog.service
+namespace QiBuBlog.Service
 {
     public class ArticleService : Singleton<ArticleService>
     {
@@ -20,7 +20,7 @@ namespace qibublog.service
             return new PageList<Article>()
             {
                 page = pageSet.page,
-                rows = 1,
+                rows = new List<Article>(),
                 total = 1
             };
         }

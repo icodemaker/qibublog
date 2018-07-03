@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace qibublog.model
+namespace QiBuBlog.Model
 {
     using System;
     using System.Collections.Generic;

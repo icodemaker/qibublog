@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace qibublog.www.Controllers
+namespace QiBuBlog.WWW.Controllers
 {
     public class HomeController : Controller
     {

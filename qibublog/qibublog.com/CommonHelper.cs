@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace qibublog.com
+namespace QiBuBlog.Com
 {
     public class CommonHelper
     {

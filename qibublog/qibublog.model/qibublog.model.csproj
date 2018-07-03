@@ -7,8 +7,8 @@
     <ProjectGuid>{2D9FD804-1684-4B6F-9294-CE7D721B569F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>qibublog.model</RootNamespace>
-    <AssemblyName>qibublog.model</AssemblyName>
+    <RootNamespace>QiBuBlog.Model</RootNamespace>
+    <AssemblyName>QiBuBlog.Model</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -46,68 +46,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Article.cs">
-      <DependentUpon>qibublog.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Category.cs">
-      <DependentUpon>qibublog.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Comment.cs">
-      <DependentUpon>qibublog.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Link.cs">
-      <DependentUpon>qibublog.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Message.cs">
-      <DependentUpon>qibublog.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="qibublog.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>qibublog.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="qibublog.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>qibublog.tt</DependentUpon>
-    </Compile>
-    <Compile Include="qibublog.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>qibublog.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Setup.cs">
-      <DependentUpon>qibublog.tt</DependentUpon>
-    </Compile>
-    <Compile Include="User.cs">
-      <DependentUpon>qibublog.tt</DependentUpon>
-    </Compile>
-    <Compile Include="UserGroup.cs">
-      <DependentUpon>qibublog.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="qibublog.edmx">
+    <EntityDeploy Include="QiBuBlog.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>qibublog.Designer.cs</LastGenOutput>
+      <LastGenOutput>QiBuBlog1.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
     <None Include="packages.config" />
-    <None Include="qibublog.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>qibublog.edmx</DependentUpon>
-      <LastGenOutput>qibublog.Context.cs</LastGenOutput>
-    </None>
-    <None Include="qibublog.edmx.diagram">
-      <DependentUpon>qibublog.edmx</DependentUpon>
-    </None>
-    <None Include="qibublog.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>qibublog.edmx</DependentUpon>
-      <LastGenOutput>qibublog.cs</LastGenOutput>
+    <None Include="QiBuBlog.edmx.diagram">
+      <DependentUpon>QiBuBlog.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

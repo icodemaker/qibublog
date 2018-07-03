@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace qibublog.www
+namespace QiBuBlog.WWW
 {
     public class RouteConfig
     {

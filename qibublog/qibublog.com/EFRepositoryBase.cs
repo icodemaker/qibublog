@@ -1,10 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace qibublog.com
+namespace QiBuBlog.Com
 {
 
     public class EFRepositoryBase<TEntity, TKey> where TEntity : class
@@ -195,8 +201,6 @@ namespace qibublog.com
 
         public int Update(Expression<Func<TEntity, object>> propertyExpression, TEntity entity, bool isSave = true)
         {
-            //  throw new NotSupportedException("上下文公用，不支持按需更新功能。");
-
             CommonHelper.CheckArgument(propertyExpression, "propertyExpression");
             CommonHelper.CheckArgument(entity, "entity");
 
