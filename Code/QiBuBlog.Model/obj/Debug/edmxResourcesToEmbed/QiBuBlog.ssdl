@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QibuBlogModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Article">
+    <Key>
+      <PropertyRef Name="ArticleId" />
+    </Key>
+    <Property Name="ArticleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="AuthorId" Type="int" Nullable="false" />
+    <Property Name="AuthorName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="80" Nullable="false" />
+    <Property Name="Keywords" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="SummarySize" Type="smallint" Nullable="false" />
+    <Property Name="Summary" Type="ntext" Nullable="false" />
+    <Property Name="State" Type="tinyint" Nullable="false" />
+    <Property Name="Content" Type="ntext" Nullable="false" />
+    <Property Name="ViewCount" Type="int" Nullable="false" />
+    <Property Name="CommentCount" Type="int" Nullable="false" />
+    <Property Name="Weight" Type="tinyint" Nullable="false" />
+    <Property Name="PostTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Keywords" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Weight" Type="tinyint" Nullable="false" />
+    <Property Name="PostCount" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="CommentId" />
+    </Key>
+    <Property Name="CommentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ArticleId" Type="int" Nullable="false" />
+    <Property Name="AuthorId" Type="int" Nullable="false" />
+    <Property Name="AuthorName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="80" Nullable="false" />
+    <Property Name="HomePage" Type="nvarchar" MaxLength="80" Nullable="false" />
+    <Property Name="Content" Type="ntext" Nullable="false" />
+    <Property Name="Visibility" Type="tinyint" Nullable="false" />
+    <Property Name="IP" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="PostTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Link">
+    <Key>
+      <PropertyRef Name="LinkId" />
+    </Key>
+    <Property Name="LinkId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LinkName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="LinkUrl" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Weight" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Message">
+    <Key>
+      <PropertyRef Name="MsgId" />
+    </Key>
+    <Property Name="MsgId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AuthorId" Type="int" Nullable="false" />
+    <Property Name="AuthorName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="80" Nullable="false" />
+    <Property Name="HomePage" Type="nvarchar" MaxLength="80" Nullable="false" />
+    <Property Name="Content" Type="ntext" Nullable="false" />
+    <Property Name="Visibility" Type="tinyint" Nullable="false" />
+    <Property Name="IP" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="PostTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“qibublog.dbo.Setup”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="Setup">
+    <Key>
+      <PropertyRef Name="IsOpen" />
+      <PropertyRef Name="CloseReason" />
+      <PropertyRef Name="SiteName" />
+      <PropertyRef Name="SiteDomain" />
+      <PropertyRef Name="Keywords" />
+      <PropertyRef Name="Description" />
+      <PropertyRef Name="ForbiddenIP" />
+      <PropertyRef Name="TimeZone" />
+      <PropertyRef Name="CommentLimit" />
+      <PropertyRef Name="MinCommentSize" />
+      <PropertyRef Name="MaxCommentSize" />
+      <PropertyRef Name="CommentInterval" />
+    </Key>
+    <Property Name="IsOpen" Type="tinyint" Nullable="false" />
+    <Property Name="CloseReason" Type="ntext" Nullable="false" />
+    <Property Name="SiteName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="SiteDomain" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Keywords" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Description" Type="ntext" Nullable="false" />
+    <Property Name="ForbiddenIP" Type="ntext" Nullable="false" />
+    <Property Name="TimeZone" Type="float" Nullable="false" />
+    <Property Name="CommentLimit" Type="tinyint" Nullable="false" />
+    <Property Name="MinCommentSize" Type="tinyint" Nullable="false" />
+    <Property Name="MaxCommentSize" Type="smallint" Nullable="false" />
+    <Property Name="CommentInterval" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Password" Type="char" MaxLength="40" Nullable="false" />
+    <Property Name="GroupId" Type="int" Nullable="false" />
+    <Property Name="Nickname" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="80" Nullable="false" />
+    <Property Name="QQ" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="HomePage" Type="nvarchar" MaxLength="80" Nullable="false" />
+    <Property Name="RegTime" Type="datetime" Nullable="false" />
+    <Property Name="LastIP" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="LastActivity" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserGroup">
+    <Key>
+      <PropertyRef Name="GroupId" />
+    </Key>
+    <Property Name="GroupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GroupName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CanSetGlobal" Type="tinyint" Nullable="false" />
+    <Property Name="CanReview" Type="tinyint" Nullable="false" />
+    <Property Name="ArticleLimit" Type="tinyint" Nullable="false" />
+    <Property Name="MaxArticleWeight" Type="tinyint" Nullable="false" />
+    <Property Name="CanManageUser" Type="tinyint" Nullable="false" />
+    <Property Name="IsAdmin" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="QibuBlogModelStoreContainer">
+    <EntitySet Name="Article" EntityType="Self.Article" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Link" EntityType="Self.Link" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Message" EntityType="Self.Message" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserGroup" EntityType="Self.UserGroup" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Setup" EntityType="Self.Setup" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[Setup].[IsOpen] AS [IsOpen], 
+[Setup].[CloseReason] AS [CloseReason], 
+[Setup].[SiteName] AS [SiteName], 
+[Setup].[SiteDomain] AS [SiteDomain], 
+[Setup].[Keywords] AS [Keywords], 
+[Setup].[Description] AS [Description], 
+[Setup].[ForbiddenIP] AS [ForbiddenIP], 
+[Setup].[TimeZone] AS [TimeZone], 
+[Setup].[CommentLimit] AS [CommentLimit], 
+[Setup].[MinCommentSize] AS [MinCommentSize], 
+[Setup].[MaxCommentSize] AS [MaxCommentSize], 
+[Setup].[CommentInterval] AS [CommentInterval]
+FROM [dbo].[Setup] AS [Setup]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

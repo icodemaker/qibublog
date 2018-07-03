@@ -1,0 +1,18 @@
+﻿.body > .boundary { padding: 15px 0; }
+
+.info {
+    width: 420px;
+    min-height: 88px;
+    background: #fff url(/style/images/icon-tips.png) no-repeat left center;
+    border-radius: 4px;
+    margin: 0 auto;
+    padding: 30px 0 10px 118px;
+    text-align: center;
+}
+.info-error { background-image: url(/style/images/icon-error.png); }
+.info-success { background-image: url(/style/images/icon-success.png); }
+    .info p {
+        padding: 10px;
+        padding-bottom: 0;
+        line-height: 21px;
+    }
