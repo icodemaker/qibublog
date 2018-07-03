@@ -17,3 +17,4 @@ E:\CodeMaker\qibublog\qibublog\qibublog.model\obj\Debug\qibublog.model.csproj.Co
 E:\CodeMaker\qibublog\qibublog\qibublog.model\obj\Debug\qibublog.model.csproj.CopyComplete
 E:\CodeMaker\qibublog\qibublog\qibublog.model\obj\Debug\qibublog.model.dll
 E:\CodeMaker\qibublog\qibublog\qibublog.model\obj\Debug\qibublog.model.pdb
+E:\CodeMaker\qibublog\QiBuBlog\qibublog.model\obj\Debug\QiBuBlog.Model.csprojAssemblyReference.cache
