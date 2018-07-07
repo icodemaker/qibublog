@@ -17,14 +17,3 @@ E:\CodeMaker\qibublog\qibublog\qibublog.model\obj\Debug\qibublog.model.csproj.Co
 E:\CodeMaker\qibublog\qibublog\qibublog.model\obj\Debug\qibublog.model.csproj.CopyComplete
 E:\CodeMaker\qibublog\qibublog\qibublog.model\obj\Debug\qibublog.model.dll
 E:\CodeMaker\qibublog\qibublog\qibublog.model\obj\Debug\qibublog.model.pdb
-E:\CodeMaker\GitHub\qibublog\Code\qibublog.model\bin\Debug\QiBuBlog.Model.dll.config
-E:\CodeMaker\GitHub\qibublog\Code\qibublog.model\bin\Debug\QiBuBlog.Model.dll
-E:\CodeMaker\GitHub\qibublog\Code\qibublog.model\bin\Debug\QiBuBlog.Model.pdb
-E:\CodeMaker\GitHub\qibublog\Code\qibublog.model\bin\Debug\EntityFramework.dll
-E:\CodeMaker\GitHub\qibublog\Code\qibublog.model\bin\Debug\EntityFramework.xml
-E:\CodeMaker\GitHub\qibublog\Code\qibublog.model\bin\Debug\zh-Hans\EntityFramework.resources.dll
-E:\CodeMaker\GitHub\qibublog\Code\qibublog.model\obj\Debug\QiBuBlog.Model.csproj.CoreCompileInputs.cache
-E:\CodeMaker\GitHub\qibublog\Code\qibublog.model\obj\Debug\QiBuBlog.Model.csproj.CopyComplete
-E:\CodeMaker\GitHub\qibublog\Code\qibublog.model\obj\Debug\QiBuBlog.Model.dll
-E:\CodeMaker\GitHub\qibublog\Code\qibublog.model\obj\Debug\QiBuBlog.Model.pdb
-E:\CodeMaker\GitHub\qibublog\Code\qibublog.model\obj\Debug\QiBuBlog.Model.csprojAssemblyReference.cache

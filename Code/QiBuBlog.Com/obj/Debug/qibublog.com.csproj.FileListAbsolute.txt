@@ -12,8 +12,3 @@ E:\CodeMaker\qibublog\qibublog\qibublog.com\obj\Debug\qibublog.com.csprojAssembl
 E:\CodeMaker\qibublog\qibublog\qibublog.com\obj\Debug\qibublog.com.csproj.CoreCompileInputs.cache
 E:\CodeMaker\qibublog\qibublog\qibublog.com\obj\Debug\qibublog.com.dll
 E:\CodeMaker\qibublog\qibublog\qibublog.com\obj\Debug\qibublog.com.pdb
-E:\CodeMaker\GitHub\qibublog\Code\qibublog.com\obj\Debug\QiBuBlog.Com.csproj.CoreCompileInputs.cache
-E:\CodeMaker\GitHub\qibublog\Code\qibublog.com\bin\Debug\QiBuBlog.Com.dll
-E:\CodeMaker\GitHub\qibublog\Code\qibublog.com\bin\Debug\QiBuBlog.Com.pdb
-E:\CodeMaker\GitHub\qibublog\Code\qibublog.com\obj\Debug\QiBuBlog.Com.dll
-E:\CodeMaker\GitHub\qibublog\Code\qibublog.com\obj\Debug\QiBuBlog.Com.pdb
