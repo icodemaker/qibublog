@@ -1,4 +1,5 @@
 packages
-/Database
+Database
 .vs
 obj
+bin
