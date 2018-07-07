@@ -20,7 +20,7 @@ namespace QiBuBlog.Service
             return new PageList<Article>()
             {
                 page = pageSet.page,
-                rows = new List<Article>(),
+                rows = db.Entities.ToList(),
                 total = 1
             };
         }
