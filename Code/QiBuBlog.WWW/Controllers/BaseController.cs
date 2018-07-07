@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace QiBuBlog.WWW.Controllers
+namespace QiBuBlog.WWW
 {
     public class BaseController : Controller
     {

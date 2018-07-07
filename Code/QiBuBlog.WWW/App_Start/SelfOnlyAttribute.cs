@@ -7,5 +7,6 @@ namespace QiBuBlog.WWW.App_Start
 {
     public class SelfOnlyAttribute
     {
+
     }
 }

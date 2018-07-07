@@ -6,10 +6,10 @@ using System.Web.Mvc;
 
 namespace QiBuBlog.WWW.Areas.Manage.Controllers
 {
-    public class DashboardController : BaseController
+    public class ArticleController : BaseController
     {
         //
-        // GET: /Manage/Dashboard/
+        // GET: /Manage/Article/
 
         public ActionResult Index()
         {
