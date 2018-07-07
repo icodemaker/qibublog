@@ -103,6 +103,7 @@ E:\CodeMaker\GitHub\qibublog\Code\qibublog.www\bin\System.Web.Razor.dll
 E:\CodeMaker\GitHub\qibublog\Code\qibublog.www\bin\System.Web.WebPages.Deployment.dll
 E:\CodeMaker\GitHub\qibublog\Code\qibublog.www\bin\System.Web.WebPages.dll
 E:\CodeMaker\GitHub\qibublog\Code\qibublog.www\bin\System.Web.WebPages.Razor.dll
+E:\CodeMaker\GitHub\qibublog\Code\qibublog.www\bin\EntityFramework.dll
 E:\CodeMaker\GitHub\qibublog\Code\qibublog.www\bin\QiBuBlog.Com.pdb
 E:\CodeMaker\GitHub\qibublog\Code\qibublog.www\bin\QiBuBlog.Model.pdb
 E:\CodeMaker\GitHub\qibublog\Code\qibublog.www\bin\QiBuBlog.Model.dll.config
@@ -117,6 +118,7 @@ E:\CodeMaker\GitHub\qibublog\Code\qibublog.www\bin\System.Web.Razor.xml
 E:\CodeMaker\GitHub\qibublog\Code\qibublog.www\bin\System.Web.WebPages.xml
 E:\CodeMaker\GitHub\qibublog\Code\qibublog.www\bin\System.Web.WebPages.Deployment.xml
 E:\CodeMaker\GitHub\qibublog\Code\qibublog.www\bin\System.Web.WebPages.Razor.xml
+E:\CodeMaker\GitHub\qibublog\Code\qibublog.www\bin\EntityFramework.xml
 E:\CodeMaker\GitHub\qibublog\Code\qibublog.www\bin\zh-Hans\System.Net.Http.Formatting.resources.dll
 E:\CodeMaker\GitHub\qibublog\Code\qibublog.www\bin\zh-Hans\System.Web.Helpers.resources.dll
 E:\CodeMaker\GitHub\qibublog\Code\qibublog.www\bin\zh-Hans\System.Web.Http.resources.dll
@@ -126,12 +128,9 @@ E:\CodeMaker\GitHub\qibublog\Code\qibublog.www\bin\zh-Hans\System.Web.Razor.reso
 E:\CodeMaker\GitHub\qibublog\Code\qibublog.www\bin\zh-Hans\System.Web.WebPages.resources.dll
 E:\CodeMaker\GitHub\qibublog\Code\qibublog.www\bin\zh-Hans\System.Web.WebPages.Deployment.resources.dll
 E:\CodeMaker\GitHub\qibublog\Code\qibublog.www\bin\zh-Hans\System.Web.WebPages.Razor.resources.dll
+E:\CodeMaker\GitHub\qibublog\Code\qibublog.www\bin\zh-Hans\EntityFramework.resources.dll
 E:\CodeMaker\GitHub\qibublog\Code\qibublog.www\obj\Debug\QiBuBlog.WWW.csprojAssemblyReference.cache
 E:\CodeMaker\GitHub\qibublog\Code\qibublog.www\obj\Debug\QiBuBlog.WWW.csproj.CoreCompileInputs.cache
 E:\CodeMaker\GitHub\qibublog\Code\qibublog.www\obj\Debug\QiBuBlog.WWW.csproj.CopyComplete
 E:\CodeMaker\GitHub\qibublog\Code\qibublog.www\obj\Debug\QiBuBlog.WWW.dll
 E:\CodeMaker\GitHub\qibublog\Code\qibublog.www\obj\Debug\QiBuBlog.WWW.pdb
-E:\CodeMaker\GitHub\qibublog\Code\qibublog.www\bin\EntityFramework.dll
-E:\CodeMaker\GitHub\qibublog\Code\qibublog.www\bin\QiBuBlog.Com.dll.config
-E:\CodeMaker\GitHub\qibublog\Code\qibublog.www\bin\EntityFramework.xml
-E:\CodeMaker\GitHub\qibublog\Code\qibublog.www\bin\zh-Hans\EntityFramework.resources.dll
