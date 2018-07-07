@@ -4,12 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace QiBuBlog.WWW.Controllers
+namespace QiBuBlog.WWW.Areas.Manage.Controllers
 {
-    public class HomeController : BaseController
+    public class DashboardController : Controller
     {
         //
-        // GET: /Home/
+        // GET: /Manage/Dashboard/
 
         public ActionResult Index()
         {

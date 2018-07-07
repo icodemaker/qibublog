@@ -6,15 +6,15 @@ using System.Web.Mvc;
 
 namespace QiBuBlog.WWW.Controllers
 {
-    public class HomeController : BaseController
+    public class LoginController : Controller
     {
         //
-        // GET: /Home/
+        // GET: /Login/
 
         public ActionResult Index()
         {
             return View();
-        }
+        }                                                               
 
     }
 }
