@@ -1,10 +1,6 @@
-﻿using QiBuBlog.Com;
-using QiBuBlog.Model;
-using System;
-using System.Collections.Generic;
+﻿using QiBuBlog.Entity;
+using QiBuBlog.Util;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace QiBuBlog.Service
 {
@@ -15,15 +11,16 @@ namespace QiBuBlog.Service
         public PageList<Article> GetCustomerPageList(User user, string keyWord, PageSet pageSet)
         {
             var db = new EFRepositoryBase<Article, object>();
+                PageIndex = pageSet.PageIndex,
             var exp = new PredicatePack<Article>();
 
             return new PageList<Article>()
             {
-                page = pageSet.page,
-                rows = db.Entities.ToList(),
-                total = 1
+                Data = db.Entities.ToList(),
+                Total = db.Entities.Count()
             };
         }
+
 
     }
 }

@@ -1,0 +1,457 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="QibuBlog.Entity.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="ArticleId" />
+          </Key>
+          <Property Name="ArticleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="AuthorId" Type="int" Nullable="false" />
+          <Property Name="AuthorName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="Keywords" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="SummarySize" Type="smallint" Nullable="false" />
+          <Property Name="Summary" Type="ntext" Nullable="false" />
+          <Property Name="State" Type="tinyint" Nullable="false" />
+          <Property Name="Content" Type="ntext" Nullable="false" />
+          <Property Name="ViewCount" Type="int" Nullable="false" />
+          <Property Name="CommentCount" Type="int" Nullable="false" />
+          <Property Name="Weight" Type="tinyint" Nullable="false" />
+          <Property Name="PostTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Keywords" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Weight" Type="tinyint" Nullable="false" />
+          <Property Name="PostCount" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="CommentId" />
+          </Key>
+          <Property Name="CommentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ArticleId" Type="int" Nullable="false" />
+          <Property Name="AuthorId" Type="int" Nullable="false" />
+          <Property Name="AuthorName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="HomePage" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="Content" Type="ntext" Nullable="false" />
+          <Property Name="Visibility" Type="tinyint" Nullable="false" />
+          <Property Name="IP" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="PostTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Link">
+          <Key>
+            <PropertyRef Name="LinkId" />
+          </Key>
+          <Property Name="LinkId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LinkName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="LinkUrl" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Weight" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="MsgId" />
+          </Key>
+          <Property Name="MsgId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AuthorId" Type="int" Nullable="false" />
+          <Property Name="AuthorName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="HomePage" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="Content" Type="ntext" Nullable="false" />
+          <Property Name="Visibility" Type="tinyint" Nullable="false" />
+          <Property Name="IP" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="PostTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“qibublog.dbo.Setup”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="Setup">
+          <Key>
+            <PropertyRef Name="IsOpen" />
+            <PropertyRef Name="CloseReason" />
+            <PropertyRef Name="SiteName" />
+            <PropertyRef Name="SiteDomain" />
+            <PropertyRef Name="Keywords" />
+            <PropertyRef Name="Description" />
+            <PropertyRef Name="ForbiddenIP" />
+            <PropertyRef Name="TimeZone" />
+            <PropertyRef Name="CommentLimit" />
+            <PropertyRef Name="MinCommentSize" />
+            <PropertyRef Name="MaxCommentSize" />
+            <PropertyRef Name="CommentInterval" />
+          </Key>
+          <Property Name="IsOpen" Type="tinyint" Nullable="false" />
+          <Property Name="CloseReason" Type="ntext" Nullable="false" />
+          <Property Name="SiteName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SiteDomain" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Keywords" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Description" Type="ntext" Nullable="false" />
+          <Property Name="ForbiddenIP" Type="ntext" Nullable="false" />
+          <Property Name="TimeZone" Type="float" Nullable="false" />
+          <Property Name="CommentLimit" Type="tinyint" Nullable="false" />
+          <Property Name="MinCommentSize" Type="tinyint" Nullable="false" />
+          <Property Name="MaxCommentSize" Type="smallint" Nullable="false" />
+          <Property Name="CommentInterval" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Password" Type="char" MaxLength="40" Nullable="false" />
+          <Property Name="GroupId" Type="int" Nullable="false" />
+          <Property Name="Nickname" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="QQ" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="HomePage" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="RegTime" Type="datetime" Nullable="false" />
+          <Property Name="LastIP" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="LastActivity" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserGroup">
+          <Key>
+            <PropertyRef Name="GroupId" />
+          </Key>
+          <Property Name="GroupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="CanSetGlobal" Type="tinyint" Nullable="false" />
+          <Property Name="CanReview" Type="tinyint" Nullable="false" />
+          <Property Name="ArticleLimit" Type="tinyint" Nullable="false" />
+          <Property Name="MaxArticleWeight" Type="tinyint" Nullable="false" />
+          <Property Name="CanManageUser" Type="tinyint" Nullable="false" />
+          <Property Name="IsAdmin" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="QibuBlogEntityStoreContainer">
+          <EntitySet Name="Article" EntityType="Self.Article" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Link" EntityType="Self.Link" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Message" EntityType="Self.Message" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserGroup" EntityType="Self.UserGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Setup" EntityType="Self.Setup" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[Setup].[IsOpen] AS [IsOpen], 
+[Setup].[CloseReason] AS [CloseReason], 
+[Setup].[SiteName] AS [SiteName], 
+[Setup].[SiteDomain] AS [SiteDomain], 
+[Setup].[Keywords] AS [Keywords], 
+[Setup].[Description] AS [Description], 
+[Setup].[ForbiddenIP] AS [ForbiddenIP], 
+[Setup].[TimeZone] AS [TimeZone], 
+[Setup].[CommentLimit] AS [CommentLimit], 
+[Setup].[MinCommentSize] AS [MinCommentSize], 
+[Setup].[MaxCommentSize] AS [MaxCommentSize], 
+[Setup].[CommentInterval] AS [CommentInterval]
+FROM [dbo].[Setup] AS [Setup]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QibuBlog.Entity" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="ArticleId" />
+          </Key>
+          <Property Name="ArticleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="CategoryName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AuthorId" Type="Int32" Nullable="false" />
+          <Property Name="AuthorName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Keywords" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SummarySize" Type="Int16" Nullable="false" />
+          <Property Name="Summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="State" Type="Byte" Nullable="false" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ViewCount" Type="Int32" Nullable="false" />
+          <Property Name="CommentCount" Type="Int32" Nullable="false" />
+          <Property Name="Weight" Type="Byte" Nullable="false" />
+          <Property Name="PostTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Keywords" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Weight" Type="Byte" Nullable="false" />
+          <Property Name="PostCount" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="CommentId" />
+          </Key>
+          <Property Name="CommentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ArticleId" Type="Int32" Nullable="false" />
+          <Property Name="AuthorId" Type="Int32" Nullable="false" />
+          <Property Name="AuthorName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HomePage" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Visibility" Type="Byte" Nullable="false" />
+          <Property Name="IP" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PostTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Link">
+          <Key>
+            <PropertyRef Name="LinkId" />
+          </Key>
+          <Property Name="LinkId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LinkName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LinkUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Weight" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="MsgId" />
+          </Key>
+          <Property Name="MsgId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AuthorId" Type="Int32" Nullable="false" />
+          <Property Name="AuthorName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HomePage" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Visibility" Type="Byte" Nullable="false" />
+          <Property Name="IP" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PostTime" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="40" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="GroupId" Type="Int32" Nullable="false" />
+          <Property Name="Nickname" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="QQ" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HomePage" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RegTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastIP" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastActivity" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="UserGroup">
+          <Key>
+            <PropertyRef Name="GroupId" />
+          </Key>
+          <Property Name="GroupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CanSetGlobal" Type="Byte" Nullable="false" />
+          <Property Name="CanReview" Type="Byte" Nullable="false" />
+          <Property Name="ArticleLimit" Type="Byte" Nullable="false" />
+          <Property Name="MaxArticleWeight" Type="Byte" Nullable="false" />
+          <Property Name="CanManageUser" Type="Byte" Nullable="false" />
+          <Property Name="IsAdmin" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Setup">
+          <Key>
+            <PropertyRef Name="IsOpen" />
+            <PropertyRef Name="CloseReason" />
+            <PropertyRef Name="SiteName" />
+            <PropertyRef Name="SiteDomain" />
+            <PropertyRef Name="Keywords" />
+            <PropertyRef Name="Description" />
+            <PropertyRef Name="ForbiddenIP" />
+            <PropertyRef Name="TimeZone" />
+            <PropertyRef Name="CommentLimit" />
+            <PropertyRef Name="MinCommentSize" />
+            <PropertyRef Name="MaxCommentSize" />
+            <PropertyRef Name="CommentInterval" />
+          </Key>
+          <Property Name="IsOpen" Type="Byte" Nullable="false" />
+          <Property Name="CloseReason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SiteName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SiteDomain" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Keywords" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ForbiddenIP" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TimeZone" Type="Double" Nullable="false" />
+          <Property Name="CommentLimit" Type="Byte" Nullable="false" />
+          <Property Name="MinCommentSize" Type="Byte" Nullable="false" />
+          <Property Name="MaxCommentSize" Type="Int16" Nullable="false" />
+          <Property Name="CommentInterval" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="QiBuBlogEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Article" EntityType="Self.Article" />
+          <EntitySet Name="Category" EntityType="Self.Category" />
+          <EntitySet Name="Comment" EntityType="Self.Comment" />
+          <EntitySet Name="Link" EntityType="Self.Link" />
+          <EntitySet Name="Message" EntityType="Self.Message" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="UserGroup" EntityType="Self.UserGroup" />
+          <EntitySet Name="Setup" EntityType="Self.Setup" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QibuBlogEntityStoreContainer" CdmEntityContainer="QiBuBlogEntities">
+          <EntitySetMapping Name="Article">
+            <EntityTypeMapping TypeName="QibuBlog.Entity.Article">
+              <MappingFragment StoreEntitySet="Article">
+                <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
+                <ScalarProperty Name="AuthorName" ColumnName="AuthorName" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Keywords" ColumnName="Keywords" />
+                <ScalarProperty Name="SummarySize" ColumnName="SummarySize" />
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="ViewCount" ColumnName="ViewCount" />
+                <ScalarProperty Name="CommentCount" ColumnName="CommentCount" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="PostTime" ColumnName="PostTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Category">
+            <EntityTypeMapping TypeName="QibuBlog.Entity.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="Keywords" ColumnName="Keywords" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="PostCount" ColumnName="PostCount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comment">
+            <EntityTypeMapping TypeName="QibuBlog.Entity.Comment">
+              <MappingFragment StoreEntitySet="Comment">
+                <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+                <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+                <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
+                <ScalarProperty Name="AuthorName" ColumnName="AuthorName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="HomePage" ColumnName="HomePage" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Visibility" ColumnName="Visibility" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="PostTime" ColumnName="PostTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Link">
+            <EntityTypeMapping TypeName="QibuBlog.Entity.Link">
+              <MappingFragment StoreEntitySet="Link">
+                <ScalarProperty Name="LinkId" ColumnName="LinkId" />
+                <ScalarProperty Name="LinkName" ColumnName="LinkName" />
+                <ScalarProperty Name="LinkUrl" ColumnName="LinkUrl" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Message">
+            <EntityTypeMapping TypeName="QibuBlog.Entity.Message">
+              <MappingFragment StoreEntitySet="Message">
+                <ScalarProperty Name="MsgId" ColumnName="MsgId" />
+                <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
+                <ScalarProperty Name="AuthorName" ColumnName="AuthorName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="HomePage" ColumnName="HomePage" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Visibility" ColumnName="Visibility" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="PostTime" ColumnName="PostTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="QibuBlog.Entity.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="Nickname" ColumnName="Nickname" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="QQ" ColumnName="QQ" />
+                <ScalarProperty Name="HomePage" ColumnName="HomePage" />
+                <ScalarProperty Name="RegTime" ColumnName="RegTime" />
+                <ScalarProperty Name="LastIP" ColumnName="LastIP" />
+                <ScalarProperty Name="LastActivity" ColumnName="LastActivity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserGroup">
+            <EntityTypeMapping TypeName="QibuBlog.Entity.UserGroup">
+              <MappingFragment StoreEntitySet="UserGroup">
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="CanSetGlobal" ColumnName="CanSetGlobal" />
+                <ScalarProperty Name="CanReview" ColumnName="CanReview" />
+                <ScalarProperty Name="ArticleLimit" ColumnName="ArticleLimit" />
+                <ScalarProperty Name="MaxArticleWeight" ColumnName="MaxArticleWeight" />
+                <ScalarProperty Name="CanManageUser" ColumnName="CanManageUser" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Setup">
+            <EntityTypeMapping TypeName="QibuBlog.Entity.Setup">
+              <MappingFragment StoreEntitySet="Setup">
+                <ScalarProperty Name="IsOpen" ColumnName="IsOpen" />
+                <ScalarProperty Name="CloseReason" ColumnName="CloseReason" />
+                <ScalarProperty Name="SiteName" ColumnName="SiteName" />
+                <ScalarProperty Name="SiteDomain" ColumnName="SiteDomain" />
+                <ScalarProperty Name="Keywords" ColumnName="Keywords" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ForbiddenIP" ColumnName="ForbiddenIP" />
+                <ScalarProperty Name="TimeZone" ColumnName="TimeZone" />
+                <ScalarProperty Name="CommentLimit" ColumnName="CommentLimit" />
+                <ScalarProperty Name="MinCommentSize" ColumnName="MinCommentSize" />
+                <ScalarProperty Name="MaxCommentSize" ColumnName="MaxCommentSize" />
+                <ScalarProperty Name="CommentInterval" ColumnName="CommentInterval" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -55,14 +55,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\qibublog.com\QiBuBlog.Com.csproj">
-      <Project>{49fea1e5-5c25-4ffd-84a3-e216789b5514}</Project>
-      <Name>QiBuBlog.Com</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\qibublog.model\QiBuBlog.Model.csproj">
-      <Project>{2d9fd804-1684-4b6f-9294-ce7d721b569f}</Project>
-      <Name>QiBuBlog.Model</Name>
-    </ProjectReference>
     <ProjectReference Include="..\qibublog.service\QiBuBlog.Service.csproj">
       <Project>{89841f88-88c6-4aa6-97d9-5af94affe4ca}</Project>
       <Name>QiBuBlog.Service</Name>
