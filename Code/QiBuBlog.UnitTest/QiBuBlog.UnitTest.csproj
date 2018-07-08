@@ -52,12 +52,21 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\QiBuBlog.Entity\QiBuBlog.Entity.csproj">
+      <Project>{2d9fd804-1684-4b6f-9294-ce7d721b569f}</Project>
+      <Name>QiBuBlog.Entity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\qibublog.service\QiBuBlog.Service.csproj">
       <Project>{89841f88-88c6-4aa6-97d9-5af94affe4ca}</Project>
       <Name>QiBuBlog.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QiBuBlog.Util\QiBuBlog.Util.csproj">
+      <Project>{49fea1e5-5c25-4ffd-84a3-e216789b5514}</Project>
+      <Name>QiBuBlog.Util</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

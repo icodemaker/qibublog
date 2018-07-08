@@ -1,6 +1,7 @@
 ﻿using QiBuBlog.Util;
-using QiBuBlog.Model;
+using QiBuBlog.Entity;
 using System;
+using System.Linq;
 
 namespace QiBuBlog.Service
 {
@@ -40,6 +41,12 @@ namespace QiBuBlog.Service
             {
                 throw new ArgumentException("最小评论字数不能大于最大评论字数");
             }
+        }
+
+        public Setup GetSetup()
+        {
+            var db = new EFRepositoryBase<Setup, object>();
+            return db.Entities.FirstOrDefault();
         }
     }
 }

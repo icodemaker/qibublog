@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using QiBuBlog.Service;
 
 namespace QiBuBlog.UnitTest
 {
@@ -9,7 +10,7 @@ namespace QiBuBlog.UnitTest
         [TestMethod]
         public void Add()
         {
-
+            var res = new SetupService().GetSetup();
         }
 
         [TestMethod]
