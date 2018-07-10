@@ -5,14 +5,14 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="4d272a28afd245b9ad5f1e34d16e2f80" Name="Diagram1">
-        <EntityTypeShape EntityType="QibuBlog.Entity.Article" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QibuBlog.Entity.Category" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QibuBlog.Entity.Comment" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QibuBlog.Entity.Link" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QibuBlog.Entity.Message" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QibuBlog.Entity.User" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QibuBlog.Entity.UserGroup" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QibuBlog.Entity.Setup" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QibuBlog.Entity.Article" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="QibuBlog.Entity.Category" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="QibuBlog.Entity.Comment" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="QibuBlog.Entity.Link" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="QibuBlog.Entity.Message" Width="1.5" PointX="4.75" PointY="3.75" />
+        <EntityTypeShape EntityType="QibuBlog.Entity.User" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="QibuBlog.Entity.UserGroup" Width="1.5" PointX="6.75" PointY="4.75" />
+        <EntityTypeShape EntityType="QibuBlog.Entity.Setup" Width="1.5" PointX="0.75" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

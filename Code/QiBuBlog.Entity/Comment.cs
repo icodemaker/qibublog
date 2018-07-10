@@ -14,9 +14,9 @@ namespace QiBuBlog.Entity
     
     public partial class Comment
     {
-        public int CommentId { get; set; }
-        public int ArticleId { get; set; }
-        public int AuthorId { get; set; }
+        public string CommentId { get; set; }
+        public string ArticleId { get; set; }
+        public string AuthorId { get; set; }
         public string AuthorName { get; set; }
         public string Email { get; set; }
         public string HomePage { get; set; }

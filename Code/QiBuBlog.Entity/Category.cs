@@ -14,7 +14,7 @@ namespace QiBuBlog.Entity
     
     public partial class Category
     {
-        public int CategoryId { get; set; }
+        public string CategoryId { get; set; }
         public string CategoryName { get; set; }
         public string Keywords { get; set; }
         public string Description { get; set; }

@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Encrypt.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="PageList.cs" />
     <Compile Include="PageSet.cs" />

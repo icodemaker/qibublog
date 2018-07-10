@@ -14,7 +14,7 @@ namespace QiBuBlog.Entity
     
     public partial class Link
     {
-        public int LinkId { get; set; }
+        public string LinkId { get; set; }
         public string LinkName { get; set; }
         public string LinkUrl { get; set; }
         public string Description { get; set; }

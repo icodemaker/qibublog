@@ -5,8 +5,15 @@ using System.Linq;
 
 namespace QiBuBlog.Service
 {
-    public class SetupService: Singleton<SetupService>
+    public class SetupService : Singleton<SetupService>
     {
+        private readonly EFRepositoryBase<Setup, object> setup;
+
+        public SetupService()
+        {
+            setup = new EFRepositoryBase<Setup, object>();
+        }
+
         public static void Validate(Setup setup)
         {
             if (setup.IsOpen != 1 && setup.IsOpen != 0)
@@ -45,8 +52,22 @@ namespace QiBuBlog.Service
 
         public Setup GetSetup()
         {
-            var db = new EFRepositoryBase<Setup, object>();
-            return db.Entities.FirstOrDefault();
+            return setup.Entities.FirstOrDefault();
+        }
+
+        public bool UpdateSetup(Setup model)
+        {
+            var result = false;
+            try
+            {
+                setup.Update(model);
+                result = true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return result;
         }
     }
 }

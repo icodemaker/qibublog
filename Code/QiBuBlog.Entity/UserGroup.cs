@@ -14,7 +14,7 @@ namespace QiBuBlog.Entity
     
     public partial class UserGroup
     {
-        public int GroupId { get; set; }
+        public string GroupId { get; set; }
         public string GroupName { get; set; }
         public byte CanSetGlobal { get; set; }
         public byte CanReview { get; set; }

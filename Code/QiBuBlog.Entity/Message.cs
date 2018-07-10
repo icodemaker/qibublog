@@ -14,8 +14,8 @@ namespace QiBuBlog.Entity
     
     public partial class Message
     {
-        public int MsgId { get; set; }
-        public int AuthorId { get; set; }
+        public string MsgId { get; set; }
+        public string AuthorId { get; set; }
         public string AuthorName { get; set; }
         public string Email { get; set; }
         public string HomePage { get; set; }

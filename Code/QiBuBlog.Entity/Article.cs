@@ -14,10 +14,10 @@ namespace QiBuBlog.Entity
     
     public partial class Article
     {
-        public int ArticleId { get; set; }
-        public int CategoryId { get; set; }
+        public string ArticleId { get; set; }
+        public string CategoryId { get; set; }
         public string CategoryName { get; set; }
-        public int AuthorId { get; set; }
+        public string AuthorId { get; set; }
         public string AuthorName { get; set; }
         public string Title { get; set; }
         public string Keywords { get; set; }
