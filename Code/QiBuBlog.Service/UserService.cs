@@ -2,7 +2,6 @@
 using QiBuBlog.Util;
 using System;
 using System.Linq;
-using System.Runtime.Remoting.Messaging;
 
 namespace QiBuBlog.Service
 {
@@ -84,6 +83,17 @@ namespace QiBuBlog.Service
         public bool DeleteUser(string id)
         {
             return _user.Delete(id) > 0;
+        }
+
+        public bool ChangeStatus(string id, string lastIP)
+        {
+            var model = _user.Find(x => x.UserId == id);
+            if (model != null)
+            {
+                model.LastActivity = DateTime.Now;
+                model.LastIP = lastIP;
+            }
+            return _user.Update(model) > 0;
         }
     }
 }
