@@ -7,11 +7,11 @@ namespace QiBuBlog.Service
 {
     public class CategoryService : Singleton<CategoryService>
     {
-        private readonly EFRepositoryBase<Category, object> category;
+        private static EFRepositoryBase<Category, object> _category;
 
-        public CategoryService()
+        private CategoryService()
         {
-            category = new EFRepositoryBase<Category, object>();
+            _category = new EFRepositoryBase<Category, object>();
         }
 
         public PageList<Category> GetCategroyPageList()
@@ -19,8 +19,8 @@ namespace QiBuBlog.Service
             return new PageList<Category>()
             {
                 PageIndex = 1,
-                Data = category.Entities.ToList(),
-                Total = category.Entities.Count()
+                Data = _category.Entities.ToList(),
+                Total = _category.Entities.Count()
             };
         }
 
@@ -31,12 +31,12 @@ namespace QiBuBlog.Service
             {
                 if (!string.IsNullOrWhiteSpace(model.CategoryId))
                 {
-                    category.Update(model);
+                    _category.Update(model);
                 }
                 else
                 {
                     model.CategoryId = "";
-                    category.Insert(model);
+                    _category.Insert(model);
                 }
                 result = true;
             }
@@ -54,7 +54,7 @@ namespace QiBuBlog.Service
             {
                 if (!string.IsNullOrWhiteSpace(id))
                 {
-                    category.Delete(id);
+                    _category.Delete(id);
                     result = true;
                 }
             }

@@ -7,11 +7,11 @@ namespace QiBuBlog.Service
 {
     public class SetupService : Singleton<SetupService>
     {
-        private readonly EFRepositoryBase<Setup, object> setup;
+        private static EFRepositoryBase<Setup, object> _setup;
 
-        public SetupService()
+        private SetupService()
         {
-            setup = new EFRepositoryBase<Setup, object>();
+            _setup = new EFRepositoryBase<Setup, object>();
         }
 
         public static void Validate(Setup setup)
@@ -20,15 +20,15 @@ namespace QiBuBlog.Service
             {
                 throw new ArgumentException("网站开放参数错误");
             }
-            if (String.IsNullOrEmpty(setup.SiteName))
+            if (string.IsNullOrEmpty(setup.SiteName))
             {
                 throw new ArgumentException("网站名不能为空");
             }
-            if (String.IsNullOrEmpty(setup.SiteDomain))
+            if (string.IsNullOrEmpty(setup.SiteDomain))
             {
                 throw new ArgumentException("网站域名不能为空");
             }
-            if (!String.IsNullOrEmpty(setup.ForbiddenIP))
+            if (!string.IsNullOrEmpty(setup.ForbiddenIP))
             {
                 var ips = setup.ForbiddenIP.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (var ip in ips)
@@ -50,9 +50,9 @@ namespace QiBuBlog.Service
             }
         }
 
-        public Setup GetSetup()
+        public static Setup GetSetup()
         {
-            return setup.Entities.FirstOrDefault();
+            return _setup.Entities.FirstOrDefault();
         }
 
         public bool UpdateSetup(Setup model)
@@ -60,7 +60,7 @@ namespace QiBuBlog.Service
             var result = false;
             try
             {
-                setup.Update(model);
+                _setup.Update(model);
                 result = true;
             }
             catch (Exception)

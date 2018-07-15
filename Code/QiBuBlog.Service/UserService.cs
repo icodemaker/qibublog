@@ -7,9 +7,9 @@ namespace QiBuBlog.Service
 {
     public class UserService : Singleton<UserService>
     {
-        private readonly EFRepositoryBase<User, object> _user;
+        private static EFRepositoryBase<User, object> _user;
 
-        public UserService()
+        private UserService()
         {
             _user = new EFRepositoryBase<User, object>();
         }
@@ -88,11 +88,9 @@ namespace QiBuBlog.Service
         public bool ChangeStatus(string id, string lastIP)
         {
             var model = _user.Find(x => x.UserId == id);
-            if (model != null)
-            {
-                model.LastActivity = DateTime.Now;
-                model.LastIP = lastIP;
-            }
+            if (model == null) return _user.Update(model) > 0;
+            model.LastActivity = DateTime.Now;
+            model.LastIP = lastIP;
             return _user.Update(model) > 0;
         }
     }

@@ -4,21 +4,17 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace QiBuBlog.WWW.Controllers
+namespace QiBuBlog.WWW.Areas.Manage.Views
 {
-    public class ArticleController : BaseController
+    public class SetupController : BaseController
     {
         //
-        // GET: /Article/
+        // GET: /Manage/Setup/
 
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult Detail()
-        {
-            return View();
-        }
     }
 }
