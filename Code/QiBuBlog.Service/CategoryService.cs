@@ -2,16 +2,17 @@
 using QiBuBlog.Util;
 using System;
 using System.Linq;
+using QiBuBlog.Entity.Helper;
 
 namespace QiBuBlog.Service
 {
     public class CategoryService : Singleton<CategoryService>
     {
-        private static EFRepositoryBase<Category, object> _category;
+        private static EfRepositoryBase<Category, object> _category;
 
         private CategoryService()
         {
-            _category = new EFRepositoryBase<Category, object>();
+            _category = new EfRepositoryBase<Category, object>();
         }
 
         public PageList<Category> GetCategroyPageList()

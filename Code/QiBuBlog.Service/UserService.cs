@@ -2,16 +2,17 @@
 using QiBuBlog.Util;
 using System;
 using System.Linq;
+using QiBuBlog.Entity.Helper;
 
 namespace QiBuBlog.Service
 {
     public class UserService : Singleton<UserService>
     {
-        private static EFRepositoryBase<User, object> _user;
+        private static EfRepositoryBase<User, object> _user;
 
         private UserService()
         {
-            _user = new EFRepositoryBase<User, object>();
+            _user = new EfRepositoryBase<User, object>();
         }
 
         public static void Validate(User user)
@@ -31,7 +32,7 @@ namespace QiBuBlog.Service
             }
             if (!string.IsNullOrEmpty(user.HomePage))
             {
-                user.HomePage = Validator.fixUrl(user.HomePage);
+                user.HomePage = Validator.FixUrl(user.HomePage);
             }
             if (!string.IsNullOrEmpty(user.QQ) && !Validator.IsQQ(user.QQ))
             {

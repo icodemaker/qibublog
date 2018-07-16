@@ -2,16 +2,17 @@
 using QiBuBlog.Entity;
 using System;
 using System.Linq;
+using QiBuBlog.Entity.Helper;
 
 namespace QiBuBlog.Service
 {
     public class SetupService : Singleton<SetupService>
     {
-        private static EFRepositoryBase<Setup, object> _setup;
+        private static EfRepositoryBase<Setup, object> _setup;
 
         private SetupService()
         {
-            _setup = new EFRepositoryBase<Setup, object>();
+            _setup = new EfRepositoryBase<Setup, object>();
         }
 
         public static void Validate(Setup setup)

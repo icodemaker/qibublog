@@ -8,23 +8,23 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace QiBuBlog.Entity
+namespace QiBuBlog.Entity.Helper
 {
 
-    public class EFRepositoryBase<TEntity, TKey> where TEntity : class
+    public sealed class EfRepositoryBase<TEntity, TKey> where TEntity : class
     {
         #region 属性
 
-        public EFRepositoryBase()
+        public EfRepositoryBase()
         {
             //TODO:
         }
 
-        protected DbContext EFContext = new EFDbContext<TEntity>().Instance;
+        private DbContext _efContext = new EfDbContext<TEntity>().Instance;
 
-        public bool IsCommitted { get; private set; }
+        private bool IsCommitted { get; set; }
 
-        public int Commit(bool validateOnSaveEnabled = true)
+        private int Commit(bool validateOnSaveEnabled = true)
         {
             if (IsCommitted)
             {
@@ -32,23 +32,23 @@ namespace QiBuBlog.Entity
             }
             try
             {
-                int result = EFContext.SaveChanges(validateOnSaveEnabled);
+                var result = _efContext.SaveChanges(validateOnSaveEnabled);
 
-                EFContext = new EFDbContext<TEntity>().Instance;
+                _efContext = new EfDbContext<TEntity>().Instance;
                 IsCommitted = true;
                 return result;
             }
             catch (DbUpdateException e)
             {
-                if (e.InnerException != null && e.InnerException.InnerException is SqlException)
+                if (e.InnerException?.InnerException is SqlException)
                 {
-                    SqlException sqlEx = e.InnerException.InnerException as SqlException;
-                    string msg = DataHelper.GetSqlExceptionMessage(sqlEx.Number);
+                    var sqlEx = (SqlException) e.InnerException.InnerException;
+                    var msg = DataHelper.GetSqlExceptionMessage(sqlEx.Number);
                     throw DataHelper.ThrowDataAccessException("提交数据更新时发生异常：" + msg, sqlEx);
                 }
                 else
                 {
-                    throw e;
+                    throw;
                 }
             }
         }
@@ -64,135 +64,132 @@ namespace QiBuBlog.Entity
             {
                 Commit();
             }
-            EFContext.Dispose();
+            _efContext.Dispose();
         }
 
-        public virtual IQueryable<TEntity> Entities
-        {
-            get { return EFContext.Set<TEntity>().AsNoTracking(); }
-        }
+        public IQueryable<TEntity> Entities => _efContext.Set<TEntity>().AsNoTracking();
 
         #endregion
 
         #region 公共方法
 
-        public virtual int ExecuteSql(string sql)
+        public int ExecuteSql(string sql)
         {
-            return EFContext.Database.ExecuteSqlCommand(sql);
+            return _efContext.Database.ExecuteSqlCommand(sql);
         }
 
-        public virtual IEnumerable<T> ExcSql<T>(string sql)
+        public IEnumerable<T> ExcSql<T>(string sql)
         {
-            return EFContext.Database.SqlQuery<T>(sql);
+            return _efContext.Database.SqlQuery<T>(sql);
         }
 
-        public virtual int Insert(TEntity entity, bool isSave = true)
+        public int Insert(TEntity entity, bool isSave = true)
         {
             DataHelper.CheckArgument(entity, "entity");
-            EntityState state = EFContext.Entry(entity).State;
+            var state = _efContext.Entry(entity).State;
             if (state == EntityState.Detached)
             {
-                EFContext.Set<TEntity>().Add(entity);
-                EFContext.Entry(entity).State = EntityState.Added;
+                _efContext.Set<TEntity>().Add(entity);
+                _efContext.Entry(entity).State = EntityState.Added;
             }
             IsCommitted = false;
             return isSave ? Commit() : 0;
         }
 
-        public virtual int Insert(IEnumerable<TEntity> entities, bool isSave = true)
+        public int Insert(IEnumerable<TEntity> entities, bool isSave = true)
         {
             DataHelper.CheckArgument(entities, "entities");
 
             try
             {
-                EFContext.Configuration.AutoDetectChangesEnabled = false;
+                _efContext.Configuration.AutoDetectChangesEnabled = false;
 
                 foreach (TEntity entity in entities)
                 {
-                    EntityState state = EFContext.Entry(entity).State;
+                    var state = _efContext.Entry(entity).State;
                     if (state == EntityState.Detached)
                     {
-                        EFContext.Set<TEntity>().Add(entity);
-                        EFContext.Entry(entity).State = EntityState.Added;
+                        _efContext.Set<TEntity>().Add(entity);
+                        _efContext.Entry(entity).State = EntityState.Added;
                     }
                     IsCommitted = false;
                 }
             }
             finally
             {
-                EFContext.Configuration.AutoDetectChangesEnabled = true;
+                _efContext.Configuration.AutoDetectChangesEnabled = true;
             }
             return isSave ? Commit() : 0;
         }
 
-        public virtual int Delete(TKey id, bool isSave = true)
+        public int Delete(TKey id, bool isSave = true)
         {
             DataHelper.CheckArgument(id, "id");
-            TEntity entity = EFContext.Set<TEntity>().Find(id);
+            var entity = _efContext.Set<TEntity>().Find(id);
             return entity != null ? Delete(entity, isSave) : 0;
         }
 
-        public virtual int Delete(TEntity entity, bool isSave = true)
+        private int Delete(TEntity entity, bool isSave = true)
         {
             DataHelper.CheckArgument(entity, "entity");
-            EFContext.Entry(entity).State = EntityState.Deleted;
+            _efContext.Entry(entity).State = EntityState.Deleted;
             IsCommitted = false;
             return isSave ? Commit() : 0;
         }
 
-        public virtual int Delete(IEnumerable<TEntity> entities, bool isSave = true)
+        private int Delete(IEnumerable<TEntity> entities, bool isSave = true)
         {
             DataHelper.CheckArgument(entities, "entities");
             try
             {
-                EFContext.Configuration.AutoDetectChangesEnabled = false;
-                foreach (TEntity entity in entities)
+                _efContext.Configuration.AutoDetectChangesEnabled = false;
+                foreach (var entity in entities)
                 {
-                    EFContext.Entry(entity).State = EntityState.Deleted;
+                    _efContext.Entry(entity).State = EntityState.Deleted;
                     IsCommitted = false;
                 }
             }
             finally
             {
-                EFContext.Configuration.AutoDetectChangesEnabled = true;
+                _efContext.Configuration.AutoDetectChangesEnabled = true;
             }
             return isSave ? Commit() : 0;
         }
 
-        public virtual int Delete(Expression<Func<TEntity, bool>> predicate, bool isSave = true)
+        public int Delete(Expression<Func<TEntity, bool>> predicate, bool isSave = true)
         {
             DataHelper.CheckArgument(predicate, "predicate");
-            List<TEntity> entities = EFContext.Set<TEntity>().Where(predicate).ToList();
+            var entities = _efContext.Set<TEntity>().Where(predicate).ToList();
             return entities.Count > 0 ? Delete(entities, isSave) : 0;
         }
 
-        public virtual int Update(TEntity entity, bool isSave = true)
+        public int Update(TEntity entity, bool isSave = true)
         {
             DataHelper.CheckArgument(entity, "entity");
-            EFContext.Update<TEntity, TKey>(entity);
+            _efContext.Update<TEntity, TKey>(entity);
             IsCommitted = false;
             return isSave ? Commit() : 0;
         }
 
-        public virtual int Update(IEnumerable<TEntity> entities, bool isSave = true)
+        public int Update(IEnumerable<TEntity> entities, bool isSave = true)
         {
             DataHelper.CheckArgument(entities, "entities");
             try
             {
-                EFContext.Configuration.AutoDetectChangesEnabled = false;
-                foreach (TEntity entity in entities)
+                _efContext.Configuration.AutoDetectChangesEnabled = false;
+                foreach (var entity in entities)
                 {
-                    EFContext.Entry(entity).State = EntityState.Modified;
+                    _efContext.Entry(entity).State = EntityState.Modified;
                     IsCommitted = false;
                 }
             }
-            catch (DbEntityValidationException dbEx)
+            catch (DbEntityValidationException)
             {
-                throw dbEx;
+                throw;
             }
             finally
             {
-                EFContext.Configuration.AutoDetectChangesEnabled = true;
+                _efContext.Configuration.AutoDetectChangesEnabled = true;
             }
             return isSave ? Commit() : 0;
         }
@@ -202,65 +199,62 @@ namespace QiBuBlog.Entity
             DataHelper.CheckArgument(propertyExpression, "propertyExpression");
             DataHelper.CheckArgument(entity, "entity");
 
-            EFContext.Update<TEntity, TKey>(propertyExpression, entity);
+            _efContext.Update<TEntity, TKey>(propertyExpression, entity);
             IsCommitted = false;
 
-            if (isSave)
-            {
-                var dbSet = EFContext.Set<TEntity>();
-                dbSet.Local.Clear();
-                var entry = EFContext.Entry(entity);
-                return Commit(false);
-            }
-            return 0;
+            if (!isSave) return 0;
+            var dbSet = _efContext.Set<TEntity>();
+            dbSet.Local.Clear();
+            var entry = _efContext.Entry(entity);
+            return Commit(false);
         }
 
-        public virtual TEntity GetByKey(TKey key)
+        public TEntity GetByKey(TKey key)
         {
             DataHelper.CheckArgument(key, "key");
-            using (DbContext EFContext1 = new EFDbContext<TEntity>().Instance)
+            using (var efContext = new EfDbContext<TEntity>().Instance)
             {
-                return EFContext1.Set<TEntity>().Find(key);
+                return efContext.Set<TEntity>().Find(key);
             }
         }
 
-        public virtual TEntity GetByKey(params object[] keyValues)
+        public TEntity GetByKey(params object[] keyValues)
         {
             DataHelper.CheckArgument(keyValues, "keyValues");
-            using (DbContext EFContext1 = new EFDbContext<TEntity>().Instance)
+            using (var efContext = new EfDbContext<TEntity>().Instance)
             {
-                return EFContext1.Set<TEntity>().Find(keyValues);
+                return efContext.Set<TEntity>().Find(keyValues);
             }
         }
 
-        public virtual IQueryable<TT> ExtensionEntitys<TT>(string sql, object[] param) where TT : class
+        public IQueryable<TT> ExtensionEntitys<TT>(string sql, object[] param) where TT : class
         {
             DataHelper.CheckArgument(sql, "sql");
             if (param != null)
             {
                 DataHelper.CheckArgument(param, "param");
-                return EFContext.Database.SqlQuery<TT>(sql, param).AsQueryable();
+                return _efContext.Database.SqlQuery<TT>(sql, param).AsQueryable();
             }
             else
             {
-                return EFContext.Database.SqlQuery<TT>(sql).AsQueryable();
+                return _efContext.Database.SqlQuery<TT>(sql).AsQueryable();
             }
         }
 
-        public virtual TEntity Find(Expression<Func<TEntity, bool>> exp)
+        public TEntity Find(Expression<Func<TEntity, bool>> exp)
         {
             DataHelper.CheckArgument(exp, "exp");
-            using (DbContext EFContext1 = new EFDbContext<TEntity>().Instance)
+            using (var efContext = new EfDbContext<TEntity>().Instance)
             {
-                return EFContext1.Set<TEntity>().AsNoTracking().FirstOrDefault(exp);
+                return efContext.Set<TEntity>().AsNoTracking().FirstOrDefault(exp);
             }
         }
 
-        public virtual IQueryable<TEntity> BatchFind(Expression<Func<TEntity, bool>> exp)
+        public IQueryable<TEntity> BatchFind(Expression<Func<TEntity, bool>> exp)
         {
             DataHelper.CheckArgument(exp, "exp");
-            DbContext EFContext1 = new EFDbContext<TEntity>().Instance;
-            return EFContext1.Set<TEntity>().Where(exp).AsNoTracking();
+            var efContext = new EfDbContext<TEntity>().Instance;
+            return efContext.Set<TEntity>().Where(exp).AsNoTracking();
         }
         #endregion
     }

@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 
 namespace QiBuBlog.Util
@@ -12,40 +9,29 @@ namespace QiBuBlog.Util
     public class Helper
     {
         #region 其他公共部分
-        public static string GetIPAddress()
+        public static string GetIpAddress()
         {
-            string userIP;
+            string userIp;
             try
             {
                 var resqust = HttpContext.Current.Request;
-                if (resqust == null)
+
+                userIp = !string.IsNullOrWhiteSpace(HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"]) ? HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"] : HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"];
+                if (string.IsNullOrWhiteSpace(userIp))
                 {
-                    throw new Exception("resqust is null!");
-                }
-                // 如果使用代理，获取真实IP
-                if (!string.IsNullOrWhiteSpace(HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"]))
-                {
-                    userIP = HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
-                }
-                else
-                {
-                    userIP = HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"];
-                }
-                if (string.IsNullOrWhiteSpace(userIP))
-                {
-                    userIP = HttpContext.Current.Request.UserHostAddress;
+                    userIp = HttpContext.Current.Request.UserHostAddress;
                 }
             }
             catch (Exception)
             {
-                userIP = "127.0.0.1";
+                userIp = "127.0.0.1";
             }
-            return userIP;
+            return userIp;
         }
 
         public static string HttpGet(string url)
         {
-            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(url);
+            var request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "GET";
             request.Accept = "*/*";
             request.Timeout = 15000;
@@ -55,9 +41,8 @@ namespace QiBuBlog.Util
             try
             {
                 response = request.GetResponse();
-                if (response != null)
                 {
-                    StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
+                    var reader = new StreamReader(response?.GetResponseStream(), encoding: Encoding.UTF8);
                     responseStr = reader.ReadToEnd();
                     reader.Close();
                 }
@@ -76,7 +61,7 @@ namespace QiBuBlog.Util
 
         public static string HttpPost(string url, string param)
         {
-            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(url);
+            var request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "POST";
             request.ContentType = "application/x-www-form-urlencoded";
             request.Accept = "*/*";
@@ -91,16 +76,15 @@ namespace QiBuBlog.Util
                 requestStream.Write(param);
                 requestStream.Close();
                 response = request.GetResponse();
-                if (response != null)
                 {
-                    StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
+                    var reader = new StreamReader(response.GetResponseStream(), encoding: Encoding.UTF8);
                     responseStr = reader.ReadToEnd();
                     reader.Close();
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
             finally
             {

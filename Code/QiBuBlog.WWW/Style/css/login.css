@@ -1,4 +1,6 @@
-﻿.body > .boundary { padding: 15px 0; }
+﻿.body > .boundary {
+    padding: 15px 0;
+}
 
 .login-form {
     width: 350px;
@@ -8,15 +10,29 @@
     border-radius: 4px;
     padding: 10px;
 }
-    .login-form fieldset { border: none; padding-left: 15px; }
-        .login-form legend {
-            color: #f03;
-            font-size: 18px;
-            margin-left: -15px;
+
+    .login-form fieldset {
+        border: none;
+        padding-left: 15px;
+    }
+
+    .login-form legend {
+        color: #f03;
+        font-size: 18px;
+        margin-left: -15px;
+    }
+
+    .login-form p {
+        margin: 5px 0;
+    }
+
+        .login-form p label:first-child {
+            padding-top: 8px;
+            display: block;
         }
-        .login-form p { margin: 5px 0; }
-            .login-form p label:first-child {
-                padding-top: 8px;
-                display: block;
-            }
-            .login-form input { margin-left: 15px; }
+
+    .login-form input {
+        margin-left: 15px;
+        -ms-border-radius: 3px;
+        border-radius: 3px;
+    }

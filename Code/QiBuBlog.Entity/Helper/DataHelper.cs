@@ -1,12 +1,12 @@
 ﻿using System;
 
-namespace QiBuBlog.Entity
+namespace QiBuBlog.Entity.Helper
 {
     internal static class DataHelper
     {
         public static string GetSqlExceptionMessage(int number)
         {
-            string msg = string.Empty;
+            var msg = string.Empty;
             switch (number)
             {
                 case 2:
@@ -48,27 +48,27 @@ namespace QiBuBlog.Entity
         {
             if (arg == null)
             {
-                ArgumentNullException e = new ArgumentNullException(argName);
-                throw ThrowComponentException(string.Format("参数 {0} 为空引发异常。", argName), e);
+                var e = new ArgumentNullException(argName);
+                throw ThrowComponentException($"参数 {argName} 为空引发异常。", e);
             }
-            Type type = arg.GetType();
+            var type = arg.GetType();
             if (type.IsValueType && type.IsNumeric())
             {
-                bool flag = !canZero ? arg.CastTo(0.0) <= 0.0 : arg.CastTo(0.0) < 0.0;
+                var flag = !canZero ? arg.CastTo(0.0) <= 0.0 : arg.CastTo(0.0) < 0.0;
                 if (flag)
                 {
-                    ArgumentOutOfRangeException e = new ArgumentOutOfRangeException(argName);
-                    throw ThrowComponentException(string.Format("参数 {0} 不在有效范围内引发异常。具体信息请查看系统日志。", argName), e);
+                    var e = new ArgumentOutOfRangeException(argName);
+                    throw ThrowComponentException($"参数 {argName} 不在有效范围内引发异常。具体信息请查看系统日志。", e);
                 }
             }
-            if (type == typeof(Guid) && (Guid)arg == Guid.Empty)
+            if (type != typeof(Guid) || (Guid) arg != Guid.Empty) return;
             {
-                ArgumentNullException e = new ArgumentNullException(argName);
-                throw ThrowComponentException(string.Format("参数{0}为空Guid引发异常。", argName), e);
+                var e = new ArgumentNullException(argName);
+                throw ThrowComponentException($"参数{argName}为空Guid引发异常。", e);
             }
         }
 
-        public static ComponentException ThrowComponentException(string msg, Exception e = null)
+        private static ComponentException ThrowComponentException(string msg, Exception e = null)
         {
             if (string.IsNullOrEmpty(msg) && e != null)
             {
@@ -78,7 +78,7 @@ namespace QiBuBlog.Entity
             {
                 msg = "未知组件异常，详情请查看日志信息。";
             }
-            return e == null ? new ComponentException(string.Format("组件异常：{0}", msg)) : new ComponentException(string.Format("组件异常：{0}", msg), e);
+            return e == null ? new ComponentException($"组件异常：{msg}") : new ComponentException($"组件异常：{msg}", e);
         }
 
         public static DataAccessException ThrowDataAccessException(string msg, Exception e = null)
@@ -92,8 +92,8 @@ namespace QiBuBlog.Entity
                 msg = "未知数据访问层异常，详情请查看日志信息。";
             }
             return e == null
-                ? new DataAccessException(string.Format("数据访问层异常：{0}", msg))
-                : new DataAccessException(string.Format("数据访问层异常：{0}", msg), e);
+                ? new DataAccessException($"数据访问层异常：{msg}")
+                : new DataAccessException($"数据访问层异常：{msg}", e);
         }
 
         public static BusinessException ThrowBusinessException(string msg, Exception e = null)
@@ -106,7 +106,7 @@ namespace QiBuBlog.Entity
             {
                 msg = "未知业务逻辑层异常，详情请查看日志信息。";
             }
-            return e == null ? new BusinessException(string.Format("业务逻辑层异常：{0}", msg)) : new BusinessException(string.Format("业务逻辑层异常：{0}", msg), e);
+            return e == null ? new BusinessException($"业务逻辑层异常：{msg}") : new BusinessException($"业务逻辑层异常：{msg}", e);
         }
         #endregion
     }

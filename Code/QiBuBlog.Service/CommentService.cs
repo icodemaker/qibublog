@@ -1,15 +1,16 @@
 ﻿using QiBuBlog.Entity;
 using QiBuBlog.Util;
 using System;
+using QiBuBlog.Entity.Helper;
 
 namespace QiBuBlog.Service
 {
     public class CommentService : Singleton<CommentService>
     {
-        private static EFRepositoryBase<Comment, object> _comment;
+        private static EfRepositoryBase<Comment, object> _comment;
         private CommentService()
         {
-            _comment = new EFRepositoryBase<Comment, object>();
+            _comment = new EfRepositoryBase<Comment, object>();
         }
 
         public void Validate(Comment comment)
@@ -28,11 +29,13 @@ namespace QiBuBlog.Service
             }
 
             var setup = SetupService.GetSetup();
-            if (setup.CommentLimit == 0)
-                throw new Exception("评论已关闭");
-            else if (setup.CommentLimit == 2)
+            switch (setup.CommentLimit)
             {
-                comment.Visibility = 1;
+                case 0:
+                    throw new Exception("评论已关闭");
+                case 2:
+                    comment.Visibility = 1;
+                    break;
             }
             if (setup.MinCommentSize != 0 && comment.Content.Length < setup.MinCommentSize)
             {
@@ -55,7 +58,7 @@ namespace QiBuBlog.Service
 
             if (!string.IsNullOrEmpty(comment.HomePage))
             {
-                comment.HomePage = Validator.fixUrl(comment.HomePage);
+                comment.HomePage = Validator.FixUrl(comment.HomePage);
             }
 
             comment.PostTime = DateTime.UtcNow;

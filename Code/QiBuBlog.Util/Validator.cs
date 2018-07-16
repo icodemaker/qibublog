@@ -2,14 +2,13 @@
 
 namespace QiBuBlog.Util
 {
-    public class Validator
+    public static class Validator
     {
+        private static readonly Regex IP = new Regex(@"\d+(?:\.\d+){3}", RegexOptions.Compiled);
 
-        public static readonly Regex IP = new Regex(@"\d+(?:\.\d+){3}", RegexOptions.Compiled);
+        private static readonly Regex Email = new Regex(@"^([.a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]+)*)\.[a-zA-Z]+$", RegexOptions.Compiled);
 
-        public static readonly Regex Email = new Regex(@"^([.a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((\.[a-zA-Z0-9_-]+)*)\.[a-zA-Z]+$", RegexOptions.Compiled);
-
-        public static readonly Regex BeginWithHttp = new Regex(@"^https?://", RegexOptions.IgnoreCase);
+        private static readonly Regex BeginWithHttp = new Regex(@"^https?://", RegexOptions.IgnoreCase);
 
         public static bool IsIP(string val)
         {
@@ -18,10 +17,10 @@ namespace QiBuBlog.Util
                 return false;
             }
 
-            string[] sections = val.Split(new[] { '.' });
-            byte temp;
-            foreach (string i in sections)
+            var sections = val.Split(new[] { '.' });
+            foreach (var i in sections)
             {
+                byte temp;
                 if (!byte.TryParse(i, out temp))
                 {
                     return false;
@@ -46,7 +45,7 @@ namespace QiBuBlog.Util
             return Regex.IsMatch(val, @"\d+(?:,\d+)*");
         }
 
-        public static string fixUrl(string url)
+        public static string FixUrl(string url)
         {
             return BeginWithHttp.IsMatch(url) ? url : "http://" + url;
         }

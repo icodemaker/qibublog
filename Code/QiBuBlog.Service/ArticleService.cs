@@ -1,16 +1,17 @@
 ﻿using QiBuBlog.Entity;
 using QiBuBlog.Util;
 using System.Linq;
+using QiBuBlog.Entity.Helper;
 
 namespace QiBuBlog.Service
 {
     public class ArticleService : Singleton<ArticleService>
     {
-        private static EFRepositoryBase<Article, object> _article;
+        private static EfRepositoryBase<Article, object> _article;
 
         private ArticleService()
         {
-            _article = new EFRepositoryBase<Article, object>();
+            _article = new EfRepositoryBase<Article, object>();
         }
 
         public PageList<Article> GetCustomerPageList(User user, string keyWord, PageSet pageSet)

@@ -3,29 +3,29 @@ using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 
-namespace QiBuBlog.Entity
+namespace QiBuBlog.Entity.Helper
 {
     public static class TypeExtensions
     {
         public static bool IsNumeric(this Type type)
         {
-            return type == typeof(Byte)
-                || type == typeof(Int16)
-                || type == typeof(Int32)
-                || type == typeof(Int64)
-                || type == typeof(SByte)
-                || type == typeof(UInt16)
-                || type == typeof(UInt32)
-                || type == typeof(UInt64)
-                || type == typeof(Decimal)
-                || type == typeof(Double)
-                || type == typeof(Single);
+            return type == typeof(byte)
+                || type == typeof(short)
+                || type == typeof(int)
+                || type == typeof(long)
+                || type == typeof(sbyte)
+                || type == typeof(ushort)
+                || type == typeof(uint)
+                || type == typeof(ulong)
+                || type == typeof(decimal)
+                || type == typeof(double)
+                || type == typeof(float);
         }
 
         public static string ToDescription(this MemberInfo member, bool inherit = false)
         {
-            DescriptionAttribute desc = member.GetAttribute<DescriptionAttribute>(inherit);
-            return desc == null ? null : desc.Description;
+            var desc = member.GetAttribute<DescriptionAttribute>(inherit);
+            return desc?.Description;
         }
 
         public static bool AttributeExists<T>(this MemberInfo memberInfo, bool inherit) where T : Attribute
@@ -33,7 +33,7 @@ namespace QiBuBlog.Entity
             return memberInfo.GetCustomAttributes(typeof(T), inherit).Any(m => (m as T) != null);
         }
 
-        public static T GetAttribute<T>(this MemberInfo memberInfo, bool inherit) where T : Attribute
+        private static T GetAttribute<T>(this MemberInfo memberInfo, bool inherit) where T : Attribute
         {
             return memberInfo.GetCustomAttributes(typeof(T), inherit).SingleOrDefault() as T;
         }
@@ -58,12 +58,8 @@ namespace QiBuBlog.Entity
             {
                 return true;
             }
-            Type baseType = givenType.BaseType;
-            if (baseType == null)
-            {
-                return false;
-            }
-            return IsAssignableToGenericType(baseType, genericType);
+            var baseType = givenType.BaseType;
+            return baseType != null && IsAssignableToGenericType(baseType, genericType);
         }
     }
 }

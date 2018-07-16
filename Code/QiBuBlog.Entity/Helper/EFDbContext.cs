@@ -1,12 +1,12 @@
 ﻿using System.Data.Entity;
 
-namespace QiBuBlog.Entity
+namespace QiBuBlog.Entity.Helper
 {
-    public class EFDbContext<TEntity>
+    public class EfDbContext<TEntity>
     {
-        public DbContext Instance = new QiBuBlogEntities();
+        public readonly DbContext Instance = new QiBuBlogEntities();
 
-        public EFDbContext()
+        public EfDbContext()
         {
             //
         }

@@ -1,13 +1,13 @@
 ﻿using System;
 
-namespace QiBuBlog.Entity
+namespace QiBuBlog.Entity.Helper
 {
     public static class ObjectExtensions
     {
         public static T CastTo<T>(this object value)
         {
             object result;
-            Type type = typeof(T);
+            var type = typeof(T);
             try
             {
                 if (type.IsEnum)
@@ -34,7 +34,7 @@ namespace QiBuBlog.Entity
         public static T CastTo<T>(this object value, T defaultValue)
         {
             object result;
-            Type type = typeof(T);
+            var type = typeof(T);
             try
             {
                 result = type.IsEnum ? Enum.Parse(type, value.ToString()) : Convert.ChangeType(value, type);

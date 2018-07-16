@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace QiBuBlog.Entity
+namespace QiBuBlog.Entity.Helper
 {
     [Serializable]
     public class DataAccessException : Exception

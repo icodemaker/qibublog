@@ -5,12 +5,12 @@ namespace QiBuBlog.Util
 {
     internal static class PredicateBuilder
     {
-        public static Expression<Func<T, bool>> BaseAnd<T>()
+        private static Expression<Func<T, bool>> BaseAnd<T>()
         {
             return f => true;
         }
 
-        public static Expression<Func<T, bool>> BaseOr<T>()
+        private static Expression<Func<T, bool>> BaseOr<T>()
         {
             return f => false;
         }
@@ -33,7 +33,7 @@ namespace QiBuBlog.Util
                   (Expression.AndAlso(expr1.Body, secondBody), expr1.Parameters);
         }
 
-        public static Expression Replace(this Expression expression, Expression searchEx, Expression replaceEx)
+        private static Expression Replace(this Expression expression, Expression searchEx, Expression replaceEx)
         {
             return new ReplaceVisitor(searchEx, replaceEx).Visit(expression);
         }
@@ -76,17 +76,17 @@ namespace QiBuBlog.Util
 
     internal class ReplaceVisitor : ExpressionVisitor
     {
-        private readonly Expression from, to;
+        private readonly Expression _from, _to;
 
         public ReplaceVisitor(Expression from, Expression to)
         {
-            this.from = from;
-            this.to = to;
+            this._from = from;
+            this._to = to;
         }
 
         public override Expression Visit(Expression node)
         {
-            return node == from ? to : base.Visit(node);
+            return node == _from ? _to : base.Visit(node);
         }
     }
 
@@ -111,7 +111,7 @@ namespace QiBuBlog.Util
             return this;
         }
 
-        public Expression<Func<T, bool>> GetExpression()
+        private Expression<Func<T, bool>> GetExpression()
         {
             return (Expression<Func<T, bool>>)_expression.Reduce();
         }
