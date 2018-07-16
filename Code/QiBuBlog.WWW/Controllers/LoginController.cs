@@ -1,4 +1,5 @@
-﻿using QiBuBlog.Service;
+﻿using QiBuBlog.Entity;
+using QiBuBlog.Service;
 using QiBuBlog.Util;
 using System;
 using System.Drawing;
@@ -37,14 +38,13 @@ namespace QiBuBlog.WWW.Controllers
             return File(stream.GetBuffer(), @"image/png");
         }
 
-        public JsonResult Authority(string tenantCode, string loginName, string password)
+        public JsonResult Authority(string userName, string password)
         {
-            
-            var user = UserService.Instance.GetUserForLogin(loginName, password);
+            var user = UserService.Instance.GetUserForLogin(userName, password);
             if (user != null)
             {
-                user.PassWord = null;
-                AuthHelper.SetAuthCookie(JsonConvert.SerializeObject(user));
+                user.Password = null;
+                FormLoginHelper<User>.Set(user, true);
             }
             else
             {
@@ -56,7 +56,8 @@ namespace QiBuBlog.WWW.Controllers
         [SelfOnly]
         public ActionResult Logout()
         {
-            return View("Index");
+            FormLoginHelper<User>.Logout("/login");
+            return View();
         }
     }
 }

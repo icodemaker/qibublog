@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace QiBuBlog.WWW.Controllers
 {
-    public class InfoController : Controller
+    public class InfoController : BaseController
     {
         //
         // GET: /Info/

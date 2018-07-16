@@ -29,3 +29,5 @@ E:\CodeMaker\GitHub\qibublog\Code\qibublog.service\bin\Debug\zh-Hans\EntityFrame
 E:\CodeMaker\GitHub\qibublog\Code\qibublog.service\obj\Debug\QiBuBlog.Service.csproj.CopyComplete
 E:\CodeMaker\GitHub\qibublog\Code\qibublog.service\obj\Debug\QiBuBlog.Service.dll
 E:\CodeMaker\GitHub\qibublog\Code\qibublog.service\obj\Debug\QiBuBlog.Service.pdb
+E:\CodeMaker\GitHub\qibublog\Code\qibublog.service\bin\Debug\Newtonsoft.Json.dll
+E:\CodeMaker\GitHub\qibublog\Code\qibublog.service\bin\Debug\Newtonsoft.Json.xml

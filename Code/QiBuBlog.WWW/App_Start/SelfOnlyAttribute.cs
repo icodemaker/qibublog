@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using QiBuBlog.Entity;
+using QiBuBlog.Util;
+using System.Web.Mvc;
 
 
 namespace QiBuBlog.WWW
@@ -6,6 +8,7 @@ namespace QiBuBlog.WWW
     public sealed class SelfOnlyAttribute : FilterAttribute, IAuthorizationFilter, IActionFilter
     {
         private readonly string _parameter;
+        private User _currentUser;
 
         public SelfOnlyAttribute(string parameter = "user")
         {
@@ -21,18 +24,29 @@ namespace QiBuBlog.WWW
             if (request.Url == null) return;
             var retUrl = request.Url.AbsoluteUri.ToLower();
             retUrl = string.IsNullOrEmpty(retUrl) ? string.Empty : System.Web.HttpUtility.UrlEncode(retUrl, System.Text.Encoding.UTF8);
+            if (filterContext.HttpContext.User.Identity.IsAuthenticated)
+            {
+                _currentUser = FormLoginHelper<User>.Get();
+            }
+            else
+            {
+                filterContext.Result = new RedirectResult($"/login?returnUrl={retUrl.ToLower()}");
+            }
         }
 
         public void OnActionExecuted(ActionExecutedContext filterContext)
         {
-            
+            if (filterContext.HttpContext.User.Identity.IsAuthenticated)
+            {
+                filterContext.Controller.ViewBag.CurrentUser = _currentUser;
+            }
         }
 
         public void OnActionExecuting(ActionExecutingContext filterContext)
         {
             if (filterContext.ActionParameters.ContainsKey(_parameter))
             {
-                //filterContext.ActionParameters[_parameter] = _currentUser;
+                filterContext.ActionParameters[_parameter] = _currentUser;
             }
         }
     }
