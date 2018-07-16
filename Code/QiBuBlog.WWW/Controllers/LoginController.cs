@@ -43,7 +43,8 @@ namespace QiBuBlog.WWW.Controllers
             var user = UserService.Instance.GetUserForLogin(loginName, password);
             if (user != null)
             {
-                
+                user.PassWord = null;
+                AuthHelper.SetAuthCookie(JsonConvert.SerializeObject(user));
             }
             else
             {
