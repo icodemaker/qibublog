@@ -2,7 +2,7 @@
     ViewBag.Title = "登录";
 }
 <link href="~/Style/css/login.css" rel="stylesheet" />
-<form id="login-form" class="login-form" action="@Url.Content("~/User/Login")" method="post">
+<form id="login-form" class="login-form" action="@Url.Content("/Login")" method="post">
     <fieldset>
         <legend>用户登录</legend>
         <p><label for="userName">用户名</label></p>
@@ -15,7 +15,7 @@
         <p><label for="captcha">验证码</label></p>
         <p class="captcha">
             <input id="captcha" name="captcha" type="text" size="4" maxlength="6" />
-            <img data-src="@Url.Content("~/GetCaptcha.ashx")" data-bgcolor="255,255,255" data-formname="login" alt="点击更换验证码" class="captcha-img" />
+            <img src="@Url.Content("/Login/GetCaptcha")" data-bgcolor="255,255,255" data-formname="login" alt="点击更换验证码" class="captcha-img" />
             <input type="submit" value="登 录" />
         </p>
         @if (!string.IsNullOrEmpty(ViewBag.Redirect))

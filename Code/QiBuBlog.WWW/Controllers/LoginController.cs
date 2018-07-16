@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using QiBuBlog.Util;
 
 namespace QiBuBlog.WWW.Controllers
 {
@@ -21,9 +22,9 @@ namespace QiBuBlog.WWW.Controllers
 
         public ActionResult GetCaptcha()
         {
-            Captcha captcha = new Captcha(4);
+            var captcha = new Captcha(4);
             CaptchaManager.Write("login", captcha.Value);
-            Response.Cookies.Add(new HttpCookie("TMS_Captcha", captcha.Value));
+            Response.Cookies.Add(new HttpCookie("QiBu_Captcha", captcha.Value));
             Image image = captcha.CreateImage(
                 Color.FromArgb(
                     Convert.ToInt32(255),

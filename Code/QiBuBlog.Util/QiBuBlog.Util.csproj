@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Captcha.cs" />
+    <Compile Include="CaptchaManager.cs" />
     <Compile Include="Encrypt.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="PageList.cs" />
