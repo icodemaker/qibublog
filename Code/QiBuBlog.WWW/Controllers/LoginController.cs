@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using QiBuBlog.Service;
+using QiBuBlog.Util;
+using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using QiBuBlog.Util;
 
 namespace QiBuBlog.WWW.Controllers
 {
@@ -36,6 +35,27 @@ namespace QiBuBlog.WWW.Controllers
             image.Save(stream, ImageFormat.Png);
             stream.Close();
             return File(stream.GetBuffer(), @"image/png");
+        }
+
+        public JsonResult Authority(string tenantCode, string loginName, string password)
+        {
+            
+            var user = UserService.Instance.GetUserForLogin(loginName, password);
+            if (user != null)
+            {
+                
+            }
+            else
+            {
+                
+            }
+            return Json(null);
+        }
+
+        [SelfOnly]
+        public ActionResult Logout()
+        {
+            return View("Index");
         }
     }
 }
