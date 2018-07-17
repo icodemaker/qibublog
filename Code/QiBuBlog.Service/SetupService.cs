@@ -3,6 +3,7 @@ using QiBuBlog.Entity;
 using System;
 using System.Linq;
 using QiBuBlog.Entity.Helper;
+using static System.String;
 
 namespace QiBuBlog.Service
 {
@@ -21,15 +22,15 @@ namespace QiBuBlog.Service
             {
                 throw new ArgumentException("网站开放参数错误");
             }
-            if (string.IsNullOrEmpty(setup.SiteName))
+            if (IsNullOrEmpty(setup.SiteName))
             {
                 throw new ArgumentException("网站名不能为空");
             }
-            if (string.IsNullOrEmpty(setup.SiteDomain))
+            if (IsNullOrEmpty(setup.SiteDomain))
             {
                 throw new ArgumentException("网站域名不能为空");
             }
-            if (!string.IsNullOrEmpty(setup.ForbiddenIP))
+            if (!IsNullOrEmpty(setup.ForbiddenIP))
             {
                 var ips = setup.ForbiddenIP.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (var ip in ips)
@@ -39,7 +40,7 @@ namespace QiBuBlog.Service
                         throw new ArgumentException(ip + " 不是合法的IP地址");
                     }
                 }
-                setup.ForbiddenIP = String.Join(Environment.NewLine, ips);
+                setup.ForbiddenIP = Join(Environment.NewLine, ips);
             }
             if (setup.CommentLimit != 0 && setup.CommentLimit != 1 && setup.CommentLimit != 2)
             {
@@ -58,17 +59,15 @@ namespace QiBuBlog.Service
 
         public bool UpdateSetup(Setup model)
         {
-            var result = false;
             try
             {
                 _setup.Update(model);
-                result = true;
+                return true;
             }
             catch (Exception)
             {
                 throw;
             }
-            return result;
         }
     }
 }

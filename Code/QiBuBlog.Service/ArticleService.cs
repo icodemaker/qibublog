@@ -55,7 +55,7 @@ namespace QiBuBlog.Service
             return result;
         }
 
-        public bool DeleteLogic(string id, bool isLogic = true)
+        public bool Delete(string id, bool isLogic = true)
         {
             var result = false;
             try

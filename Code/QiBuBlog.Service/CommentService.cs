@@ -36,6 +36,8 @@ namespace QiBuBlog.Service
                 case 2:
                     comment.Visibility = 1;
                     break;
+                default:
+                    break;
             }
             if (setup.MinCommentSize != 0 && comment.Content.Length < setup.MinCommentSize)
             {

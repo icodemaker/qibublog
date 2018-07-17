@@ -15,7 +15,7 @@ namespace QiBuBlog.Service
             _category = new EfRepositoryBase<Category, object>();
         }
 
-        public PageList<Category> GetCategroyPageList()
+        public PageList<Category> GetPageList()
         {
             return new PageList<Category>()
             {
@@ -25,9 +25,8 @@ namespace QiBuBlog.Service
             };
         }
 
-        public bool CreateOrUpdateCategory(Category model)
+        public bool CreateOrUpdate(Category model)
         {
-            var result = false;
             try
             {
                 if (!string.IsNullOrWhiteSpace(model.CategoryId))
@@ -36,27 +35,37 @@ namespace QiBuBlog.Service
                 }
                 else
                 {
-                    model.CategoryId = "";
                     _category.Insert(model);
                 }
-                result = true;
+                return true;
             }
             catch (Exception)
             {
                 throw;
             }
-            return result;
         }
 
-        public bool DeleteCategory(string id)
+        public bool Delete(string id, bool isLogic = true)
         {
             var result = false;
             try
             {
                 if (!string.IsNullOrWhiteSpace(id))
                 {
-                    _category.Delete(id);
-                    result = true;
+                    if (isLogic)
+                    {
+                        var model = _category.Find(x => x.CategoryId == id);
+                        if (model != null)
+                        {
+                            _category.Update(model);
+                            result = true;
+                        }
+                    }
+                    else
+                    {
+                        _category.Delete(id);
+                        result = true;
+                    }
                 }
             }
             catch (Exception)

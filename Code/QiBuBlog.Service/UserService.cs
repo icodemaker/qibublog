@@ -53,7 +53,7 @@ namespace QiBuBlog.Service
             return _user.Find(x => x.UserId == userId);
         }
 
-        public User GetUserForLogin(string userName, string password)
+        public static User UserLogin(string userName, string password)
         {
             if (string.IsNullOrWhiteSpace(userName))
             {
@@ -66,7 +66,7 @@ namespace QiBuBlog.Service
             return _user.Find(x => x.UserName == userName && x.Password == password);
         }
 
-        public PageList<User> GetUserPageList()
+        public PageList<User> GetPageList()
         {
             return new PageList<User>()
             {
@@ -76,23 +76,65 @@ namespace QiBuBlog.Service
             };
         }
 
-        public bool CreateOrUpdateUser(User model)
+        public bool CreateOrUpdate(User model)
         {
-            return _user.Update(model) > 0;
+            var result = false;
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(model.UserId))
+                {
+                    _user.Update(model);
+                }
+                else
+                {
+                    _user.Insert(model);
+                }
+                result = true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return result;
         }
 
-        public bool DeleteUser(string id)
+        public bool Delete(string id, bool isLogic = true)
         {
-            return _user.Delete(id) > 0;
+            var result = false;
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(id))
+                {
+                    if (isLogic)
+                    {
+                        var model = _user.Find(x => x.UserId == id);
+                        if (model != null)
+                        {
+                            _user.Update(model);
+                            result = true;
+                        }
+                    }
+                    else
+                    {
+                        _user.Delete(id);
+                        result = true;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return result;
         }
 
-        public bool ChangeStatus(string id, string lastIP)
-        {
-            var model = _user.Find(x => x.UserId == id);
-            if (model == null) return _user.Update(model) > 0;
-            model.LastActivity = DateTime.Now;
-            model.LastIP = lastIP;
-            return _user.Update(model) > 0;
-        }
+        //public bool ChangeStatus(string id, string lastIP)
+        //{
+        //    var model = _user.Find(x => x.UserId == id);
+        //    if (model == null) return _user.Update(model) > 0;
+        //    model.LastActivity = DateTime.Now;
+        //    model.LastIP = lastIP;
+        //    return _user.Update(model) > 0;
+        //}
     }
 }
