@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using QiBuBlog.Entity;
 using QiBuBlog.Util;
 using System.Linq;
@@ -15,16 +16,29 @@ namespace QiBuBlog.Service
             _article = new EfRepositoryBase<Article, object>();
         }
 
-        public PageList<Article> GetPageList(User user, string keyWord, PageSet pageSet)
+        public DataPaging<Article> GetPageList(string categoryId, int currentPage)
         {
-            var exp = new PredicatePack<Article>();
-
-            return new PageList<Article>()
+            try
             {
-                PageIndex = pageSet.PageIndex,
-                Data = _article.Entities.ToList(),
-                Total = _article.Entities.Count()
-            };
+                var list = _article.Entities.ToList();
+                var dataPaging = new DataPaging<Article>(list.Count, 10, currentPage);
+                dataPaging.Data = dataPaging.RowCount > 0 ? list : new List<Article>();
+                return dataPaging;
+            }
+            catch
+            {
+                throw new Exception("读取文章目录出错");
+            }
+        }
+
+        public Article[] GetTopView(string categoryId, byte minWeight, byte pageSize)
+        {
+            return _article.Entities.Where(x => x.CategoryId == categoryId && x.Weight >= minWeight).Take(pageSize).ToArray();
+        }
+
+        public Article[] GetRecommends()
+        {
+            return _article.Entities.Where(x => x.Weight >= 200).ToArray();
         }
 
         public static bool IsExist(string articleId)

@@ -1,0 +1,17 @@
+﻿@model TidyBlog.Entity.Article[]
+
+@if (Model != null)
+{
+<section class="sidebar-articlerank">
+    <h2 class="titlebar">@(ViewBag.CurrentPosition.CategoryId == 0 ? String.Empty : ViewBag.CurrentPosition.CategoryName + " ")阅读排行</h2>
+    <ol class="sidebar-articlelist">
+    @foreach (var article in Model)
+    {
+        <li class="clearfix">
+            <div class="sidebar-articlerank-viewcount">@article.ViewCount</div>
+            <div class="sidebar-articlerank-title"><a href="@Url.Action("Detail", "Article", new { id = article.ArticleId })" target="_blank">@article.Title</a></div>
+        </li>
+    }
+    </ol>
+</section>
+}

@@ -1,0 +1,13 @@
+﻿ @if (ViewBag.LinkList != null)
+{
+<section class="sidebar-links">
+    <h2 class="titlebar">友情链接</h2>
+    <dl class="clearfix">
+@foreach (var link in ViewBag.LinkList)
+{
+        <dt><a href="@link.LinkUrl" target="_blank">@link.LinkName</a></dt>
+        <dd>@link.Description</dd>
+}
+    </dl>
+</section>
+}

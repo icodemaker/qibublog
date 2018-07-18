@@ -52,7 +52,7 @@ namespace QiBuBlog.Service
             }
         }
 
-        public static Setup GetSetup()
+        public Setup GetSetup()
         {
             return _setup.Entities.FirstOrDefault();
         }

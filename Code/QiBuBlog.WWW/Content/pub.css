@@ -60,7 +60,7 @@ input[type=button], input[type=reset], input[type=submit] {
     border: none;
     cursor: pointer;
     text-align: center;
-    background: url(/style/images/sprites.png) no-repeat -3px -58px;
+    background: url(/Content/Images/sprites.png) no-repeat -3px -58px;
     vertical-align: middle;
     text-shadow: 1px 1px 0 #fff;
 }
@@ -221,7 +221,7 @@ input[type=button], input[type=reset], input[type=submit] {
     min-width: 960px;
     height: 82px;
     margin-bottom: 25px;
-    background: url(/style/images/sprites-repeatx.png) repeat-x;
+    background: url(/Content/Images/sprites-repeatx.png) repeat-x;
 }
 
     .header .boundary {
@@ -278,7 +278,7 @@ input[type=button], input[type=reset], input[type=submit] {
     width: 100%;
     padding: 6px 0;
     border-top: 1px solid #a7c0ca;
-    background: #f2f7fa url(/style/images/sprites-repeatx.png) left -115px repeat-x;
+    background: #f2f7fa url(/Content/Images/sprites-repeatx.png) left -115px repeat-x;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -295,7 +295,7 @@ input[type=button], input[type=reset], input[type=submit] {
 .current-position {
     border: 1px solid #bababa;
     border-radius: 3px;
-    background: #fefefe url(/style/images/sprites.png) no-repeat right 7px;
+    background: #fefefe url(/Content/Images/sprites.png) no-repeat right 7px;
     height: 21px;
     display: inline-block;
     padding: 0 25px 0 8px;
@@ -367,7 +367,7 @@ input[type=button], input[type=reset], input[type=submit] {
     line-height: 22px;
     font-family: Arial;
     padding-right: 305px;
-    background: url(/style/images/sprites.png) no-repeat right -316px;
+    background: url(/Content/Images/sprites.png) no-repeat right -316px;
     vertical-align: middle;
     text-shadow: 1px 1px 0 #fff;
 }
@@ -412,7 +412,7 @@ input[type=button], input[type=reset], input[type=submit] {
     top: 0;
     text-align: center;
     color: #666;
-    background: url(/style/images/sprites.png) no-repeat left -259px;
+    background: url(/Content/Images/sprites.png) no-repeat left -259px;
     line-height: 19px;
 }
 
@@ -602,7 +602,7 @@ body.article-content {
     line-height: 18px;
     padding: 4px 0 4px 32px;
     display: block;
-    background: #deeaef url(/style/images/sprites.png) no-repeat;
+    background: #deeaef url(/Content/Images/sprites.png) no-repeat;
     border-radius: 3px;
 }
 

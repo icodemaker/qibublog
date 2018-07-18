@@ -28,7 +28,7 @@ namespace QiBuBlog.Service
                 throw new ArgumentException("内容不能为空");
             }
 
-            var setup = SetupService.GetSetup();
+            var setup = SetupService.Instance.GetSetup();
             switch (setup.CommentLimit)
             {
                 case 0:

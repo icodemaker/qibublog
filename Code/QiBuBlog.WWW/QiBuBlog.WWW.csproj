@@ -129,39 +129,39 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Content Include="Global.asax" />
-    <Content Include="Style\css\article-detail.css" />
-    <Content Include="Style\css\info.css" />
-    <Content Include="Style\css\login.css" />
-    <Content Include="Style\css\manage-pub.css" />
-    <Content Include="Style\css\pub.css" />
-    <Content Include="Style\images\favicon.ico" />
-    <Content Include="Style\images\icon-error.png" />
-    <Content Include="Style\images\icon-success.png" />
-    <Content Include="Style\images\icon-tips.png" />
-    <Content Include="Style\images\logo.png" />
-    <Content Include="Style\images\manage-bg.png" />
-    <Content Include="Style\images\sns-share-douban.gif" />
-    <Content Include="Style\images\sns-share-googleplus.gif" />
-    <Content Include="Style\images\sns-share-neteasewb.gif" />
-    <Content Include="Style\images\sns-share-qqwb.gif" />
-    <Content Include="Style\images\sns-share-qzone.gif" />
-    <Content Include="Style\images\sns-share-renren.gif" />
-    <Content Include="Style\images\sns-share-sinawb.gif" />
-    <Content Include="Style\images\sns-share-sohuwb.gif" />
-    <Content Include="Style\images\sprites-repeatx.png" />
-    <Content Include="Style\images\sprites.png" />
-    <Content Include="Style\js\captcha.js" />
-    <Content Include="Style\js\comment.js" />
-    <Content Include="Style\js\comment.src.js" />
-    <Content Include="Style\js\html5fix.js" />
-    <Content Include="Style\js\jquery.js" />
-    <Content Include="Style\js\jquery.validate.js" />
-    <Content Include="Style\js\jquery.validate.src.js" />
-    <Content Include="Style\js\manage-article-pub.js" />
-    <Content Include="Style\js\manage-pub.js" />
-    <Content Include="Style\js\pub.js" />
-    <Content Include="Style\js\pub.src.js" />
-    <Content Include="Style\js\sns-share.js" />
+    <Content Include="Content\article-detail.css" />
+    <Content Include="Content\info.css" />
+    <Content Include="Content\login.css" />
+    <Content Include="Content\manage-pub.css" />
+    <Content Include="Content\pub.css" />
+    <Content Include="Content\Images\favicon.ico" />
+    <Content Include="Content\Images\icon-error.png" />
+    <Content Include="Content\Images\icon-success.png" />
+    <Content Include="Content\Images\icon-tips.png" />
+    <Content Include="Content\Images\logo.png" />
+    <Content Include="Content\Images\manage-bg.png" />
+    <Content Include="Content\Images\sns-share-douban.gif" />
+    <Content Include="Content\Images\sns-share-googleplus.gif" />
+    <Content Include="Content\Images\sns-share-neteasewb.gif" />
+    <Content Include="Content\Images\sns-share-qqwb.gif" />
+    <Content Include="Content\Images\sns-share-qzone.gif" />
+    <Content Include="Content\Images\sns-share-renren.gif" />
+    <Content Include="Content\Images\sns-share-sinawb.gif" />
+    <Content Include="Content\Images\sns-share-sohuwb.gif" />
+    <Content Include="Content\Images\sprites-repeatx.png" />
+    <Content Include="Content\Images\sprites.png" />
+    <Content Include="Scripts\captcha.js" />
+    <Content Include="Scripts\comment.js" />
+    <Content Include="Scripts\comment.src.js" />
+    <Content Include="Scripts\html5fix.js" />
+    <Content Include="Scripts\jquery.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.src.js" />
+    <Content Include="Scripts\manage-article-pub.js" />
+    <Content Include="Scripts\manage-pub.js" />
+    <Content Include="Scripts\pub.js" />
+    <Content Include="Scripts\pub.src.js" />
+    <Content Include="Scripts\sns-share.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -172,7 +172,9 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Style\plus\" />
+    <Content Include="Views\Shared\SidebarArticle.cshtml" />
+    <Content Include="Views\Shared\SidebarRank.cshtml" />
+    <Content Include="Views\Shared\SidebarLinks.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -253,7 +255,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>53839</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:37408/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

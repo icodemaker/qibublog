@@ -1,8 +1,9 @@
 ﻿using QiBuBlog.Entity;
+using QiBuBlog.Entity.Helper;
 using QiBuBlog.Util;
 using System;
+using System.Collections.Generic;
 using System.Linq;
-using QiBuBlog.Entity.Helper;
 
 namespace QiBuBlog.Service
 {
@@ -15,14 +16,14 @@ namespace QiBuBlog.Service
             _category = new EfRepositoryBase<Category, object>();
         }
 
-        public PageList<Category> GetPageList()
+        public DataPaging<Category> GetPageList()
         {
-            return new PageList<Category>()
-            {
-                PageIndex = 1,
-                Data = _category.Entities.ToList(),
-                Total = _category.Entities.Count()
-            };
+            return null;
+        }
+
+        public List<Category> GetList()
+        {
+            return _category.Entities.ToList();
         }
 
         public bool CreateOrUpdate(Category model)

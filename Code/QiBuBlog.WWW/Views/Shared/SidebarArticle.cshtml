@@ -1,0 +1,13 @@
+﻿@model QiBuBlog.Entity.Article
+@if (Model != null)
+{
+<section>
+    <h2 class="titlebar">推荐文章</h2>
+    <ol class="sidebar-articlelist">
+    @foreach (var article in Model)
+    {
+        <li><a href="@Url.Action("Detail", new { id = article.ArticleId })" target="_blank">@article.Title</a></li>
+    }
+    </ol>
+</section>
+}

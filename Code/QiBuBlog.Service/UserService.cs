@@ -66,14 +66,9 @@ namespace QiBuBlog.Service
             return _user.Find(x => x.UserName == userName && x.Password == password);
         }
 
-        public PageList<User> GetPageList()
+        public DataPaging<User> GetPageList()
         {
-            return new PageList<User>()
-            {
-                PageIndex = 1,
-                Data = _user.Entities.ToList(),
-                Total = 10
-            };
+            return null;
         }
 
         public bool CreateOrUpdate(User model)

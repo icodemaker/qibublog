@@ -1,6 +1,7 @@
 ﻿using QiBuBlog.Entity;
 using QiBuBlog.Util;
 using System.Web.Mvc;
+using QiBuBlog.Service;
 
 
 namespace QiBuBlog.WWW
@@ -30,7 +31,7 @@ namespace QiBuBlog.WWW
             }
             else
             {
-                filterContext.Result = new RedirectResult($"/login?returnUrl={retUrl.ToLower()}");
+                //filterContext.Result = new RedirectResult($"/login?returnUrl={retUrl.ToLower()}");
             }
         }
 
@@ -40,6 +41,8 @@ namespace QiBuBlog.WWW
             {
                 filterContext.Controller.ViewBag.CurrentUser = _currentUser;
             }
+            filterContext.Controller.ViewBag.Setup = SetupService.Instance.GetSetup();
+            filterContext.Controller.ViewBag.CategoryList = CategoryService.Instance.GetList();
         }
 
         public void OnActionExecuting(ActionExecutingContext filterContext)

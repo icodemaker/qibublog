@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using QiBuBlog.Service;
+using QiBuBlog.Util;
 using System.Web.Mvc;
 
 namespace QiBuBlog.WWW.Controllers
