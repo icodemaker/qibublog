@@ -76,7 +76,7 @@
           <Property Name="PostTime" Type="datetime" Nullable="false" />
         </EntityType>
         <!--生成过程中发现错误:
-警告 6002: 表/视图“qibublog.dbo.Setup”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+警告 6002: 表/视图“qds161903573_db.dbo.Setup”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="Setup">
           <Key>
             <PropertyRef Name="IsOpen" />
@@ -300,7 +300,7 @@ FROM [dbo].[Setup] AS [Setup]</DefiningQuery>
           <Property Name="MaxCommentSize" Type="Int16" Nullable="false" />
           <Property Name="CommentInterval" Type="Byte" Nullable="false" />
         </EntityType>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
