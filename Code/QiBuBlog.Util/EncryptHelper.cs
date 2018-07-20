@@ -5,9 +5,21 @@ using System.Text;
 
 namespace QiBuBlog.Util
 {
-    public static class MD5AndXOREncrypt
+    public static class EncryptHelper
     {
         private const string Key = "9$</Zu!j";
+
+        public static string ToSHA1(string input)
+        {
+            var md5Hasher = new MD5CryptoServiceProvider();
+            var data = md5Hasher.ComputeHash(Encoding.Default.GetBytes(input));
+            var sBuilder = new StringBuilder();
+            foreach (var t in data)
+            {
+                sBuilder.Append(t.ToString("x2"));
+            }
+            return sBuilder.ToString();
+        }
 
         public static string DesEncrypt(string pToEncrypt, string ekey)
         {

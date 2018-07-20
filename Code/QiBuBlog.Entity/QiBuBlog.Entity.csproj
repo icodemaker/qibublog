@@ -67,6 +67,9 @@
     <Compile Include="Link.cs">
       <DependentUpon>QiBuBlog.tt</DependentUpon>
     </Compile>
+    <Compile Include="Menu.cs">
+      <DependentUpon>QiBuBlog.tt</DependentUpon>
+    </Compile>
     <Compile Include="Message.cs">
       <DependentUpon>QiBuBlog.tt</DependentUpon>
     </Compile>

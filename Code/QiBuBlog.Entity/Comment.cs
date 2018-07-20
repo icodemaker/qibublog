@@ -16,13 +16,12 @@ namespace QiBuBlog.Entity
     {
         public string CommentId { get; set; }
         public string ArticleId { get; set; }
-        public string AuthorId { get; set; }
-        public string AuthorName { get; set; }
         public string Email { get; set; }
         public string HomePage { get; set; }
         public string Content { get; set; }
-        public byte Visibility { get; set; }
-        public string IP { get; set; }
-        public System.DateTime PostTime { get; set; }
+        public string IPAddress { get; set; }
+        public string CreateUserName { get; set; }
+        public System.DateTime CreateTime { get; set; }
+        public byte Status { get; set; }
     }
 }

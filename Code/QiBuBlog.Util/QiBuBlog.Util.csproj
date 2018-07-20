@@ -49,12 +49,10 @@
   <ItemGroup>
     <Compile Include="Captcha.cs" />
     <Compile Include="CaptchaManager.cs" />
-    <Compile Include="Encrypt.cs" />
     <Compile Include="FormLoginHelper.cs" />
     <Compile Include="Helper.cs" />
-    <Compile Include="HtmlPager.cs" />
     <Compile Include="JSONHelper.cs" />
-    <Compile Include="MD5AndXOREncrypt.cs" />
+    <Compile Include="EncryptHelper.cs" />
     <Compile Include="DataPaging.cs" />
     <Compile Include="PredicatePack.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

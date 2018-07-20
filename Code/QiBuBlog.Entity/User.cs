@@ -16,14 +16,10 @@ namespace QiBuBlog.Entity
     {
         public string UserId { get; set; }
         public string UserName { get; set; }
+        public string Displayname { get; set; }
         public string Password { get; set; }
         public string GroupId { get; set; }
-        public string Nickname { get; set; }
-        public string Email { get; set; }
-        public string QQ { get; set; }
-        public string HomePage { get; set; }
-        public System.DateTime RegTime { get; set; }
-        public string LastIP { get; set; }
-        public System.DateTime LastActivity { get; set; }
+        public System.DateTime CreateTime { get; set; }
+        public byte Status { get; set; }
     }
 }

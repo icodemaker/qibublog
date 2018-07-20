@@ -16,11 +16,6 @@ namespace QiBuBlog.Entity
     {
         public string GroupId { get; set; }
         public string GroupName { get; set; }
-        public byte CanSetGlobal { get; set; }
-        public byte CanReview { get; set; }
-        public byte ArticleLimit { get; set; }
-        public byte MaxArticleWeight { get; set; }
-        public byte CanManageUser { get; set; }
         public byte IsAdmin { get; set; }
     }
 }

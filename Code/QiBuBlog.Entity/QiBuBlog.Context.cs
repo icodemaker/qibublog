@@ -29,9 +29,10 @@ namespace QiBuBlog.Entity
         public DbSet<Category> Category { get; set; }
         public DbSet<Comment> Comment { get; set; }
         public DbSet<Link> Link { get; set; }
+        public DbSet<Menu> Menu { get; set; }
         public DbSet<Message> Message { get; set; }
+        public DbSet<Setup> Setup { get; set; }
         public DbSet<User> User { get; set; }
         public DbSet<UserGroup> UserGroup { get; set; }
-        public DbSet<Setup> Setup { get; set; }
     }
 }

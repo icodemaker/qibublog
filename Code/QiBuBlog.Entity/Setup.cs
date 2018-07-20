@@ -14,6 +14,7 @@ namespace QiBuBlog.Entity
     
     public partial class Setup
     {
+        public string SetupId { get; set; }
         public byte IsOpen { get; set; }
         public string CloseReason { get; set; }
         public string SiteName { get; set; }
@@ -21,7 +22,6 @@ namespace QiBuBlog.Entity
         public string Keywords { get; set; }
         public string Description { get; set; }
         public string ForbiddenIP { get; set; }
-        public double TimeZone { get; set; }
         public byte CommentLimit { get; set; }
         public byte MinCommentSize { get; set; }
         public short MaxCommentSize { get; set; }

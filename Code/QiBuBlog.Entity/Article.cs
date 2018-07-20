@@ -16,18 +16,16 @@ namespace QiBuBlog.Entity
     {
         public string ArticleId { get; set; }
         public string CategoryId { get; set; }
-        public string CategoryName { get; set; }
-        public string AuthorId { get; set; }
-        public string AuthorName { get; set; }
         public string Title { get; set; }
         public string Keywords { get; set; }
         public short SummarySize { get; set; }
         public string Summary { get; set; }
-        public byte State { get; set; }
         public string Content { get; set; }
         public int ViewCount { get; set; }
         public int CommentCount { get; set; }
         public byte Weight { get; set; }
-        public System.DateTime PostTime { get; set; }
+        public string CreateUserId { get; set; }
+        public System.DateTime CreateTime { get; set; }
+        public byte Status { get; set; }
     }
 }

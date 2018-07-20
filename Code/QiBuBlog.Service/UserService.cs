@@ -15,35 +15,6 @@ namespace QiBuBlog.Service
             _user = new EfRepositoryBase<User, object>();
         }
 
-        public static void Validate(User user)
-        {
-            if (string.IsNullOrEmpty(user.Password) || user.Password.Length < 6)
-            {
-                throw new ArgumentException("密码长度不能小于6位");
-            }
-            else if (user.Password.Length != 40)
-            {
-                user.Password = Encrypt.ToSHA1(user.Password);
-            }
-
-            if (!string.IsNullOrEmpty(user.Email) && !Validator.IsEmail(user.Email))
-            {
-                throw new ArgumentException("Email格式错误");
-            }
-            if (!string.IsNullOrEmpty(user.HomePage))
-            {
-                user.HomePage = Validator.FixUrl(user.HomePage);
-            }
-            if (!string.IsNullOrEmpty(user.QQ) && !Validator.IsQQ(user.QQ))
-            {
-                throw new ArgumentException("QQ号码格式错误");
-            }
-            if (string.IsNullOrEmpty(user.Nickname))
-            {
-                user.Nickname = user.UserName;
-            }
-        }
-
         public User GetUserById(string userId)
         {
             if (string.IsNullOrWhiteSpace(userId))

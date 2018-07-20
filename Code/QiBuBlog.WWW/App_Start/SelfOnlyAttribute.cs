@@ -29,10 +29,6 @@ namespace QiBuBlog.WWW
             {
                 _currentUser = FormLoginHelper<User>.Get();
             }
-            else
-            {
-                //filterContext.Result = new RedirectResult($"/login?returnUrl={retUrl.ToLower()}");
-            }
         }
 
         public void OnActionExecuted(ActionExecutedContext filterContext)
@@ -42,7 +38,7 @@ namespace QiBuBlog.WWW
                 filterContext.Controller.ViewBag.CurrentUser = _currentUser;
             }
             filterContext.Controller.ViewBag.Setup = SetupService.Instance.GetSetup();
-            filterContext.Controller.ViewBag.CategoryList = CategoryService.Instance.GetList();
+            filterContext.Controller.ViewBag.Menu = MenuService.Instance.GetList();
         }
 
         public void OnActionExecuting(ActionExecutingContext filterContext)

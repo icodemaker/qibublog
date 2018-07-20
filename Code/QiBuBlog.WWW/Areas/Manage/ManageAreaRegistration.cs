@@ -19,7 +19,7 @@ namespace QiBuBlog.WWW.Areas.Manage
         public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
-                    name: "QiBuBlog.WWW.Areas.Manage.Default",
+                    name: "QiBuBlog.WWW.Areas.Manage",
                     url: "Manage/{controller}/{action}/{id}",
                     defaults: new { controller = "Dashboard", action = "Index", id = UrlParameter.Optional },
                     namespaces: new[] { "QiBuBlog.WWW.Areas.Manage.Controllers" }

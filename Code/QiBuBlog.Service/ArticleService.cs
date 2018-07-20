@@ -21,9 +21,13 @@ namespace QiBuBlog.Service
             try
             {
                 var list = _article.Entities.ToList();
-                var dataPaging = new DataPaging<Article>(list.Count, 10, currentPage);
-                dataPaging.Data = dataPaging.RowCount > 0 ? list : new List<Article>();
-                return dataPaging;
+
+                return new DataPaging<Article>()
+                {
+                    CurrentPage = currentPage,
+                    Data = list,
+                    TotalRecord = list.Count
+                };
             }
             catch
             {
@@ -81,7 +85,6 @@ namespace QiBuBlog.Service
                         var model = _article.Find(x => x.ArticleId == id);
                         if (model != null)
                         {
-                            model.State = 1;
                             _article.Update(model);
                             result = true;
                         }

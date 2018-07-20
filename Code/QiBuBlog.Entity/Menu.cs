@@ -12,13 +12,16 @@ namespace QiBuBlog.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class Link
+    public partial class Menu
     {
-        public string LinkId { get; set; }
-        public string LinkName { get; set; }
-        public string LinkUrl { get; set; }
+        public string MenuId { get; set; }
+        public string MenuName { get; set; }
+        public byte CategoryId { get; set; }
+        public string TargetUrl { get; set; }
+        public string Keywords { get; set; }
         public string Description { get; set; }
         public byte Sort { get; set; }
+        public byte IsFront { get; set; }
         public byte Status { get; set; }
     }
 }
