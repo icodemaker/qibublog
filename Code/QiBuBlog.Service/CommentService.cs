@@ -7,10 +7,10 @@ namespace QiBuBlog.Service
 {
     public class CommentService : Singleton<CommentService>
     {
-        private static EfRepositoryBase<Comment, object> _comment;
+        private static EFRepositoryBase<Comment, object> _comment;
         private CommentService()
         {
-            _comment = new EfRepositoryBase<Comment, object>();
+            _comment = new EFRepositoryBase<Comment, object>();
         }
 
         private static bool IsExists(string ip, DateTime lastPostTime)

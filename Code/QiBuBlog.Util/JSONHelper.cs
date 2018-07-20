@@ -9,7 +9,7 @@ using Newtonsoft.Json.Serialization;
 
 namespace QiBuBlog.Util
 {
-    public static class JsonHelper
+    public static class JSONHelper
     {
         public static string Encode<T>(T t)
         {

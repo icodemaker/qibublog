@@ -13,14 +13,14 @@ namespace QiBuBlog.Util
 
         public static void Set(T user, bool createPersistentCookie = false)
         {
-            var strUser = JsonHelper.Encode<T>(user);
+            var strUser = JSONHelper.Encode<T>(user);
             FormsAuthentication.SetAuthCookie(strUser, createPersistentCookie);
         }
 
         public static T Get()
         {
             var strUser = HttpContext.Current.User.Identity.Name;
-            return JsonHelper.Decode<T>(strUser);
+            return JSONHelper.Decode<T>(strUser);
         }
 
         public static void Logout(string redirectUrl = "/login")

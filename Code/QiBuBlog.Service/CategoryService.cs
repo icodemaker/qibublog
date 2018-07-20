@@ -9,11 +9,11 @@ namespace QiBuBlog.Service
 {
     public class CategoryService : Singleton<CategoryService>
     {
-        private static EfRepositoryBase<Category, object> _category;
+        private static EFRepositoryBase<Category, object> _category;
 
         private CategoryService()
         {
-            _category = new EfRepositoryBase<Category, object>();
+            _category = new EFRepositoryBase<Category, object>();
         }
 
         public DataPaging<Category> GetPageList()

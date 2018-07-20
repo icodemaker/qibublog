@@ -11,16 +11,16 @@ using System.Linq.Expressions;
 namespace QiBuBlog.Entity.Helper
 {
 
-    public sealed class EfRepositoryBase<TEntity, TKey> where TEntity : class
+    public sealed class EFRepositoryBase<TEntity, TKey> where TEntity : class
     {
         #region 属性
 
-        public EfRepositoryBase()
+        public EFRepositoryBase()
         {
             //TODO:
         }
 
-        private DbContext _efContext = new EfDbContext<TEntity>().Instance;
+        private DbContext _efContext = new EFDbContext<TEntity>().Instance;
 
         private bool IsCommitted { get; set; }
 
@@ -34,7 +34,7 @@ namespace QiBuBlog.Entity.Helper
             {
                 var result = _efContext.SaveChanges(validateOnSaveEnabled);
 
-                _efContext = new EfDbContext<TEntity>().Instance;
+                _efContext = new EFDbContext<TEntity>().Instance;
                 IsCommitted = true;
                 return result;
             }
@@ -212,7 +212,7 @@ namespace QiBuBlog.Entity.Helper
         public TEntity GetByKey(TKey key)
         {
             DataHelper.CheckArgument(key, "key");
-            using (var efContext = new EfDbContext<TEntity>().Instance)
+            using (var efContext = new EFDbContext<TEntity>().Instance)
             {
                 return efContext.Set<TEntity>().Find(key);
             }
@@ -221,7 +221,7 @@ namespace QiBuBlog.Entity.Helper
         public TEntity GetByKey(params object[] keyValues)
         {
             DataHelper.CheckArgument(keyValues, "keyValues");
-            using (var efContext = new EfDbContext<TEntity>().Instance)
+            using (var efContext = new EFDbContext<TEntity>().Instance)
             {
                 return efContext.Set<TEntity>().Find(keyValues);
             }
@@ -244,7 +244,7 @@ namespace QiBuBlog.Entity.Helper
         public TEntity Find(Expression<Func<TEntity, bool>> exp)
         {
             DataHelper.CheckArgument(exp, "exp");
-            using (var efContext = new EfDbContext<TEntity>().Instance)
+            using (var efContext = new EFDbContext<TEntity>().Instance)
             {
                 return efContext.Set<TEntity>().AsNoTracking().FirstOrDefault(exp);
             }
@@ -253,7 +253,7 @@ namespace QiBuBlog.Entity.Helper
         public IQueryable<TEntity> BatchFind(Expression<Func<TEntity, bool>> exp)
         {
             DataHelper.CheckArgument(exp, "exp");
-            var efContext = new EfDbContext<TEntity>().Instance;
+            var efContext = new EFDbContext<TEntity>().Instance;
             return efContext.Set<TEntity>().Where(exp).AsNoTracking();
         }
         #endregion

@@ -8,11 +8,11 @@ namespace QiBuBlog.Service
 {
     public class UserService : Singleton<UserService>
     {
-        private static EfRepositoryBase<User, object> _user;
+        private static EFRepositoryBase<User, object> _user;
 
         private UserService()
         {
-            _user = new EfRepositoryBase<User, object>();
+            _user = new EFRepositoryBase<User, object>();
         }
 
         public User GetUserById(string userId)
@@ -93,14 +93,5 @@ namespace QiBuBlog.Service
             }
             return result;
         }
-
-        //public bool ChangeStatus(string id, string lastIP)
-        //{
-        //    var model = _user.Find(x => x.UserId == id);
-        //    if (model == null) return _user.Update(model) > 0;
-        //    model.LastActivity = DateTime.Now;
-        //    model.LastIP = lastIP;
-        //    return _user.Update(model) > 0;
-        //}
     }
 }
