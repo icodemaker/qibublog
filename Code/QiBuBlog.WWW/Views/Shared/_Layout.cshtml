@@ -4,57 +4,50 @@
     <title>QiBuBlog | @ViewBag.Title</title>
     <meta charset="utf-8" />
     <link rel="shortcut icon" href="/Content/Images/favicon.ico" />
-    @if (!string.IsNullOrEmpty(ViewBag.Keywords))
-    {
-        <meta name="Keywords" content="@ViewBag.Keywords" />
-    }
-    @if (!string.IsNullOrEmpty(ViewBag.Description))
-    {
-        <meta name="Description" content="@ViewBag.Description" />
-    }
     <link href="@Url.Content("~/Content/pub.css")" rel="stylesheet" type="text/css" />
-    @RenderSection("Css", false)
 </head>
-
 <body>
-<header id="header" class="header">
-    <div class="boundary">
-        <h1 class="logo"><a href="http://@ViewBag.Setup.SiteDomain">
-            <img src="@Url.Content("~/Content/Images/logo.png")" alt="@ViewBag.Setup.SiteName" /></a></h1>
-        <nav class="global-nav">
-            <ul>
-                @foreach (var m in ViewBag.Menu)
-                {
-                    <li><a href="#">@m.MenuName</a></li>
-                }
-            </ul>
-        </nav>
+    <header id="header" class="header">
+        <div class="boundary">
+            <h1 class="logo">
+                <a href="http://@ViewBag.Setup.SiteDomain">
+                    <img src="@Url.Content("~/Content/Images/logo.png")" alt="@ViewBag.Setup.SiteName" />
+                </a>
+            </h1>
+            <nav class="global-nav">
+                <ul>
+                    @foreach (var m in ViewBag.Menu)
+                    {
+                        <li><a href="#">@m.MenuName</a></li>
+                    }
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="body clearfix">
+        <div class="boundary">@RenderBody()</div>
     </div>
-</header>
-<div class="body clearfix">
-    <div class="boundary">@RenderBody()</div>
-</div>
-<footer id="footer" class="footer">
-    <div class="boundary clearfix">
-        <nav>
-            当前位置：
-            <span id="current-position" class="current-position">首页</span>
-            <ul id="express-nav" class="express-nav">
-                @foreach (var m in ViewBag.Menu)
-                {
-                    <li><a href="#">@m.MenuName</a></li>
-                }
-            </ul>
-        </nav>
-        @if (ViewBag.User != null)
-        {
-            
-        }
-        <div class="copyright">Copyright &copy; 2009-@DateTime.UtcNow.ToString("yyyy") <a href="http://@ViewBag.Setup.SiteDomain">@ViewBag.Setup.SiteName</a></div>
-    </div>
-</footer>
-<script src="@Url.Content("~/Scripts/jquery.js")" type="text/javascript"></script>
-<script src="@Url.Content("~/Scripts/pub.js")" type="text/javascript"></script>
-@RenderSection("Script", false)
+    <footer id="footer" class="footer">
+        <div class="boundary clearfix">
+            <nav>
+                当前位置：
+                <span id="current-position" class="current-position">首页</span>
+                <ul id="express-nav" class="express-nav">
+                    @foreach (var m in ViewBag.Menu)
+                    {
+                        <li><a href="#">@m.MenuName</a></li>
+                    }
+                </ul>
+            </nav>
+            @if (ViewBag.User != null)
+            {
+
+            }
+            <div class="copyright">Copyright &copy; 2009-@DateTime.UtcNow.ToString("yyyy") <a href="http://@ViewBag.Setup.SiteDomain">@ViewBag.Setup.SiteName</a></div>
+        </div>
+    </footer>
+    <script src="@Url.Content("~/Scripts/jquery.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/pub.js")" type="text/javascript"></script>
+    @RenderSection("Script", false)
 </body>
 </html>

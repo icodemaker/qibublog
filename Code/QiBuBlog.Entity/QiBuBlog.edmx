@@ -63,10 +63,10 @@
           </Key>
           <Property Name="MenuId" Type="varchar" MaxLength="32" Nullable="false" />
           <Property Name="MenuName" Type="nvarchar" MaxLength="32" Nullable="false" />
-          <Property Name="CategoryId" Type="tinyint" Nullable="false" />
-          <Property Name="TargetUrl" Type="varchar" MaxLength="128" Nullable="false" />
-          <Property Name="Keywords" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="Description" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="CategoryId" Type="varchar" MaxLength="32" />
+          <Property Name="TargetUrl" Type="varchar" MaxLength="128" />
+          <Property Name="Keywords" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
           <Property Name="Sort" Type="tinyint" Nullable="false" />
           <Property Name="IsFront" Type="tinyint" Nullable="false" />
           <Property Name="Status" Type="tinyint" Nullable="false" />
@@ -95,11 +95,6 @@
           <Property Name="SiteDomain" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="Keywords" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Description" Type="ntext" Nullable="false" />
-          <Property Name="ForbiddenIP" Type="ntext" Nullable="false" />
-          <Property Name="CommentLimit" Type="tinyint" Nullable="false" />
-          <Property Name="MinCommentSize" Type="tinyint" Nullable="false" />
-          <Property Name="MaxCommentSize" Type="smallint" Nullable="false" />
-          <Property Name="CommentInterval" Type="tinyint" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -205,10 +200,10 @@
           </Key>
           <Property Name="MenuId" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
           <Property Name="MenuName" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
-          <Property Name="CategoryId" Type="Byte" Nullable="false" />
-          <Property Name="TargetUrl" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Name="Keywords" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryId" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="TargetUrl" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="Keywords" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Sort" Type="Byte" Nullable="false" />
           <Property Name="IsFront" Type="Byte" Nullable="false" />
           <Property Name="Status" Type="Byte" Nullable="false" />
@@ -237,11 +232,6 @@
           <Property Name="SiteDomain" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Keywords" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ForbiddenIP" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CommentLimit" Type="Byte" Nullable="false" />
-          <Property Name="MinCommentSize" Type="Byte" Nullable="false" />
-          <Property Name="MaxCommentSize" Type="Int16" Nullable="false" />
-          <Property Name="CommentInterval" Type="Byte" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -357,11 +347,6 @@
           <EntitySetMapping Name="Setup">
             <EntityTypeMapping TypeName="QibuBlog.Entity.Setup">
               <MappingFragment StoreEntitySet="Setup">
-                <ScalarProperty Name="CommentInterval" ColumnName="CommentInterval" />
-                <ScalarProperty Name="MaxCommentSize" ColumnName="MaxCommentSize" />
-                <ScalarProperty Name="MinCommentSize" ColumnName="MinCommentSize" />
-                <ScalarProperty Name="CommentLimit" ColumnName="CommentLimit" />
-                <ScalarProperty Name="ForbiddenIP" ColumnName="ForbiddenIP" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Keywords" ColumnName="Keywords" />
                 <ScalarProperty Name="SiteDomain" ColumnName="SiteDomain" />

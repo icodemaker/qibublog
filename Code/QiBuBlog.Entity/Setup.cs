@@ -21,10 +21,5 @@ namespace QiBuBlog.Entity
         public string SiteDomain { get; set; }
         public string Keywords { get; set; }
         public string Description { get; set; }
-        public string ForbiddenIP { get; set; }
-        public byte CommentLimit { get; set; }
-        public byte MinCommentSize { get; set; }
-        public short MaxCommentSize { get; set; }
-        public byte CommentInterval { get; set; }
     }
 }

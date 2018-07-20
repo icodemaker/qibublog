@@ -16,7 +16,7 @@ namespace QiBuBlog.Entity
     {
         public string MenuId { get; set; }
         public string MenuName { get; set; }
-        public byte CategoryId { get; set; }
+        public string CategoryId { get; set; }
         public string TargetUrl { get; set; }
         public string Keywords { get; set; }
         public string Description { get; set; }
