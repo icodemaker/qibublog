@@ -14,9 +14,10 @@ namespace QiBuBlog.WWW.Controllers
             return View();
         }
 
-        public ActionResult Detail()
+        public ActionResult Detail(string id)
         {
-            return View();
+            var model = ArticleService.Instance.GetModelById(id);
+            return View(model);
         }
     }
 }

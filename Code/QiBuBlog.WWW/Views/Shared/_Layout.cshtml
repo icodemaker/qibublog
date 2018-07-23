@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>QiBuBlog | @ViewBag.Title</title>
+    <title>@ViewBag.Title</title>
     <meta charset="utf-8" />
     <link rel="shortcut icon" href="/Content/Images/favicon.ico" />
     <link href="@Url.Content("~/Content/pub.css")" rel="stylesheet" type="text/css" />
@@ -18,7 +18,7 @@
                 <ul>
                     @foreach (var m in ViewBag.Menu)
                     {
-                        <li><a href="#">@m.MenuName</a></li>
+                        <li @Html.Raw(ViewBag.CurrentPosition != null ? (m.MenuId == ViewBag.CurrentPosition ? " class=\"current\"" : string.Empty) : (m.MenuName == "首页"?" class=\"current\"" : string.Empty))><a href="@Url.Action("index", "home", new { id = m.MenuId })">@m.MenuName</a></li>
                     }
                 </ul>
             </nav>

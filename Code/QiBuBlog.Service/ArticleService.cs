@@ -16,11 +16,18 @@ namespace QiBuBlog.Service
             _article = new EFRepositoryBase<Article, object>();
         }
 
-        public DataPaging<Article> GetPageList(string categoryId, int currentPage)
+        public DataPaging<Article> GetPageList(string categoryId, int currentPage, bool isIndex)
         {
             try
             {
-                var list = _article.Entities.ToList();
+                var exp = new PredicatePack<Article>();
+
+                if (!isIndex)
+                {
+                    exp.PushAnd(x => x.CategoryId == categoryId);
+                }
+
+                var list = _article.Entities.Where(exp).ToList();
 
                 return new DataPaging<Article>()
                 {
@@ -33,6 +40,16 @@ namespace QiBuBlog.Service
             {
                 throw new Exception("读取文章目录出错");
             }
+        }
+
+        public Article GetModelById(string id)
+        {
+            var result = new Article();
+            if (!string.IsNullOrWhiteSpace(id))
+            {
+                result = _article.Find(x => x.ArticleId == id);
+            }
+            return result;
         }
 
         public Article[] GetTopView(string categoryId, byte minWeight, byte pageSize)

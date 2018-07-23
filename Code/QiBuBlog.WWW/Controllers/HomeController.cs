@@ -9,17 +9,19 @@ namespace QiBuBlog.WWW.Controllers
         //
         // GET: /Home/
 
-        public ActionResult Index(string categoryId, int? page)
+        public ActionResult Index(string id, int? page)
         {
-            ViewBag.CurrentPosition = categoryId;
-
-            var articleData = ArticleService.Instance.GetPageList(categoryId, page ?? 1);
-
-            //if (articleData.PageCount <= 1) return View(articleData);
-            //var pagerHelper = new HtmlPager(Url.Action("Index", new { id = categoryId }), null) { HrefPattern = "{0}/{2}" };
-            //ViewBag.ArticlePager = pagerHelper.GenerateCode(articleData.PageCount, articleData.CurrentPage);
-            ViewBag.ArticleData = articleData;
-
+            ViewBag.CurrentPosition = id;
+            var categoryId = string.Empty;
+            if (!string.IsNullOrWhiteSpace(id))
+            {
+                var cId = MenuService.Instance.GetMenuCategoryId(id);
+                if (!string.IsNullOrWhiteSpace(cId))
+                {
+                    categoryId = cId;
+                }
+            }
+            var articleData = ArticleService.Instance.GetPageList(categoryId, page ?? 1, id == "7e83d75879f540cc84f662db7a1d4178" ? true : false);
             return View(articleData);
         }
     }
