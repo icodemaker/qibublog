@@ -9,9 +9,20 @@ namespace QiBuBlog.WWW.Controllers
         //
         // GET: /Article/
 
-        public ActionResult Index()
+        public ActionResult Index(string id, int? page)
         {
-            return View();
+            ViewBag.CurrentPosition = id;
+            var categoryId = string.Empty;
+            if (!string.IsNullOrWhiteSpace(id))
+            {
+                var cId = MenuService.Instance.GetMenuCategoryId(id);
+                if (!string.IsNullOrWhiteSpace(cId))
+                {
+                    categoryId = cId;
+                }
+            }
+            var articleData = ArticleService.Instance.GetPageList(categoryId, page ?? 1, false);
+            return View(articleData);
         }
 
         public ActionResult Detail(string id)

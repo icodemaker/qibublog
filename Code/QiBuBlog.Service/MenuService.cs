@@ -37,7 +37,7 @@ namespace QiBuBlog.Service
         {
             try
             {
-                var list = _menu.Entities.OrderBy(x  => x.Sort).ToList();
+                var list = _menu.Entities.Where(x => x.Status == 101).OrderBy(x  => x.Sort).ToList();
 
                 return list;
             }
