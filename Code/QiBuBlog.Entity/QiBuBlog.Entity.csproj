@@ -49,10 +49,16 @@
     <Compile Include="Article.cs">
       <DependentUpon>QiBuBlog.tt</DependentUpon>
     </Compile>
+    <Compile Include="ArticleListView.cs">
+      <DependentUpon>QiBuBlog.tt</DependentUpon>
+    </Compile>
     <Compile Include="Category.cs">
       <DependentUpon>QiBuBlog.tt</DependentUpon>
     </Compile>
     <Compile Include="Comment.cs">
+      <DependentUpon>QiBuBlog.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetArticleById_Result.cs">
       <DependentUpon>QiBuBlog.tt</DependentUpon>
     </Compile>
     <Compile Include="Helper\BusinessException.cs" />

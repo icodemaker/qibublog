@@ -9,11 +9,11 @@
                 <h1 class="article-title">@Model.Title</h1>
                 <ul class="article-info clearfix">
                     <li class="article-posttime">
-                        <address>@Model.CreateUserId</address>
+                        <address>@Model.CreateUserName</address>
                         发表于
                         <time datetime="@Model.CreateTime.ToString("yyyy-MM-ddThh:mm:sszzz")">@Model.CreateTime.ToString("yyyy-MM-dd HH:mm")</time>
                     </li>
-                    <li>分类：<a href="@Url.Action("Index", new { id = Model.CategoryId })">@Model.CategoryId</a></li>
+                    <li>分类：<a href="@Url.Action("Index", new { id = Model.CategoryId })">@Model.CategoryName</a></li>
                     <li>浏览次数：@Model.ViewCount</li>
                     <li>评论次数：<span class="comment-count">@Model.CommentCount</span></li>
                 </ul>

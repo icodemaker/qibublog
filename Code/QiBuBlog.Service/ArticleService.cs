@@ -10,26 +10,28 @@ namespace QiBuBlog.Service
     public class ArticleService : Singleton<ArticleService>
     {
         private static EFRepositoryBase<Article, object> _article;
+        private static EFRepositoryBase<ArticleListView, object> _articleView;
 
         private ArticleService()
         {
             _article = new EFRepositoryBase<Article, object>();
+            _articleView = new EFRepositoryBase<ArticleListView, object>();
         }
 
-        public DataPaging<Article> GetPageList(string categoryId, int currentPage, bool isIndex)
+        public DataPaging<ArticleListView> GetPageList(string categoryId, int currentPage, bool isIndex)
         {
             try
             {
-                var exp = new PredicatePack<Article>();
+                var exp = new PredicatePack<ArticleListView>();
 
                 if (!isIndex)
                 {
                     exp.PushAnd(x => x.CategoryId == categoryId);
                 }
 
-                var list = _article.Entities.Where(exp).ToList();
+                var list = _articleView.Entities.Where(exp).ToList();
 
-                return new DataPaging<Article>()
+                return new DataPaging<ArticleListView>()
                 {
                     CurrentPage = currentPage,
                     Data = list,
@@ -42,12 +44,13 @@ namespace QiBuBlog.Service
             }
         }
 
-        public Article GetModelById(string id)
+        public GetArticleById_Result GetArticleById(string id)
         {
-            var result = new Article();
+            var result = new GetArticleById_Result();
+            var db = new QiBuBlogEntities();
             if (!string.IsNullOrWhiteSpace(id))
             {
-                result = _article.Find(x => x.ArticleId == id);
+                result = db.GetArticleById(id).FirstOrDefault();
             }
             return result;
         }

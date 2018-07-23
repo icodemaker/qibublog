@@ -12,6 +12,9 @@ namespace QiBuBlog.Entity
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Objects;
+    using System.Data.Objects.DataClasses;
+    using System.Linq;
     
     public partial class QiBuBlogEntities : DbContext
     {
@@ -34,5 +37,15 @@ namespace QiBuBlog.Entity
         public DbSet<Setup> Setup { get; set; }
         public DbSet<User> User { get; set; }
         public DbSet<UserGroup> UserGroup { get; set; }
+        public DbSet<ArticleListView> ArticleListView { get; set; }
+    
+        public virtual ObjectResult<GetArticleById_Result> GetArticleById(string articleId)
+        {
+            var articleIdParameter = articleId != null ?
+                new ObjectParameter("articleId", articleId) :
+                new ObjectParameter("articleId", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetArticleById_Result>("GetArticleById", articleIdParameter);
+        }
     }
 }

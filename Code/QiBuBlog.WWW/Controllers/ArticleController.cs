@@ -27,7 +27,7 @@ namespace QiBuBlog.WWW.Controllers
 
         public ActionResult Detail(string id)
         {
-            var model = ArticleService.Instance.GetModelById(id);
+            var model = ArticleService.Instance.GetArticleById(id);
             return View(model);
         }
     }
