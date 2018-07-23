@@ -18,7 +18,7 @@
                 <ul>
                     @foreach (var m in ViewBag.Menu)
                     {
-                        <li @Html.Raw(ViewBag.CurrentPosition != null ? (m.MenuId == ViewBag.CurrentPosition ? " class=\"current\"" : string.Empty) : (m.MenuName == "首页"?" class=\"current\"" : string.Empty))><a href="@Url.Action("index", "home", new { id = m.MenuId })">@m.MenuName</a></li>
+                        <li @Html.Raw(ViewBag.CurrentPosition != null ? (m.MenuId == ViewBag.CurrentPosition ? " class=\"current\"" : string.Empty) : (m.MenuName == "首页" ? " class=\"current\"" : string.Empty))><a href="@(m.TargetUrl!=null?m.TargetUrl:Url.Action("index", "home", new { id = m.MenuId }))">@m.MenuName</a></li>
                     }
                 </ul>
             </nav>
