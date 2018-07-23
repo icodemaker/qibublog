@@ -1,7 +1,7 @@
 ﻿@{
     ViewBag.Title = "登录";
 }
-<link href="~/Style/css/login.css" rel="stylesheet" />
+<link href="~/Content/login.css" rel="stylesheet" />
 <form id="login-form" class="login-form" action="@Url.Content("/Login/Authority")" method="post">
     <fieldset>
         <legend>用户登录</legend>
@@ -15,15 +15,11 @@
             <img data-src="@Url.Content("/Login/GetCaptcha")" data-bgcolor="255,255,255" data-formname="login" alt="点击更换验证码" class="captcha-img" />
             <input type="submit" value="登 录" />
         </p>
-        @if (!string.IsNullOrEmpty(ViewBag.Redirect))
-        {
-            <input type="hidden" name="redirect" value="@ViewBag.Redirect" />
-        }
     </fieldset>
 </form>
-<script src="~/Style/js/jquery.js"></script>
-<script src="~/Style/js/jquery.validate.js"></script>
-<script src="~/Style/js/captcha.js"></script>
+<script src="~/Scripts/jquery.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/captcha.js"></script>
 <script type="text/javascript">//<![CDATA[
     new Captcha($("p.captcha"));
 
