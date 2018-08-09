@@ -9,7 +9,7 @@ namespace QiBuBlog.Service
 {
     public class CategoryService : Singleton<CategoryService>
     {
-        private static EFRepositoryBase<Category, object> _category;
+        private EFRepositoryBase<Category, object> _category;
 
         private CategoryService()
         {

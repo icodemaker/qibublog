@@ -9,8 +9,8 @@ namespace QiBuBlog.Service
 {
     public class ArticleService : Singleton<ArticleService>
     {
-        private static EFRepositoryBase<Article, object> _article;
-        private static EFRepositoryBase<ArticleListView, object> _articleView;
+        private EFRepositoryBase<Article, object> _article;
+        private EFRepositoryBase<ArticleListView, object> _articleView;
 
         private ArticleService()
         {
@@ -65,7 +65,7 @@ namespace QiBuBlog.Service
             return _article.Entities.Where(x => x.Weight >= 200).ToArray();
         }
 
-        public static bool IsExist(string articleId)
+        public bool IsExist(string articleId)
         {
             var article = _article.Find(x => x.ArticleId == articleId);
             return _article != null;

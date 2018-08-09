@@ -8,7 +8,7 @@ namespace QiBuBlog.Service
 {
     public class UserService : Singleton<UserService>
     {
-        private static EFRepositoryBase<User, object> _user;
+        private EFRepositoryBase<User, object> _user;
 
         private UserService()
         {
@@ -24,7 +24,7 @@ namespace QiBuBlog.Service
             return _user.Find(x => x.UserId == userId);
         }
 
-        public static User UserLogin(string userName, string password)
+        public User UserLogin(string userName, string password)
         {
             if (string.IsNullOrWhiteSpace(userName))
             {

@@ -9,7 +9,7 @@ namespace QiBuBlog.Service
 {
     public class MenuService : Singleton<MenuService>
     {
-        private static EFRepositoryBase<Menu, object> _menu;
+        private EFRepositoryBase<Menu, object> _menu;
 
         private MenuService()
         {

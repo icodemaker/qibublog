@@ -9,7 +9,7 @@ namespace QiBuBlog.Service
 {
     public class SetupService : Singleton<SetupService>
     {
-        private static EFRepositoryBase<Setup, object> _setup;
+        private EFRepositoryBase<Setup, object> _setup;
 
         private SetupService()
         {
