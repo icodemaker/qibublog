@@ -9,6 +9,8 @@ namespace QiBuBlog.WWW
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.LowercaseUrls = true;//路径小写
+
             routes.MapRoute(
                 name: "QiBuBlog",
                 url: "{controller}/{action}/{id}",
