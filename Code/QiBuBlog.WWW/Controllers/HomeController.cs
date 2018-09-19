@@ -1,4 +1,5 @@
-﻿using QiBuBlog.Service;
+﻿using QiBuBlog.Entity;
+using QiBuBlog.Service;
 using QiBuBlog.Util;
 using System.Web.Mvc;
 
