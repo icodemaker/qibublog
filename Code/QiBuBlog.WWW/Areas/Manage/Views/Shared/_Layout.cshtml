@@ -1,10 +1,54 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>QiBuBlog_Mgr | @ViewBag.Title</title>
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8" />
+    <link href="@Url.Content("~/Content/manage-pub.css")" rel="stylesheet" type="text/css" />
+    @RenderSection("Css", false)
 </head>
 
 <body>
-    @RenderBody()
+    <aside class="sidebar">
+        <h1>@ViewBag.Setup.SiteName 后台</h1>
+        @if (ViewBag.CurrentUser != null)
+        {
+            <nav class="nav">
+                <h2>功能</h2>
+                <ul>
+                    <li><a href="@Url.Action("Index","Home")" target="_blank">网站首页</a></li>
+                    <li><a href="@Url.Action("Index","Dashboard", new { Area = "Manage" } )">后台首页</a></li>
+                    <li><a href="@Url.Action("Logout","Login")">退出</a></li>
+                </ul>
+                <h2>全局设置</h2>
+                <ul>
+                    <li><a href="@Url.Action("Index","Setup", new { Area = "Manage" } )">网站设置</a></li>
+                    <li><a href="@Url.Action("Index","Category", new { Area = "Manage" } )">分类管理</a></li>
+                </ul>
+                <h2>文章</h2>
+                <ul>
+                    <li><a href="@Url.Action("Index","Article", new { Area = "Manage" } )">文章管理</a></li>
+                </ul>
+                <h2>评论</h2>
+                <ul>
+                    <li><a href="@Url.Action("Index","Comment", new { Area = "Manage" } )">评论管理</a></li>
+                </ul>
+                <h2>用户</h2>
+                <ul>
+                    <li><a href="@Url.Action("Index","User", new { Area = "Manage" } )">用户管理</a></li>
+                </ul>
+            </nav>
+        }
+    </aside>
+    <div class="body clearfix">
+        <div class="main clearfix">@RenderBody()</div>
+        <div class="footer clearfix">
+            <div class="poweredby">Powered By <a href="javascript:;">CodeMaker</a></div>
+            <div class="copyright">Copyright &copy; 2018-2019 <a href="javascript:;">qibu.net.cn</a></div>
+        </div>
+    </div>
+    <script src="@Url.Content("~/Scripts/jquery.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/manage-pub.js")" type="text/javascript"></script>
+    @RenderSection("Script", false)
 </body>
 </html>

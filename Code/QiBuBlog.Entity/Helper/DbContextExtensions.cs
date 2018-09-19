@@ -10,7 +10,7 @@ namespace QiBuBlog.Entity.Helper
 {
     public static class DbContextExtensions
     {
-        public static void Update<TEntity, TKey>(this DbContext dbContext, params TEntity[] entities) where TEntity : class //EntityBase<TKey>
+        public static void Update<TEntity, TKey>(this DbContext dbContext, params TEntity[] entities) where TEntity : class
         {
             if (dbContext == null) throw new ArgumentNullException(nameof(dbContext));
             if (entities == null) throw new ArgumentNullException(nameof(entities));

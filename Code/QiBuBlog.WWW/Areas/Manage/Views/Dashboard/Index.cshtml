@@ -1,5 +1,21 @@
-﻿@{
-    ViewBag.Title = "Index";
-}
-
-<h2>Index</h2>
+﻿<table class="cols-4">
+    <thead>
+    <tr>
+        <th colspan="4">服务器基本情况</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th>服务器地址</th>
+        <td>@ViewBag.ServerAddress</td>
+        <th>应用程序服务器</th>
+        <td>@ViewBag.ServerSys</td>
+    </tr>
+    <tr>
+        <th>CPU核心数</th>
+        <td>@ViewBag.ProcessorCount个</td>
+        <th>占用内存</th>
+        <td>@ViewBag.MemTotal KB&nbsp;&nbsp;</td>
+    </tr>
+    </tbody>
+</table>

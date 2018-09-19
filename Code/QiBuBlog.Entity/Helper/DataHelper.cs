@@ -24,10 +24,10 @@ namespace QiBuBlog.Entity.Helper
                 case 208:
                     msg = "指定名称的表不存在。";
                     break;
-                case 4060: //数据库无效。
+                case 4060:
                     msg = "所连接的数据库无效。";
                     break;
-                case 18456: //登录失败
+                case 18456:
                     msg = "使用设定的用户名与密码登录数据库失败。";
                     break;
                 case 547:

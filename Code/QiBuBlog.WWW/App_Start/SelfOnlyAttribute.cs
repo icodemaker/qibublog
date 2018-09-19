@@ -1,4 +1,6 @@
-﻿using QiBuBlog.Entity;
+﻿using System.Text;
+using System.Web;
+using QiBuBlog.Entity;
 using QiBuBlog.Util;
 using System.Web.Mvc;
 using QiBuBlog.Service;
@@ -18,16 +20,21 @@ namespace QiBuBlog.WWW
 
         public void OnAuthorization(AuthorizationContext filterContext)
         {
-            var controller = filterContext.RouteData.Values["controller"].ToString();
-            var action = filterContext.RouteData.Values["action"].ToString();
-
             var request = filterContext.RequestContext.HttpContext.Request;
             if (request.Url == null) return;
             var retUrl = request.Url.AbsoluteUri.ToLower();
-            retUrl = string.IsNullOrEmpty(retUrl) ? string.Empty : System.Web.HttpUtility.UrlEncode(retUrl, System.Text.Encoding.UTF8);
+            retUrl = string.IsNullOrEmpty(retUrl) ? string.Empty : HttpUtility.UrlEncode(retUrl, Encoding.UTF8);
             if (filterContext.HttpContext.User.Identity.IsAuthenticated)
             {
                 _currentUser = FormLoginHelper<User>.Get();
+            }
+            else
+            {
+                var area = filterContext.RouteData.DataTokens["area"];
+                if (area != null && area.ToString() =="Manage")
+                {
+                    filterContext.Result = new RedirectResult($"/login?returnUrl={retUrl.ToLower()}");
+                }
             }
         }
 

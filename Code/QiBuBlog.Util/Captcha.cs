@@ -15,14 +15,14 @@ namespace QiBuBlog.Util
 
         private static readonly Color[] NoiseColors = new Color[] { Color.LightGray, Color.LightYellow, Color.Lavender };
 
-        protected static readonly string CaptchaChars = ConfigurationManager.AppSettings["CaptchaChars"];
+        private static readonly string CaptchaChars = ConfigurationManager.AppSettings["CaptchaChars"];
 
         public Captcha(byte length)
         {
             this.Generate(length);
         }
 
-        public string Value { get; set; }
+        public string Value { get; private set; }
 
         private string Generate(byte length)
         {

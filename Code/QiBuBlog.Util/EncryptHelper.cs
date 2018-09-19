@@ -58,8 +58,7 @@ namespace QiBuBlog.Util
             var cs = new CryptoStream(ms, des.CreateDecryptor(), CryptoStreamMode.Write);
             cs.Write(inputByteArray, 0, inputByteArray.Length);
             cs.FlushFinalBlock();
-            var ret = new StringBuilder();
-            return System.Text.Encoding.Default.GetString(ms.ToArray());
+            return Encoding.Default.GetString(ms.ToArray());
         }
 
         public static string Encrypt(string instr)

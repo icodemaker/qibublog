@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace QiBuBlog.Util
 {
     public class DataPaging<T>
     {
 
-        public DataPaging()
-        {
-            Data = new List<T>();
-        }
+        public DataPaging() => Data = new List<T>();
 
         public int CurrentPage { get; set; }
 
