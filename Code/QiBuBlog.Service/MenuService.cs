@@ -7,14 +7,9 @@ using System.Linq;
 
 namespace QiBuBlog.Service
 {
-    public class MenuService : Singleton<MenuService>
+    public class MenuService
     {
-        private EFRepositoryBase<Menu, object> _menu;
-
-        private MenuService()
-        {
-            _menu = new EFRepositoryBase<Menu, object>();
-        }
+        private EFRepositoryBase<Menu, object> _menu = new EFRepositoryBase<Menu, object>();
 
         public string GetMenuCategoryId(string id)
         {

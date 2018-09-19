@@ -40,7 +40,7 @@ namespace QiBuBlog.WWW.Controllers
 
         public JsonResult Authority(string userName, string password)
         {
-            var user = UserService.Instance.UserLogin(userName, password);
+            var user = new UserService().UserLogin(userName, password);
             if (user != null)
             {
                 user.Password = null;

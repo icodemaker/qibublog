@@ -15,19 +15,19 @@ namespace QiBuBlog.WWW.Controllers
             var categoryId = string.Empty;
             if (!string.IsNullOrWhiteSpace(id))
             {
-                var cId = MenuService.Instance.GetMenuCategoryId(id);
+                var cId = new MenuService().GetMenuCategoryId(id);
                 if (!string.IsNullOrWhiteSpace(cId))
                 {
                     categoryId = cId;
                 }
             }
-            var articleData = ArticleService.Instance.GetPageList(categoryId, page ?? 1, false);
+            var articleData = new ArticleService().GetPageList(categoryId, page ?? 1, false);
             return View(articleData);
         }
 
         public ActionResult Detail(string id)
         {
-            var model = ArticleService.Instance.GetArticleById(id);
+            var model = new ArticleService().GetArticleById(id);
             return View(model);
         }
     }

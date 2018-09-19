@@ -1,20 +1,13 @@
-﻿using QiBuBlog.Util;
-using QiBuBlog.Entity;
+﻿using QiBuBlog.Entity;
+using QiBuBlog.Entity.Helper;
 using System;
 using System.Linq;
-using QiBuBlog.Entity.Helper;
-using static System.String;
 
 namespace QiBuBlog.Service
 {
-    public class SetupService : Singleton<SetupService>
+    public class SetupService
     {
-        private EFRepositoryBase<Setup, object> _setup;
-
-        private SetupService()
-        {
-            _setup = new EFRepositoryBase<Setup, object>();
-        }
+        private EFRepositoryBase<Setup, object> _setup = new EFRepositoryBase<Setup, object>();
         
         public Setup GetSetup()
         {

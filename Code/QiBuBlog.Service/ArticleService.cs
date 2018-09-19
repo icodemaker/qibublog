@@ -7,16 +7,10 @@ using QiBuBlog.Entity.Helper;
 
 namespace QiBuBlog.Service
 {
-    public class ArticleService : Singleton<ArticleService>
+    public class ArticleService
     {
-        private EFRepositoryBase<Article, object> _article;
-        private EFRepositoryBase<ArticleListView, object> _articleView;
-
-        private ArticleService()
-        {
-            _article = new EFRepositoryBase<Article, object>();
-            _articleView = new EFRepositoryBase<ArticleListView, object>();
-        }
+        private EFRepositoryBase<Article, object> _article = new EFRepositoryBase<Article, object>();
+        private EFRepositoryBase<ArticleListView, object> _articleView = new EFRepositoryBase<ArticleListView, object>();
 
         public DataPaging<ArticleListView> GetPageList(string categoryId, int currentPage, bool isIndex)
         {

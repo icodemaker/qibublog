@@ -10,7 +10,7 @@ namespace QiBuBlog.UnitTest
         [TestMethod]
         public void Add()
         {
-            var res = SetupService.Instance.GetSetup();
+            var res = new SetupService().GetSetup();
         }
 
         [TestMethod]

@@ -191,6 +191,7 @@ span.tips {
         color: #53637d;
         margin: 8px 0;
         text-shadow: 1px 1px 0 #fefefe;
+        text-align: center;
     }
 
     .sidebar h2 {
@@ -209,6 +210,13 @@ span.tips {
         line-height: 21px;
         padding: 2px 0;
         color: #53637d;
+        list-style-type: none;
+    }
+
+    .sidebar .nav {
+        border: 1px solid #0a8acf;
+        background: #fff;
+        padding: 15px;
     }
 
 .body {

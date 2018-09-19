@@ -44,8 +44,8 @@ namespace QiBuBlog.WWW
             {
                 filterContext.Controller.ViewBag.CurrentUser = _currentUser;
             }
-            filterContext.Controller.ViewBag.Setup = SetupService.Instance.GetSetup();
-            filterContext.Controller.ViewBag.Menu = MenuService.Instance.GetList();
+            filterContext.Controller.ViewBag.Setup = new SetupService().GetSetup();
+            filterContext.Controller.ViewBag.Menu = new MenuService().GetList();
         }
 
         public void OnActionExecuting(ActionExecutingContext filterContext)

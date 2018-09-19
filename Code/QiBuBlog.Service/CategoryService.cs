@@ -7,14 +7,9 @@ using System.Linq;
 
 namespace QiBuBlog.Service
 {
-    public class CategoryService : Singleton<CategoryService>
+    public class CategoryService
     {
-        private EFRepositoryBase<Category, object> _category;
-
-        private CategoryService()
-        {
-            _category = new EFRepositoryBase<Category, object>();
-        }
+        private EFRepositoryBase<Category, object> _category = new EFRepositoryBase<Category, object>();
 
         public DataPaging<Category> GetPageList()
         {

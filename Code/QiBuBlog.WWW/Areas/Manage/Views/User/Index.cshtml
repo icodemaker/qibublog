@@ -43,7 +43,7 @@
             foreach (var user in Model.Data)
             {
                 <tr>
-                    <td>1</td>
+                    <td>@user.UserId</td>
                     <td>@user.UserName</td>
                     <td>@user.Displayname</td>
                     <td style="text-align: center;">@user.CreateTime.ToString("yyyy-MM-dd HH:mm:ss")</td>

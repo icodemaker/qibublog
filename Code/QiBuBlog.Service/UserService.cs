@@ -6,14 +6,9 @@ using QiBuBlog.Entity.Helper;
 
 namespace QiBuBlog.Service
 {
-    public class UserService : Singleton<UserService>
+    public class UserService
     {
-        private EFRepositoryBase<User, object> _user;
-
-        private UserService()
-        {
-            _user = new EFRepositoryBase<User, object>();
-        }
+        private EFRepositoryBase<User, object> _user = new EFRepositoryBase<User, object>();
 
         public User GetUserById(string userId)
         {

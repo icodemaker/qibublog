@@ -5,9 +5,10 @@ using QiBuBlog.Entity.Helper;
 
 namespace QiBuBlog.Service
 {
-    public class CommentService : Singleton<CommentService>
+    public class CommentService 
     {
-        private EFRepositoryBase<Comment, object> _comment;
+        private EFRepositoryBase<Comment, object> _comment = new EFRepositoryBase<Comment, object>();
+
         private CommentService()
         {
             _comment = new EFRepositoryBase<Comment, object>();
