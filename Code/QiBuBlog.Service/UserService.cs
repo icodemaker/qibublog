@@ -39,7 +39,12 @@ namespace QiBuBlog.Service
 
         public DataPaging<User> GetPageList()
         {
-            return null;
+            return new DataPaging<User>()
+            {
+                CurrentPage = 1,
+                TotalRecord = _user.Entities.Count(),
+                Data = _user.Entities.ToList()
+            };
         }
 
         public bool CreateOrUpdate(User model)

@@ -3,6 +3,7 @@
 <head>
     <title>@ViewBag.Title</title>
     <meta charset="utf-8" />
+    <link rel="shortcut icon" href="/Content/Images/favicon.ico" />
     <link href="@Url.Content("~/Content/manage-pub.css")" rel="stylesheet" type="text/css" />
     @RenderSection("Css", false)
 </head>
@@ -15,7 +16,7 @@
             <nav class="nav">
                 <h2>功能</h2>
                 <ul>
-                    <li><a href="@Url.Action("Index","Home")" target="_blank">网站首页</a></li>
+                    <li><a href="@Url.Action("Index","Home", new { Area = "" })" target="_blank">网站首页</a></li>
                     <li><a href="@Url.Action("Index","Dashboard", new { Area = "Manage" } )">后台首页</a></li>
                     <li><a href="@Url.Action("Logout","Login")">退出</a></li>
                 </ul>

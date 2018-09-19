@@ -1,5 +1,63 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "User";
 }
-
-<h2>Index</h2>
+<form action="@Url.Content("List")" method="get">
+    <table class="cols-4">
+        <thead>
+            <tr>
+                <th colspan="4">用户搜索</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <td colspan="4" class="buttons">
+                    <input type="button" value="搜 索" />
+                    <input type="reset" value="清 空" data-isclear="true" />
+                </td>
+            </tr>
+        </tfoot>
+        <tbody>
+            <tr>
+                <th><label for="username">用户名：</label></th>
+                <td><input type="text" id="username" name="username" maxlength="20" value="" /></td>
+                <th><label for="nickname">昵称：</label></th>
+                <td><input type="text" id="nickname" name="nickname" maxlength="20" value="" /></td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+<table>
+    <thead>
+        <tr>
+            <th style="width: 7%;">编号</th>
+            <th style="width: 20%;">用户名</th>
+            <th style="width: 20%;">昵称</th>
+            <th style="width: 20%;">注册时间</th>
+            <th style="width: 20%;">最后活动时间</th>
+            <th style="width: 13%;">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.TotalRecord > 0)
+        {
+            foreach (var user in Model.Data)
+            {
+                <tr>
+                    <td>1</td>
+                    <td>@user.UserName</td>
+                    <td>@user.Displayname</td>
+                    <td style="text-align: center;">@user.CreateTime.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                    <td style="text-align: center;"></td>
+                    <td style="word-spacing: 1em; text-align: center;">
+                        <a href="javascript:;">编辑</a>
+                        <a href="javascript:;">删除</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr><td colspan="6">暂无符合条件的数据</td></tr>
+        }
+    </tbody>
+</table>

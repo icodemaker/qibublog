@@ -50,3 +50,5 @@ D:\GitHub\qibublog\Code\qibublog.service\obj\Debug\QiBuBlog.Service.dll
 D:\GitHub\qibublog\Code\qibublog.service\obj\Debug\QiBuBlog.Service.pdb
 E:\CodeMaker\GitHub\qibublog\Code\qibublog.service\bin\Debug\QiBuBlog.Service.dll.config
 D:\GitHub\qibublog\Code\qibublog.service\bin\Debug\QiBuBlog.Service.dll.config
+E:\CodeMaker\GitHub\qibublog\Code\qibublog.service\bin\Debug\log4net.dll
+E:\CodeMaker\GitHub\qibublog\Code\qibublog.service\bin\Debug\log4net.xml
