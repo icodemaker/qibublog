@@ -45,19 +45,15 @@ namespace QiBuBlog.WWW.Controllers
             {
                 user.Password = null;
                 FormLoginHelper<User>.Set(user, true);
-            }
-            else
-            {
-                
+                Response.Redirect("/Manage/Dashboard");
             }
             return Json(null);
         }
 
         [SelfOnly]
-        public ActionResult Logout()
+        public void Logout()
         {
             FormLoginHelper<User>.Logout("/login");
-            return View();
         }
     }
 }

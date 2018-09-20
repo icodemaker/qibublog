@@ -28,15 +28,21 @@
 </form>
 <table>
     <thead>
-        <tr>
-            <th style="width: 7%;">编号</th>
-            <th style="width: 20%;">用户名</th>
-            <th style="width: 20%;">昵称</th>
-            <th style="width: 20%;">注册时间</th>
-            <th style="width: 20%;">最后活动时间</th>
-            <th style="width: 13%;">操作</th>
-        </tr>
+    <tr>
+        <th style="width: 7%;">编号</th>
+        <th style="width: 20%;">用户名</th>
+        <th style="width: 20%;">昵称</th>
+        <th style="width: 20%;">注册时间</th>
+        <th style="width: 20%;">最后活动时间</th>
+        <th style="width: 13%;">操作</th>
+    </tr>
     </thead>
+    @if (!string.IsNullOrEmpty(ViewBag.Pager))
+    {
+        <tfoot>
+            <tr><td colspan="6">@Html.Raw(ViewBag.Pager)</td></tr>
+        </tfoot>
+    }
     <tbody>
         @if (Model.TotalRecord > 0)
         {

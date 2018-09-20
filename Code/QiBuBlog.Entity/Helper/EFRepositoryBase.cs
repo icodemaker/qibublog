@@ -104,7 +104,7 @@ namespace QiBuBlog.Entity.Helper
             {
                 _efContext.Configuration.AutoDetectChangesEnabled = false;
 
-                foreach (TEntity entity in entities)
+                foreach (var entity in entities)
                 {
                     var state = _efContext.Entry(entity).State;
                     if (state == EntityState.Detached)
