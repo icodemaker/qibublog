@@ -32,13 +32,14 @@ namespace QiBuBlog.Service
             return _user.Find(x => x.UserName == userName && x.Password == password);
         }
 
-        public DataPaging<User> GetPageList()
+        public DataPaging<User> GetPageList(int page, int pageSize)
         {
+            var list = _user.Entities.ToList();
             return new DataPaging<User>()
             {
-                CurrentPage = 1,
-                TotalRecord = _user.Entities.Count(),
-                Data = _user.Entities.ToList()
+                CurrentPage = page,
+                TotalRecord = list.Count,
+                Data = list.OrderBy(x => true).Skip((page - 1) * pageSize).Take(pageSize).ToList()
             };
         }
 

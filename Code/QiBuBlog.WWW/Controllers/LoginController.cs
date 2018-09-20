@@ -51,9 +51,10 @@ namespace QiBuBlog.WWW.Controllers
         }
 
         [SelfOnly]
-        public void Logout()
+        public ActionResult Logout()
         {
             FormLoginHelper<User>.Logout("/login");
+            return View();
         }
     }
 }

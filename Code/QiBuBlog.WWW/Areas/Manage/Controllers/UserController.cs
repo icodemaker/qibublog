@@ -12,7 +12,7 @@ namespace QiBuBlog.WWW.Areas.Manage.Controllers
         //
         // GET: /Manage/User/
 
-        public ActionResult Index(string username, int? groupid, string nickname, int? page)
+        public ActionResult Index(string username, int? groupid, string nickname, int page = 1)
         {
             var urlParams = new Dictionary<string, string>
             {
@@ -21,9 +21,9 @@ namespace QiBuBlog.WWW.Areas.Manage.Controllers
                 {"nickname", nickname}
             };
 
-            var userList = new UserService().GetPageList();
+            var userList = new UserService().GetPageList(page, 5);
 
-            ViewBag.Pager = userList.TotalRecord < 1 ? string.Empty :(new HtmlPager(Request.Path, urlParams)).GenerateCode(20, 1);
+            ViewBag.Pager = userList.TotalRecord < 1 ? string.Empty :(new HtmlPager(Request.Path.ToLower(), urlParams)).GenerateCode(userList.TotalRecord/5, page);
 
             return View(userList);
         }

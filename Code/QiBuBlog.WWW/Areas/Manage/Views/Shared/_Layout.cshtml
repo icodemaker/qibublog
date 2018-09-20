@@ -16,26 +16,26 @@
             <nav class="nav">
                 <h2>功能</h2>
                 <ul>
-                    <li><a href="@Url.Action("Index","Home", new { Area = "" })" target="_blank">网站首页</a></li>
-                    <li><a href="@Url.Action("Index","Dashboard", new { Area = "Manage" } )">后台首页</a></li>
-                    <li><a href="@Url.Action("Logout","Login")">退出</a></li>
+                    <li><a href="@Url.Action("index","home", new { Area = "" })" target="_blank">网站首页</a></li>
+                    <li><a href="@Url.Action("index","dashboard", new { Area = "manage" } )">后台首页</a></li>
+                    <li><a href="@Url.Action("logout","login")">退出</a></li>
                 </ul>
                 <h2>全局设置</h2>
                 <ul>
-                    <li><a href="@Url.Action("Index","Setup", new { Area = "Manage" } )">网站设置</a></li>
-                    <li><a href="@Url.Action("Index","Category", new { Area = "Manage" } )">分类管理</a></li>
+                    <li><a href="@Url.Action("index","setup", new { Area = "manage" } )">网站设置</a></li>
+                    <li><a href="@Url.Action("index","category", new { Area = "manage" } )">分类管理</a></li>
                 </ul>
                 <h2>文章</h2>
                 <ul>
-                    <li><a href="@Url.Action("Index","Article", new { Area = "Manage" } )">文章管理</a></li>
+                    <li><a href="@Url.Action("index","article", new { Area = "manage" } )">文章管理</a></li>
                 </ul>
                 <h2>评论</h2>
                 <ul>
-                    <li><a href="@Url.Action("Index","Comment", new { Area = "Manage" } )">评论管理</a></li>
+                    <li><a href="@Url.Action("index","comment", new { Area = "manage" } )">评论管理</a></li>
                 </ul>
                 <h2>用户</h2>
                 <ul>
-                    <li><a href="@Url.Action("Index","User", new { Area = "Manage" } )">用户管理</a></li>
+                    <li><a href="@Url.Action("index","user", new { Area = "manage" } )">用户管理</a></li>
                 </ul>
             </nav>
         }
