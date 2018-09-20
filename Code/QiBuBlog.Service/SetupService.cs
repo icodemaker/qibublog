@@ -7,7 +7,7 @@ namespace QiBuBlog.Service
 {
     public class SetupService
     {
-        private EFRepositoryBase<Setup, object> _setup = new EFRepositoryBase<Setup, object>();
+        private readonly EFRepositoryBase<Setup, object> _setup = new EFRepositoryBase<Setup, object>();
         
         public Setup GetSetup()
         {

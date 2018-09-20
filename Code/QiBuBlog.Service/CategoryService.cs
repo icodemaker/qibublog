@@ -9,7 +9,7 @@ namespace QiBuBlog.Service
 {
     public class CategoryService
     {
-        private EFRepositoryBase<Category, object> _category = new EFRepositoryBase<Category, object>();
+        private readonly EFRepositoryBase<Category, object> _category = new EFRepositoryBase<Category, object>();
 
         public DataPaging<Category> GetPageList()
         {

@@ -7,12 +7,7 @@ namespace QiBuBlog.Service
 {
     public class CommentService 
     {
-        private EFRepositoryBase<Comment, object> _comment = new EFRepositoryBase<Comment, object>();
-
-        private CommentService()
-        {
-            _comment = new EFRepositoryBase<Comment, object>();
-        }
+        private readonly EFRepositoryBase<Comment, object> _comment = new EFRepositoryBase<Comment, object>();
 
         private bool IsExists(string ip, DateTime lastPostTime)
         {

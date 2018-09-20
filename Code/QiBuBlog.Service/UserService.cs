@@ -8,7 +8,7 @@ namespace QiBuBlog.Service
 {
     public class UserService
     {
-        private EFRepositoryBase<User, object> _user = new EFRepositoryBase<User, object>();
+        private readonly EFRepositoryBase<User, object> _user = new EFRepositoryBase<User, object>();
 
         public User GetUserById(string userId)
         {
@@ -44,7 +44,6 @@ namespace QiBuBlog.Service
 
         public bool CreateOrUpdate(User model)
         {
-            var result = false;
             try
             {
                 if (!string.IsNullOrWhiteSpace(model.UserId))
@@ -55,13 +54,12 @@ namespace QiBuBlog.Service
                 {
                     _user.Insert(model);
                 }
-                result = true;
             }
             catch (Exception)
             {
                 throw;
             }
-            return result;
+            return true;
         }
 
         public bool Delete(string id, bool isLogic = true)

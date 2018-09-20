@@ -9,8 +9,8 @@ namespace QiBuBlog.Service
 {
     public class ArticleService
     {
-        private EFRepositoryBase<Article, object> _article = new EFRepositoryBase<Article, object>();
-        private EFRepositoryBase<ArticleListView, object> _articleView = new EFRepositoryBase<ArticleListView, object>();
+        private readonly EFRepositoryBase<Article, object> _article = new EFRepositoryBase<Article, object>();
+        private readonly EFRepositoryBase<ArticleListView, object> _articleView = new EFRepositoryBase<ArticleListView, object>();
 
         public DataPaging<ArticleListView> GetPageList(string categoryId, int currentPage, bool isIndex)
         {

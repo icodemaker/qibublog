@@ -9,7 +9,7 @@ namespace QiBuBlog.Service
 {
     public class MenuService
     {
-        private EFRepositoryBase<Menu, object> _menu = new EFRepositoryBase<Menu, object>();
+        private readonly EFRepositoryBase<Menu, object> _menu = new EFRepositoryBase<Menu, object>();
 
         public string GetMenuCategoryId(string id)
         {
