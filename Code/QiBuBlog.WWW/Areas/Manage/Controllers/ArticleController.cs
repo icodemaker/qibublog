@@ -24,6 +24,7 @@ namespace QiBuBlog.WWW.Areas.Manage.Controllers
         public ActionResult Edit(string id)
         {
             var model = new GetArticleById_Result();
+            ViewBag.CategoryList = new CategoryService().GetList();
             if (!string.IsNullOrWhiteSpace(id))
             {
                 model = new ArticleService().GetArticleById(id);

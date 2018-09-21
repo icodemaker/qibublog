@@ -1,0 +1,103 @@
+﻿@{
+    ViewBag.Title = "Article Eidt";
+}
+<form action="@Url.Action("Edit")" method="post">
+    <table class="cols-2">
+        <thead>
+            <tr>
+                <th colspan="4">@ViewBag.Title</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <td colspan="4" class="buttons">
+                    <input type="submit" value="提 交" />
+                    <input type="reset" value=" 恢 复 " />
+                </td>
+            </tr>
+        </tfoot>
+        <tbody>
+            <tr>
+                <th>
+                    <label for="Title">标题：</label>
+                </th>
+                <td colspan="3">
+                    <input type="text" id="Title" name="Title" size="50" maxlength="80" value="@Model.Title" />
+                    <span class="required">*</span>
+                    <input name="ArticleId" type="hidden" value="@Model.ArticleId" />
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <label for="Keywords">关键字：</label>
+                </th>
+                <td colspan="3">
+                    <input type="text" id="Keywords" name="Keywords" size="50" maxlength="100" value="@Model.Keywords" />
+                    <span class="tips">(多个关键字用英文逗号隔开)</span>
+                </td>
+            </tr>
+            <tr class="cols-4">
+                <th>
+                    <label for="CategoryId">分类：</label>
+                </th>
+                <td>
+                    <select id="CategoryId" name="CategoryId">
+                        @foreach (var category in ViewBag.CategoryList)
+                        {
+                            if (Model.CategoryId == category.CategoryId)
+                            {
+                                <option value="@category.CategoryId" selected="selected">@category.CategoryName</option>
+                            }
+                            else
+                            {
+                                <option value="@category.CategoryId">@category.CategoryName</option>
+                            }
+                        }
+                    </select>
+                    <span class="required">*</span>
+                </td>
+                <th>
+                    <label for="Weight">权重：</label>
+                </th>
+                <td>
+                    <input type="text" id="Weight" name="Weight" size="5" maxlength="3" value="@Model.Weight" />
+                    <span class="required">*</span>
+                    <span class="tips">(&gt;=200为推荐文章)</span>
+                </td>
+            </tr>
+            <tr class="cols-4">
+                <th>
+                    <label for="SummarySize">摘要长度：</label>
+                </th>
+                <td>
+                    <input type="text" id="SummarySize" name="SummarySize" size="8" maxlength="4" value="@Model.SummarySize" />
+                    <span class="required">*</span>
+                    <span class="tips">(50-5000；为0的时候，内容即为摘要)</span>
+                </td>
+                <th>
+                    <label for="State">状态：</label>
+                </th>
+                <td>
+                    <select id="State" name="State">
+                        <option value="0" @(Model.Status == 101 ? " selected=\"selected\"" : string.Empty)>有效</option>
+                        <option value="1" @(Model.Status == 103 ? " selected=\"selected\"" : string.Empty)>删除</option>
+                    </select>
+                    <span class="required">*</span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" style="width: 100%;text-align: center;">
+                    <textarea id="Content" name="Content" style="width: 100%; height: 350px;" cols="80" rows="20">@Model.Content</textarea>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <label for="PostTime">发表时间：</label>
+                </th>
+                <td colspan="3">
+                    <input type="text" id="PostTime" name="PostTime" value="@Model.CreateTime" size="20" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
