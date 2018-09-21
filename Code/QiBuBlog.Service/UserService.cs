@@ -32,11 +32,11 @@ namespace QiBuBlog.Service
             var source = _user.Entities.Where(exp);
             var list = source.OrderBy(x => true).Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
             var totalRecord = source.Count();
-            return new DataPaging<User>()
+            return new DataPaging<User>
             {
                 SearchParams = parameters,
                 List = list,
-                Pager = totalRecord < 1 ? string.Empty : (new HtmlPager<User>(HttpContext.Current.Request.Path.ToLower(), parameters))
+                Pager = totalRecord < 1 ? string.Empty : new HtmlPager<User>(HttpContext.Current.Request.Path.ToLower(), parameters)
                 .GenerateCode(totalRecord / pageSize, currentPage)
             };
         }

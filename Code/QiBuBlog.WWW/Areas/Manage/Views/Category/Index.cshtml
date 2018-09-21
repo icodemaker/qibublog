@@ -1,5 +1,34 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Category";
 }
-
-<h2>Index</h2>
+<table>
+    <thead>
+        <tr>
+            <th style="width: 7%;">编号</th>
+            <th style="width: 15%;">分类名</th>
+            <th style="width: 9%;">文章数</th>
+            <th style="width: 9%;">状态</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model == null || Model.List.Count <= 0)
+        {
+            <tr>
+                <td colspan="6" class="alignCenter">暂无分类</td>
+            </tr>
+        }
+        else
+        {
+            foreach (var category in Model.List)
+            {
+                var routeValues = new { id = category.CategoryId };
+                <tr>
+                    <td style="text-align: center;">@category.CategoryId</td>
+                    <td><a href="@Url.Action("Index", "Article", routeValues)" target="_blank">@category.CategoryName</a></td>
+                    <td style="text-align: center;">@category.PostCount</td>
+                    <td style="text-align: center;">@category.Status</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

@@ -16,14 +16,7 @@ namespace QiBuBlog.Service
 
         public bool UpdateSetup(Setup model)
         {
-            try
-            {
-                return _setup.Update(model) > 0;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            return _setup.Update(model) > 0;
         }
     }
 }
