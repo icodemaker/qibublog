@@ -1,5 +1,92 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Article";
 }
-
-<h2>Index</h2>
+<form action="@Url.Action("Index")" method="get">
+    <table class="fourCols">
+        <thead>
+            <tr>
+                <th colspan="4">搜索</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <td colspan="4" class="buttons">
+                    <input type="submit" value="搜 索" />
+                    <input type="reset" value="清 空" data-isclear="true" />
+                </td>
+            </tr>
+        </tfoot>
+        <tbody>
+            <tr>
+                <th><label for="title">关键字：</label></th>
+                <td><input type="text" id="title" name="title" maxlength="80" value="@Model.SearchParams.Title" /></td>
+                <th><label for="categoryid">分　类：</label></th>
+                <td>
+                    <select id="categoryid" name="categoryid">
+                        <option value="">未指定</option>
+                        @if (ViewBag.CategoryList != null)
+                        {
+                            foreach (var category in ViewBag.CategoryList)
+                            {
+                                if (Model.SearchParams.CategoryId == category.CategoryId.ToString())
+                                {
+                                    <option value="@category.CategoryId" selected="selected">@category.CategoryName</option>
+                                }
+                                else
+                                {
+                                    <option value="@category.CategoryId">@category.CategoryName</option>
+                                }
+                            }
+                        }
+                    </select>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+<table>
+    <thead>
+        <tr>
+            <th style="width: 5%;">编号</th>
+            <th style="width: 24%;">标题</th>
+            <th style="width: 14%;">分类</th>
+            <th style="width: 12%;">作者</th>
+            <th style="width: 5%;">权重</th>
+            <th style="width: 18%;">发表时间</th>
+            <th style="width: 10%;">状态</th>
+            <th style="width: 12%;">操作</th>
+        </tr>
+    </thead>
+    @if (!string.IsNullOrEmpty(Model.Pager))
+    {
+        <tfoot>
+            <tr><td colspan="8">@Html.Raw(Model.Pager)</td></tr>
+        </tfoot>
+    }
+    <tbody>
+        @if (Model.List.Count > 0)
+        {
+            foreach (var article in Model.List)
+            {
+                var routeValues = new { id = article.ArticleId };
+                <tr>
+                    <td>@article.ArticleId</td>
+                    <td><a href="@Url.Action("Detail", "Article", routeValues)" target="_blank">@article.Title</a></td>
+                    <td>@article.CategoryName</td>
+                    <td>@article.CreateUserName</td>
+                    <td>@article.Weight</td>
+                    <td>@article.CreateTime.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                    <td style="text-align: center;">@article.Status</td>
+                    <td style="text-align: center; word-spacing: 1em;">
+                        <a href="@Url.Action("Edit", routeValues)">编辑</a>
+                        <a href="@Url.Action("Delete", routeValues)" class="delete-confirm">删除</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr><td>暂无符合条件的数据</td></tr>
+        }
+    </tbody>
+</table>

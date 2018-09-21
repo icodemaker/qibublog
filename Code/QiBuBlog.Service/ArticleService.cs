@@ -13,32 +13,23 @@ namespace QiBuBlog.Service
         private readonly EFRepositoryBase<Article, object> _article = new EFRepositoryBase<Article, object>();
         private readonly EFRepositoryBase<ArticleListView, object> _articleView = new EFRepositoryBase<ArticleListView, object>();
 
-        public DataPaging<ArticleListView> GetPageList(Dictionary<string, string> urlParams, string categoryId, int currentPage, int pageSize, bool isIndex)
+        public DataPaging<ArticleListView> GetPageList(ArticleListView parameters, int currentPage, int pageSize, bool isIndex = true)
         {
-            try
+            var exp = new PredicatePack<ArticleListView>();
+            if (!isIndex)
             {
-                var exp = new PredicatePack<ArticleListView>();
-
-                if (!isIndex)
-                {
-                    exp.PushAnd(x => x.CategoryId == categoryId);
-                }
-
-                var list = _articleView.Entities.Where(exp).OrderBy(x => true).Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
-                var totalRecord = _articleView.Entities.Count();
-                return new DataPaging<ArticleListView>()
-                {
-                    List = list,
-                    //Pager = totalRecord < 1 ?
-                    //    string.Empty
-                    //    : (new HtmlPager(HttpContext.Current.Request.Path.ToLower(), urlParams))
-                    //    .GenerateCode(totalRecord / pageSize, currentPage)
-                };
+                exp.PushAnd(x => x.CategoryId == parameters.CategoryId);
             }
-            catch
+            var source = _articleView.Entities.Where(exp);
+            var list = source.OrderBy(x => true).Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
+            var totalRecord = source.Count();
+            return new DataPaging<ArticleListView>
             {
-                throw new Exception("读取文章目录出错");
-            }
+                SearchParams = parameters,
+                List = list,
+                Pager = totalRecord < 1 ? string.Empty : new HtmlPager<ArticleListView>(HttpContext.Current.Request.Path.ToLower(), parameters)
+                .GenerateCode(totalRecord / pageSize, currentPage)
+            };
         }
 
         public GetArticleById_Result GetArticleById(string id)
@@ -68,56 +59,35 @@ namespace QiBuBlog.Service
             return _article != null;
         }
 
-        public bool CreateOrUpdate(Article model)
+        public void CreateOrUpdate(Article model)
         {
-            var result = false;
-            try
+            if (!string.IsNullOrWhiteSpace(model.ArticleId))
             {
-                if (!string.IsNullOrWhiteSpace(model.ArticleId))
+                _article.Update(model);
+            }
+            else
+            {
+                _article.Insert(model);
+            }
+        }
+
+        public void Delete(string id, bool isLogic = true)
+        {
+            if (!string.IsNullOrWhiteSpace(id))
+            {
+                if (isLogic)
                 {
-                    _article.Update(model);
+                    var model = _article.Find(x => x.ArticleId == id);
+                    if (model != null)
+                    {
+                        _article.Update(model);
+                    }
                 }
                 else
                 {
-                    _article.Insert(model);
-                }
-                result = true;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            return result;
-        }
-
-        public bool Delete(string id, bool isLogic = true)
-        {
-            var result = false;
-            try
-            {
-                if (!string.IsNullOrWhiteSpace(id))
-                {
-                    if (isLogic)
-                    {
-                        var model = _article.Find(x => x.ArticleId == id);
-                        if (model != null)
-                        {
-                            _article.Update(model);
-                            result = true;
-                        }
-                    }
-                    else
-                    {
-                        _article.Delete(id);
-                        result = true;
-                    }
+                    _article.Delete(id);
                 }
             }
-            catch (Exception)
-            {
-                throw;
-            }
-            return result;
         }
     }
 }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using QiBuBlog.Entity;
+using QiBuBlog.Service;
 using QiBuBlog.WWW.Controllers;
 
 namespace QiBuBlog.WWW.Areas.Manage.Controllers
@@ -12,10 +14,11 @@ namespace QiBuBlog.WWW.Areas.Manage.Controllers
         //
         // GET: /Manage/Article/
 
-        public ActionResult Index()
+        public ActionResult Index(ArticleListView parameters, int currentPage = 1, int pageSize = 10)
         {
-            return View();
+            ViewBag.CategoryList = new CategoryService().GetList();
+            var data = new ArticleService().GetPageList(parameters, currentPage, pageSize);
+            return View(data);
         }
-
     }
 }
