@@ -22,8 +22,8 @@ namespace QiBuBlog.WWW.Controllers
                     categoryId = cId;
                 }
             }
-            var articleData = new ArticleService().GetPageList(categoryId, page ?? 1, true);
-            return View(articleData);
+            //var articleData = new ArticleService().GetPageList(categoryId, page ?? 1, true);
+            return View();
         }
     }
 }

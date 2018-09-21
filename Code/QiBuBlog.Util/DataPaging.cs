@@ -4,10 +4,8 @@ namespace QiBuBlog.Util
 {
     public class DataPaging<T>
     {
-        public int CurrentPage { get; set; }
+        public List<T> List { get; set; }
 
-        public int TotalRecord { get; set; }
-
-        public List<T> Data { get; set; }
+        public string Pager { get; set; }
     }
 }

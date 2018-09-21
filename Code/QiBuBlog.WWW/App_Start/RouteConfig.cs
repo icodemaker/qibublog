@@ -9,13 +9,13 @@ namespace QiBuBlog.WWW
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.LowercaseUrls = true;//路径小写
+            routes.LowercaseUrls = true;
 
             routes.MapRoute(
-                name: "QiBuBlog",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-                namespaces: new[] { "QiBuBlog.WWW.Controllers" }
+                "QiBuBlog",
+                "{controller}/{action}/{id}",
+                new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                new[] { "QiBuBlog.WWW.Controllers" }
             );
         }
     }

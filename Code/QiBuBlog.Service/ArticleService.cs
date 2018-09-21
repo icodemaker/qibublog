@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using QiBuBlog.Entity;
 using QiBuBlog.Util;
 using System.Linq;
+using System.Web;
 using QiBuBlog.Entity.Helper;
 
 namespace QiBuBlog.Service
@@ -12,7 +13,7 @@ namespace QiBuBlog.Service
         private readonly EFRepositoryBase<Article, object> _article = new EFRepositoryBase<Article, object>();
         private readonly EFRepositoryBase<ArticleListView, object> _articleView = new EFRepositoryBase<ArticleListView, object>();
 
-        public DataPaging<ArticleListView> GetPageList(string categoryId, int currentPage, bool isIndex)
+        public DataPaging<ArticleListView> GetPageList(Dictionary<string, string> urlParams, string categoryId, int currentPage, int pageSize, bool isIndex)
         {
             try
             {
@@ -23,13 +24,15 @@ namespace QiBuBlog.Service
                     exp.PushAnd(x => x.CategoryId == categoryId);
                 }
 
-                var list = _articleView.Entities.Where(exp).ToList();
-
+                var list = _articleView.Entities.Where(exp).OrderBy(x => true).Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
+                var totalRecord = _articleView.Entities.Count();
                 return new DataPaging<ArticleListView>()
                 {
-                    CurrentPage = currentPage,
-                    Data = list,
-                    TotalRecord = list.Count
+                    List = list,
+                    Pager = totalRecord < 1 ?
+                        string.Empty
+                        : (new HtmlPager(HttpContext.Current.Request.Path.ToLower(), urlParams))
+                        .GenerateCode(totalRecord / pageSize, currentPage)
                 };
             }
             catch

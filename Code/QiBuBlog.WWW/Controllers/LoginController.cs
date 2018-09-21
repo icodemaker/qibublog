@@ -45,7 +45,7 @@ namespace QiBuBlog.WWW.Controllers
             {
                 user.Password = null;
                 FormLoginHelper<User>.Set(user, true);
-                Response.Redirect("/Manage/Dashboard");
+                Response.Redirect("/manage/dashboard");
             }
             return Json(null);
         }

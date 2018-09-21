@@ -1,7 +1,9 @@
 ﻿using QiBuBlog.Entity;
 using QiBuBlog.Util;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using QiBuBlog.Entity.Helper;
 
 namespace QiBuBlog.Service
@@ -32,14 +34,17 @@ namespace QiBuBlog.Service
             return _user.Find(x => x.UserName == userName && x.Password == password);
         }
 
-        public DataPaging<User> GetPageList(int page, int pageSize)
+        public DataPaging<User> GetPageList(Dictionary<string, string> urlParams, int currentPage, int pageSize)
         {
-            var list = _user.Entities.ToList();
+            var list = _user.Entities.OrderBy(x => true).Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
+            var totalRecord = _user.Entities.Count();
             return new DataPaging<User>()
             {
-                CurrentPage = page,
-                TotalRecord = list.Count,
-                Data = list.OrderBy(x => true).Skip((page - 1) * pageSize).Take(pageSize).ToList()
+                List = list,
+                Pager = totalRecord < 1 ? 
+                string.Empty 
+                : (new HtmlPager(HttpContext.Current.Request.Path.ToLower(), urlParams))
+                .GenerateCode(totalRecord / pageSize, currentPage)
             };
         }
 

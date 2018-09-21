@@ -37,16 +37,16 @@
         <th style="width: 13%;">操作</th>
     </tr>
     </thead>
-    @if (!string.IsNullOrEmpty(ViewBag.Pager))
+    @if (!string.IsNullOrEmpty(Model.Pager))
     {
         <tfoot>
-            <tr><td colspan="6">@Html.Raw(ViewBag.Pager)</td></tr>
+            <tr><td colspan="6">@Html.Raw(Model.Pager)</td></tr>
         </tfoot>
     }
     <tbody>
-        @if (Model.TotalRecord > 0)
+        @if (Model.List.Count > 0)
         {
-            foreach (var user in Model.Data)
+            foreach (var user in Model.List)
             {
                 <tr>
                     <td>@user.UserId</td>
