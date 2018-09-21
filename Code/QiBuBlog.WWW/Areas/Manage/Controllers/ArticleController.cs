@@ -20,5 +20,24 @@ namespace QiBuBlog.WWW.Areas.Manage.Controllers
             var data = new ArticleService().GetPageList(parameters, currentPage, pageSize);
             return View(data);
         }
+
+        public ActionResult Edit(string id)
+        {
+            var model = new GetArticleById_Result();
+            if (!string.IsNullOrWhiteSpace(id))
+            {
+                model = new ArticleService().GetArticleById(id);
+            }
+            return View(model);
+        }
+
+        public ActionResult Delete(string id, int currentPage = 1, int pageSize = 10)
+        {
+            var article = new ArticleService();
+            article.Delete(id);
+            ViewBag.CategoryList = new CategoryService().GetList();
+            var data = article.GetPageList(null, currentPage, pageSize);
+            return View("Index", data);
+        }
     }
 }

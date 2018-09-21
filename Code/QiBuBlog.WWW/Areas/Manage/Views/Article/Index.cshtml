@@ -46,47 +46,56 @@
 </form>
 <table>
     <thead>
-        <tr>
-            <th style="width: 5%;">编号</th>
-            <th style="width: 24%;">标题</th>
-            <th style="width: 14%;">分类</th>
-            <th style="width: 12%;">作者</th>
-            <th style="width: 5%;">权重</th>
-            <th style="width: 18%;">发表时间</th>
-            <th style="width: 10%;">状态</th>
-            <th style="width: 12%;">操作</th>
-        </tr>
+    <tr>
+        <th style="width: 5%;">编号</th>
+        <th style="width: 24%;">标题</th>
+        <th style="width: 14%;">分类</th>
+        <th style="width: 12%;">作者</th>
+        <th style="width: 5%;">权重</th>
+        <th style="width: 18%;">发表时间</th>
+        <th style="width: 10%;">状态</th>
+        <th style="width: 12%;">操作</th>
+    </tr>
     </thead>
     @if (!string.IsNullOrEmpty(Model.Pager))
     {
         <tfoot>
-            <tr><td colspan="8">@Html.Raw(Model.Pager)</td></tr>
+        <tr><td colspan="8">@Html.Raw(Model.Pager)</td></tr>
         </tfoot>
     }
     <tbody>
-        @if (Model.List.Count > 0)
+    @if (Model.List.Count > 0)
+    {
+        foreach (var article in Model.List)
         {
-            foreach (var article in Model.List)
-            {
-                var routeValues = new { id = article.ArticleId };
-                <tr>
-                    <td>@article.ArticleId</td>
-                    <td><a href="@Url.Action("Detail", "Article", routeValues)" target="_blank">@article.Title</a></td>
-                    <td>@article.CategoryName</td>
-                    <td>@article.CreateUserName</td>
-                    <td>@article.Weight</td>
-                    <td>@article.CreateTime.ToString("yyyy-MM-dd HH:mm:ss")</td>
-                    <td style="text-align: center;">@article.Status</td>
-                    <td style="text-align: center; word-spacing: 1em;">
-                        <a href="@Url.Action("Edit", routeValues)">编辑</a>
-                        <a href="@Url.Action("Delete", routeValues)" class="delete-confirm">删除</a>
-                    </td>
-                </tr>
-            }
+            var routeValues = new { id = article.ArticleId };
+            <tr>
+                <td>@article.ArticleId</td>
+                <td><a href="@Url.Action("Detail", "Article", routeValues)" target="_blank">@article.Title</a></td>
+                <td>@article.CategoryName</td>
+                <td>@article.CreateUserName</td>
+                <td>@article.Weight</td>
+                <td>@article.CreateTime.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                <td style="text-align: center;">@article.Status</td>
+                <td style="text-align: center; word-spacing: 1em;">
+                    <a href="@Url.Action("Edit", routeValues)">编辑</a>
+                    <a href="@Url.Action("Delete", routeValues)" class="delete-confirm">删除</a>
+                </td>
+            </tr>
         }
-        else
-        {
-            <tr><td>暂无符合条件的数据</td></tr>
-        }
+    }
+    else
+    {
+        <tr><td>暂无符合条件的数据</td></tr>
+    }
     </tbody>
 </table>
+@section Script{
+    <script type="text/javascript">//<![CDATA[
+    $("a.delete-confirm").click(function(e) {
+        if ( !window.confirm("确认要删除此文章吗（此操作不可恢复）？") ) {
+            e.preventDefault();
+        }
+    });
+//]]></script>
+}

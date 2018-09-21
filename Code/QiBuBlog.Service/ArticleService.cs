@@ -80,6 +80,7 @@ namespace QiBuBlog.Service
                     var model = _article.Find(x => x.ArticleId == id);
                     if (model != null)
                     {
+                        model.Status = 103;
                         _article.Update(model);
                     }
                 }
