@@ -29,10 +29,10 @@ namespace QiBuBlog.Service
                 return new DataPaging<ArticleListView>()
                 {
                     List = list,
-                    Pager = totalRecord < 1 ?
-                        string.Empty
-                        : (new HtmlPager(HttpContext.Current.Request.Path.ToLower(), urlParams))
-                        .GenerateCode(totalRecord / pageSize, currentPage)
+                    //Pager = totalRecord < 1 ?
+                    //    string.Empty
+                    //    : (new HtmlPager(HttpContext.Current.Request.Path.ToLower(), urlParams))
+                    //    .GenerateCode(totalRecord / pageSize, currentPage)
                 };
             }
             catch

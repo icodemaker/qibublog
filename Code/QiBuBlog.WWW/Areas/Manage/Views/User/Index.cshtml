@@ -1,7 +1,7 @@
 ﻿@{
     ViewBag.Title = "User";
 }
-<form action="@Url.Content("List")" method="get">
+<form action="@Url.Action("Index","User")" method="get">
     <table class="cols-4">
         <thead>
             <tr>
@@ -11,7 +11,7 @@
         <tfoot>
             <tr>
                 <td colspan="4" class="buttons">
-                    <input type="button" value="搜 索" />
+                    <input type="submit" value="搜 索" />
                     <input type="reset" value="清 空" data-isclear="true" />
                 </td>
             </tr>
@@ -19,9 +19,9 @@
         <tbody>
             <tr>
                 <th><label for="username">用户名：</label></th>
-                <td><input type="text" id="username" name="username" maxlength="20" value="" /></td>
-                <th><label for="nickname">昵称：</label></th>
-                <td><input type="text" id="nickname" name="nickname" maxlength="20" value="" /></td>
+                <td><input type="text" id="username" name="username" maxlength="20" value="@Model.SearchParams.UserName" /></td>
+                <th><label for="displayname">昵称：</label></th>
+                <td><input type="text" id="displayname" name="displayname" maxlength="20" value="@Model.SearchParams.DisplayName" /></td>
             </tr>
         </tbody>
     </table>
@@ -40,30 +40,40 @@
     @if (!string.IsNullOrEmpty(Model.Pager))
     {
         <tfoot>
-            <tr><td colspan="6">@Html.Raw(Model.Pager)</td></tr>
+        <tr><td colspan="6">@Html.Raw(Model.Pager)</td></tr>
         </tfoot>
     }
     <tbody>
-        @if (Model.List.Count > 0)
+    @if (Model.List.Count > 0)
+    {
+        foreach (var user in Model.List)
         {
-            foreach (var user in Model.List)
-            {
-                <tr>
-                    <td>@user.UserId</td>
-                    <td>@user.UserName</td>
-                    <td>@user.Displayname</td>
-                    <td style="text-align: center;">@user.CreateTime.ToString("yyyy-MM-dd HH:mm:ss")</td>
-                    <td style="text-align: center;"></td>
-                    <td style="word-spacing: 1em; text-align: center;">
-                        <a href="javascript:;">编辑</a>
-                        <a href="javascript:;">删除</a>
-                    </td>
-                </tr>
-            }
+            var routeValues = new { id = user.UserId };
+            <tr>
+                <td>@user.UserId</td>
+                <td>@user.UserName</td>
+                <td>@user.DisplayName</td>
+                <td style="text-align: center;">@user.CreateTime.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                <td style="text-align: center;"></td>
+                <td style="word-spacing: 1em; text-align: center;">
+                    <a href="@Url.Action("Edit", routeValues)">编辑</a>
+                    <a href="@Url.Action("Delete", routeValues)" class="delete-confirm">删除</a>
+                </td>
+            </tr>
         }
-        else
-        {
-            <tr><td colspan="6">暂无符合条件的数据</td></tr>
-        }
+    }
+    else
+    {
+        <tr><td colspan="6">暂无符合条件的数据</td></tr>
+    }
     </tbody>
 </table>
+@section Script{
+    <script type="text/javascript">//<![CDATA[
+    $("a.delete-confirm").click(function(e) {
+        if (!window.confirm("确认要删除此用户吗（此操作不可恢复）？")) {
+            e.preventDefault();
+        }
+    });
+//]]></script>
+}

@@ -102,7 +102,7 @@
           </Key>
           <Property Name="UserId" Type="varchar" MaxLength="32" Nullable="false" />
           <Property Name="UserName" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="Displayname" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="DisplayName" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="Password" Type="char" MaxLength="40" Nullable="false" />
           <Property Name="GroupId" Type="varchar" MaxLength="32" Nullable="false" />
           <Property Name="CreateTime" Type="datetime" Nullable="false" />
@@ -190,6 +190,9 @@ FROM [dbo].[ArticleListView] AS [ArticleListView]</DefiningQuery>
     <edmx:ConceptualModels>
       <Schema Namespace="QibuBlog.Entity" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="QiBuBlogEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="GetArticleById" ReturnType="Collection(QibuBlog.Entity.GetArticleById_Result)">
+          <Parameter Name="articleId" Mode="In" Type="String" />
+          </FunctionImport>
           <EntitySet Name="Article" EntityType="QibuBlog.Entity.Article" />
           <EntitySet Name="Category" EntityType="QibuBlog.Entity.Category" />
           <EntitySet Name="Comment" EntityType="QibuBlog.Entity.Comment" />
@@ -200,10 +203,24 @@ FROM [dbo].[ArticleListView] AS [ArticleListView]</DefiningQuery>
           <EntitySet Name="User" EntityType="QibuBlog.Entity.User" />
           <EntitySet Name="UserGroup" EntityType="QibuBlog.Entity.UserGroup" />
           <EntitySet Name="ArticleListView" EntityType="QibuBlog.Entity.ArticleListView" />
-          <FunctionImport Name="GetArticleById" ReturnType="Collection(QibuBlog.Entity.GetArticleById_Result)">
-            <Parameter Name="articleId" Mode="In" Type="String" />
-          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="GetArticleById_Result">
+          <Property Type="String" Name="ArticleId" Nullable="false" MaxLength="32" />
+          <Property Type="String" Name="CategoryId" Nullable="false" MaxLength="32" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="80" />
+          <Property Type="String" Name="Keywords" Nullable="false" MaxLength="100" />
+          <Property Type="Int16" Name="SummarySize" Nullable="false" />
+          <Property Type="String" Name="Summary" Nullable="false" MaxLength="Max" />
+          <Property Type="String" Name="Content" Nullable="false" MaxLength="Max" />
+          <Property Type="Int32" Name="ViewCount" Nullable="false" />
+          <Property Type="Int32" Name="CommentCount" Nullable="false" />
+          <Property Type="Byte" Name="Weight" Nullable="false" />
+          <Property Type="String" Name="CreateUserId" Nullable="false" MaxLength="32" />
+          <Property Type="DateTime" Name="CreateTime" Nullable="false" Precision="23" />
+          <Property Type="Byte" Name="Status" Nullable="false" />
+          <Property Type="String" Name="CategoryName" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="CreateUserName" Nullable="false" MaxLength="20" />
+        </ComplexType>
         <EntityType Name="Article">
           <Key>
             <PropertyRef Name="ArticleId" />
@@ -301,7 +318,7 @@ FROM [dbo].[ArticleListView] AS [ArticleListView]</DefiningQuery>
           </Key>
           <Property Name="UserId" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
           <Property Name="UserName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Displayname" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DisplayName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="40" FixedLength="true" Unicode="false" />
           <Property Name="GroupId" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
           <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
@@ -349,29 +366,33 @@ FROM [dbo].[ArticleListView] AS [ArticleListView]</DefiningQuery>
           <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="CreateUserName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
-        <ComplexType Name="GetArticleById_Result">
-          <Property Type="String" Name="ArticleId" Nullable="false" MaxLength="32" />
-          <Property Type="String" Name="CategoryId" Nullable="false" MaxLength="32" />
-          <Property Type="String" Name="Title" Nullable="false" MaxLength="80" />
-          <Property Type="String" Name="Keywords" Nullable="false" MaxLength="100" />
-          <Property Type="Int16" Name="SummarySize" Nullable="false" />
-          <Property Type="String" Name="Summary" Nullable="false" MaxLength="Max" />
-          <Property Type="String" Name="Content" Nullable="false" MaxLength="Max" />
-          <Property Type="Int32" Name="ViewCount" Nullable="false" />
-          <Property Type="Int32" Name="CommentCount" Nullable="false" />
-          <Property Type="Byte" Name="Weight" Nullable="false" />
-          <Property Type="String" Name="CreateUserId" Nullable="false" MaxLength="32" />
-          <Property Type="DateTime" Name="CreateTime" Nullable="false" Precision="23" />
-          <Property Type="Byte" Name="Status" Nullable="false" />
-          <Property Type="String" Name="CategoryName" Nullable="false" MaxLength="20" />
-          <Property Type="String" Name="CreateUserName" Nullable="false" MaxLength="20" />
-        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="QibuBlogEntityStoreContainer" CdmEntityContainer="QiBuBlogEntities">
+          <FunctionImportMapping FunctionImportName="GetArticleById" FunctionName="QibuBlog.Entity.Store.GetArticleById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QibuBlog.Entity.GetArticleById_Result">
+                <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Keywords" ColumnName="Keywords" />
+                <ScalarProperty Name="SummarySize" ColumnName="SummarySize" />
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="ViewCount" ColumnName="ViewCount" />
+                <ScalarProperty Name="CommentCount" ColumnName="CommentCount" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="CreateUserName" ColumnName="CreateUserName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <EntitySetMapping Name="Article">
             <EntityTypeMapping TypeName="QibuBlog.Entity.Article">
               <MappingFragment StoreEntitySet="Article">
@@ -477,7 +498,7 @@ FROM [dbo].[ArticleListView] AS [ArticleListView]</DefiningQuery>
                 <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
                 <ScalarProperty Name="GroupId" ColumnName="GroupId" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Displayname" ColumnName="Displayname" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
@@ -513,27 +534,6 @@ FROM [dbo].[ArticleListView] AS [ArticleListView]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="GetArticleById" FunctionName="QibuBlog.Entity.Store.GetArticleById">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="QibuBlog.Entity.GetArticleById_Result">
-                <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
-                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Keywords" ColumnName="Keywords" />
-                <ScalarProperty Name="SummarySize" ColumnName="SummarySize" />
-                <ScalarProperty Name="Summary" ColumnName="Summary" />
-                <ScalarProperty Name="Content" ColumnName="Content" />
-                <ScalarProperty Name="ViewCount" ColumnName="ViewCount" />
-                <ScalarProperty Name="CommentCount" ColumnName="CommentCount" />
-                <ScalarProperty Name="Weight" ColumnName="Weight" />
-                <ScalarProperty Name="CreateUserId" ColumnName="CreateUserId" />
-                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
-                <ScalarProperty Name="CreateUserName" ColumnName="CreateUserName" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

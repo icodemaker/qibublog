@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 
 namespace QiBuBlog.Util
 {
-    public class HtmlPager
+    public class HtmlPager<T>
     {
         public const string PageLinkTpl = "<li class=\"{0}\"><a href=\"{2}\">{1}</a></li>";
 
@@ -16,14 +17,14 @@ namespace QiBuBlog.Util
 
         public string BaseUrl { get; set; }
 
-        public Dictionary<string, string> Params { get; set; }
+        public T Params { get; set; }
 
         public HtmlPager(string baseUrl)
         {
             this.BaseUrl = baseUrl;
         }
 
-        public HtmlPager(string baseUrl, Dictionary<string, string> urlParams)
+        public HtmlPager(string baseUrl, T urlParams)
         {
             this.BaseUrl = baseUrl;
             this.Params = urlParams;
@@ -39,11 +40,12 @@ namespace QiBuBlog.Util
             var result = new StringBuilder();
             if (Params != null)
             {
-                foreach (var p in Params)
+                var propertys = Params.GetType().GetProperties();
+                foreach (var item in propertys)
                 {
-                    result.Append(p.Key);
+                    result.Append(item.Name);
                     result.Append("=");
-                    result.Append(p.Value);
+                    result.Append(item.GetValue(Params, null));
                     result.Append("&amp;");
                 }
             }

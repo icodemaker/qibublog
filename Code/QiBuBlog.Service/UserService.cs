@@ -34,16 +34,26 @@ namespace QiBuBlog.Service
             return _user.Find(x => x.UserName == userName && x.Password == password);
         }
 
-        public DataPaging<User> GetPageList(Dictionary<string, string> urlParams, int currentPage, int pageSize)
+        public DataPaging<User> GetPageList(User queryParams, int currentPage, int pageSize)
         {
-            var list = _user.Entities.OrderBy(x => true).Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
-            var totalRecord = _user.Entities.Count();
+            var exp = new PredicatePack<User>();
+            if (!string.IsNullOrEmpty(queryParams.UserName))
+            {
+                exp.PushAnd(x => x.UserName.Contains(queryParams.UserName));
+            }
+            if (!string.IsNullOrEmpty(queryParams.DisplayName))
+            {
+                exp.PushAnd(x => x.DisplayName.Contains(queryParams.DisplayName));
+            }
+            var source = _user.Entities.Where(exp);
+            var list = source.OrderBy(x => true).Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
+            var totalRecord = source.Count();
             return new DataPaging<User>()
             {
+                SearchParams = queryParams,
                 List = list,
-                Pager = totalRecord < 1 ? 
-                string.Empty 
-                : (new HtmlPager(HttpContext.Current.Request.Path.ToLower(), urlParams))
+                Pager = totalRecord < 1 ? string.Empty 
+                : (new HtmlPager<User>(HttpContext.Current.Request.Path.ToLower(), queryParams))
                 .GenerateCode(totalRecord / pageSize, currentPage)
             };
         }
