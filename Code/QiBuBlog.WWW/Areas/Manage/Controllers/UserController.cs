@@ -10,9 +10,9 @@ namespace QiBuBlog.WWW.Areas.Manage.Controllers
         //
         // GET: /Manage/User/
 
-        public ActionResult Index(User queryParams, int currentPage = 1, int pageSize = 10)
+        public ActionResult Index(User parameters, int currentPage = 1, int pageSize = 10)
         {
-            var data = new UserService().GetPageList(queryParams, currentPage, pageSize);
+            var data = new UserService().GetPageList(parameters, currentPage, pageSize);
             return View(data);
         }
     }

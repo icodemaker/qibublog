@@ -66,10 +66,10 @@ input[type=text], input[type=password], textarea, select {
     min-height: 18px;
 }
 
-    input[type=text]:focus, input[type=password]:focus, textarea:focus {
-        border-color: #a4c9e3;
-        border-top-color: #3d7bad;
-    }
+input[type=text]:focus, input[type=password]:focus, textarea:focus {
+    border-color: #a4c9e3;
+    border-top-color: #3d7bad;
+}
 
 input[type=button], input[type=reset], input[type=submit] {
     font-family: "微软雅黑";

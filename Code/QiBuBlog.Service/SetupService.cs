@@ -18,8 +18,7 @@ namespace QiBuBlog.Service
         {
             try
             {
-                _setup.Update(model);
-                return true;
+                return _setup.Update(model) > 0;
             }
             catch (Exception)
             {

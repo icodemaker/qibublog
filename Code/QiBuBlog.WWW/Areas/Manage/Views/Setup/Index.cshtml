@@ -1,5 +1,54 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Step";
 }
-
-<h2>Index</h2>
+<form action="@Url.Action("Index")" method="post">
+    <input type="hidden" id="SetupId" name="SetupId" value="@Model.SetupId"/>
+    <table class="cols-2">
+        <thead>
+        <tr><th colspan="4" class="alignLeft">@ViewBag.Title</th></tr>
+        </thead>
+        <tfoot>
+        <tr>
+            <td colspan="4" class="buttons">
+                <input type="submit" value="提 交"/>
+                <input type="reset" value="恢 复"/>
+            </td>
+        </tr>
+        </tfoot>
+        <tbody>
+        <tr class="cols-4">
+            <th><label for="SiteName">网站名：</label></th>
+            <td>
+                <input id="SiteName" name="SiteName" type="text" maxlength="50" size="22" value="@Model.SiteName"/>
+                <span class="required">*</span>
+            </td>
+            <th><label for="SiteDomain">网站域名：</label></th>
+            <td>
+                <input id="SiteDomain" name="SiteDomain" type="text" maxlength="30" size="22" value="@Model.SiteDomain"/>
+                <span class="required">*</span>
+            </td>
+        </tr>
+        <tr class="cols-4">
+            <th><label for="IsOpen">网站开关：</label></th>
+            <td>
+                <select name="IsOpen" id="isOpen">
+                    <option value="0" @Html.Raw(Model.IsOpen == 0 ? " selected=\"selected\"" : string.Empty)>关闭</option>
+                    <option value="1" @Html.Raw(Model.IsOpen == 1 ? " selected=\"selected\"" : string.Empty)>开放</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <th><label for="CloseReason">关站原因：</label></th>
+            <td colspan="3"><textarea id="CloseReason" name="CloseReason" cols="60" rows="3">@Model.CloseReason</textarea></td>
+        </tr>
+        <tr class="cols-4">
+            <th><label for="Keywords">关键字：</label></th>
+            <td><input id="Keywords" name="Keywords" type="text" maxlength="255" size="30" value="@Model.Keywords"/></td>
+        </tr>
+        <tr>
+            <th><label for="Description">描述：</label></th>
+            <td colspan="3"><textarea id="Description" name="Description" cols="60" rows="3">@Model.Description</textarea></td>
+        </tr>
+        </tbody>
+    </table>
+</form>
