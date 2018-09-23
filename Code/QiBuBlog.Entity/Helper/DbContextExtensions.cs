@@ -70,7 +70,7 @@ namespace QiBuBlog.Entity.Helper
                 dbContext.Configuration.ValidateOnSaveEnabled = validateOnSaveEnabled;
                 return dbContext.SaveChanges();
             }
-            catch (DbEntityValidationException)
+            catch (DbEntityValidationException ex)
             {
                 throw;
             }

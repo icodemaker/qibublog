@@ -156,7 +156,6 @@
     <Content Include="Scripts\jquery.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.src.js" />
-    <Content Include="Scripts\manage-article-pub.js" />
     <Content Include="Scripts\manage-pub.js" />
     <Content Include="Scripts\pub.js" />
     <Content Include="Scripts\pub.src.js" />

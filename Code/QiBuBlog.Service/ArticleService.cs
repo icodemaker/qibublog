@@ -61,6 +61,11 @@ namespace QiBuBlog.Service
 
         public void CreateOrUpdate(Article model)
         {
+            if (string.IsNullOrWhiteSpace(model.Summary))
+            {
+                var summaryLength = model.SummarySize > model.Content.Length ? model.Content.Length : model.SummarySize;
+                model.Summary = model.Content.Substring(0, summaryLength);
+            }
             if (!string.IsNullOrWhiteSpace(model.ArticleId))
             {
                 _article.Update(model);

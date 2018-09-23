@@ -2,6 +2,9 @@
     ViewBag.Title = "Article Eidt";
 }
 <form action="@Url.Action("Edit")" method="post">
+    <input name="ArticleId" type="hidden" value="@Model.ArticleId" />
+    <input name="CreateUserId" type="hidden" value="@Model.CreateUserId" />
+    <input name="Content" id="hiddenContent" type="hidden" value="@Model.Content" />
     <table class="cols-2">
         <thead>
             <tr>
@@ -11,7 +14,7 @@
         <tfoot>
             <tr>
                 <td colspan="4" class="buttons">
-                    <input type="submit" value="提 交" />
+                    <input id="btnSubmit" type="button" value="提 交" />
                     <input type="reset" value=" 恢 复 " />
                 </td>
             </tr>
@@ -24,7 +27,6 @@
                 <td colspan="3">
                     <input type="text" id="Title" name="Title" size="50" maxlength="80" value="@Model.Title" />
                     <span class="required">*</span>
-                    <input name="ArticleId" type="hidden" value="@Model.ArticleId" />
                 </td>
             </tr>
             <tr>
@@ -97,7 +99,7 @@
                         }
                     </style>
                     <script id="container" type="text/plain">
-                    @Html.Raw(Model.Content)
+                        @Html.Raw(Model.Content)
                     </script>
                     <script src="~/Scripts/ueditor/ueditor.config.js"></script>
                     <script src="~/Scripts/ueditor/ueditor.all.js"></script>
@@ -109,12 +111,29 @@
             </tr>
             <tr>
                 <th>
-                    <label for="PostTime">发表时间：</label>
+                    <label for="CreateTime">发表时间：</label>
                 </th>
                 <td colspan="3">
-                    <input type="text" id="PostTime" name="PostTime" value="@Model.CreateTime" size="20" />
+                    <input type="text" id="CreateTime" name="CreateTime" value="@Model.CreateTime" size="20" />
                 </td>
             </tr>
         </tbody>
     </table>
 </form>
+<script>
+    $(function() {
+        $("form").validate({
+            flow: [
+                { fields : "Title", errorText : "标题不能为空" },
+                { fields : "CategoryId", errorText : "请选择分类" },
+                { fields : "Weight", rules : "min:0;max:255", errorText : "权重必须为0-255" },
+                { fields : "SummarySize", rules : "min:0;max:9999", errorText : "摘要长度必须为0-9999" },
+                { fields : "State", errorText : "请选择文章状态" }
+            ]
+        });
+        $("#btnSubmit").click(function () {
+            $("#hiddenContent").val(ue.getContent());
+            $("form").submit();
+        });
+    });
+</script>

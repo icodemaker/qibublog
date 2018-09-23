@@ -1,6 +1,7 @@
 ﻿using QiBuBlog.Service;
 using QiBuBlog.Util;
 using System.Web.Mvc;
+using QiBuBlog.Entity;
 
 namespace QiBuBlog.WWW.Controllers
 {

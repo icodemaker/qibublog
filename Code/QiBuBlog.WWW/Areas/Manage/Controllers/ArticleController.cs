@@ -21,6 +21,7 @@ namespace QiBuBlog.WWW.Areas.Manage.Controllers
             return View(data);
         }
 
+        [HttpGet]
         public ActionResult Edit(string id)
         {
             var model = new GetArticleById_Result();
@@ -30,6 +31,15 @@ namespace QiBuBlog.WWW.Areas.Manage.Controllers
                 model = new ArticleService().GetArticleById(id);
             }
             return View(model);
+        }
+
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public JsonResult Edit(Article model)
+        {
+            new ArticleService().CreateOrUpdate(model);
+            return Json(null);
         }
 
         public ActionResult Delete(string id, int currentPage = 1, int pageSize = 10)
