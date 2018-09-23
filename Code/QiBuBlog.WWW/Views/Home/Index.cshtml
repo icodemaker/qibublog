@@ -4,9 +4,9 @@
 }
 <div class="main">
     <div class="inner">
-        @if (Model.TotalRecord > 0)
+        @if (Model.List.Count > 0)
         {
-            foreach (var article in Model.Data)
+            foreach (var article in Model.List)
             {
                 var routeValues = new { id = article.ArticleId };
                 var postTime = article.CreateTime;

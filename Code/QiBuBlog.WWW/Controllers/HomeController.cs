@@ -10,20 +10,11 @@ namespace QiBuBlog.WWW.Controllers
         //
         // GET: /Home/
 
-        public ActionResult Index(string id, int? page)
+        public ActionResult Index(int currentPage = 1, int pageSize = 10)
         {
-            ViewBag.CurrentPosition = id;
-            var categoryId = string.Empty;
-            if (!string.IsNullOrWhiteSpace(id))
-            {
-                var cId = new MenuService().GetMenuCategoryId(id);
-                if (!string.IsNullOrWhiteSpace(cId))
-                {
-                    categoryId = cId;
-                }
-            }
-            //var articleData = new ArticleService().GetPageList(categoryId, page ?? 1, true);
-            return View();
+            ViewBag.CategoryList = new CategoryService().GetList();
+            var data = new ArticleService().GetPageList(null, currentPage, pageSize);
+            return View(data);
         }
     }
 }

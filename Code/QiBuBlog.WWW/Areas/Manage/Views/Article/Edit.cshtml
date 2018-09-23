@@ -86,8 +86,25 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="4" style="width: 100%;text-align: center;">
-                    <textarea id="Content" name="Content" style="width: 100%; height: 350px;" cols="80" rows="20">@Model.Content</textarea>
+                <td colspan="4" id="myEditor">
+                    <style>
+                        #myEditor tbody td, #myEditor tbody th, #myEditor tfoot td {
+                            padding: 0;
+                        }
+
+                        #myEditor td, #myeditor th {
+                            border: 1px solid #eee;
+                        }
+                    </style>
+                    <script id="container" type="text/plain">
+                    @Html.Raw(Model.Content)
+                    </script>
+                    <script src="~/Scripts/ueditor/ueditor.config.js"></script>
+                    <script src="~/Scripts/ueditor/ueditor.all.js"></script>
+
+                    <script type="text/javascript">
+                        var ue = UE.getEditor('container');
+                    </script>
                 </td>
             </tr>
             <tr>
