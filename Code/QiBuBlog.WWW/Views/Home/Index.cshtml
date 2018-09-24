@@ -41,3 +41,12 @@
         Html.RenderPartial("SidebarLinks");
     }
 </aside>
+<script src="~/Scripts/jquery.js"></script>
+<script src="~/Scripts/ueditor/third-party/SyntaxHighlighter/shCore.js"></script>
+<link href="~/Scripts/ueditor/third-party/SyntaxHighlighter/shCoreDefault.css" rel="stylesheet" />
+<script>
+    $(function () {
+        SyntaxHighlighter.defaults['toolbar'] = false;
+        SyntaxHighlighter.highlight();
+    });
+</script>

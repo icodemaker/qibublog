@@ -74,18 +74,24 @@
         }
 
         <div class="adjacent-articles">
-            
+
         </div>
     </div>
 </div>
 
-<aside class="sidebar">
-
-</aside>
-
+<aside class="sidebar"></aside>
 @section Script{
     <script type="text/javascript" src="@Url.Content("~/Scripts/sns-share.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/captcha.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/comment.js")"></script>
 }
+<script src="~/Scripts/jquery.js"></script>
+<script src="~/Scripts/ueditor/third-party/SyntaxHighlighter/shCore.js"></script>
+<link href="~/Scripts/ueditor/third-party/SyntaxHighlighter/shCoreDefault.css" rel="stylesheet" />
+<script>
+    $(function() {
+        SyntaxHighlighter.defaults['toolbar'] = false;
+        SyntaxHighlighter.highlight();
+    });
+</script>

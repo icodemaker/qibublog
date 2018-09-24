@@ -485,7 +485,7 @@ body.article-content {
     margin: 15px 0 12px 0;
 }
 
-.article-content code,
+/*.article-content code,
 .article-content pre,
 .article-content blockquote {
     padding: 6px 2%;
@@ -497,7 +497,7 @@ body.article-content {
 
 .article-content code, .article-content pre {
     font-family: Monaco, "Courier New", Arial;
-}
+}*/
 
 .article-content table {
     width: 60%;
