@@ -22,7 +22,7 @@ namespace QiBuBlog.Service
             }
             exp.PushAnd(x => x.Status == 101);
             var source = _articleView.Entities.Where(exp);
-            var list = source.OrderBy(x => true).Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
+            var list = source.OrderByDescending(x => x.CreateTime).Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
             var totalRecord = source.Count();
             return new DataPaging<ArticleListView>
             {
@@ -73,6 +73,7 @@ namespace QiBuBlog.Service
             }
             else
             {
+                model.ArticleId = Helper.CreateGuidWithNoSplit();
                 _article.Insert(model);
             }
         }

@@ -3,7 +3,7 @@
 }
 <form action="@Url.Action("Edit")" method="post">
     <input name="ArticleId" type="hidden" value="@Model.ArticleId" />
-    <input name="CreateUserId" type="hidden" value="@Model.CreateUserId" />
+    <input name="CreateUserId" type="hidden" value="@(string.IsNullOrWhiteSpace(Model.CreateUserId)?ViewBag.CurrentUser.UserId:Model.CreateUserId)" />
     <input name="Content" id="hiddenContent" type="hidden" value="@Model.Content" />
     <table class="cols-2">
         <thead>
@@ -114,7 +114,7 @@
                     <label for="CreateTime">发表时间：</label>
                 </th>
                 <td colspan="3">
-                    <input type="text" id="CreateTime" name="CreateTime" value="@Model.CreateTime" size="20" />
+                    <input type="text" id="CreateTime" name="CreateTime" value="@DateTime.Now" size="20" />
                 </td>
             </tr>
         </tbody>

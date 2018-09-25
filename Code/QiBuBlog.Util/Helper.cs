@@ -1,7 +1,4 @@
 ﻿using System;
-using System.IO;
-using System.Net;
-using System.Text;
 using System.Web;
 
 namespace QiBuBlog.Util
@@ -24,6 +21,17 @@ namespace QiBuBlog.Util
                 userIp = "127.0.0.1";
             }
             return userIp;
+        }
+
+        public static string CreateGuid()
+        {
+            return Guid.NewGuid().ToString().ToLower();
+        }
+
+        public static string CreateGuidWithNoSplit()
+        {
+            var guid = CreateGuid();
+            return guid.Replace("-", "");
         }
     }
 }
