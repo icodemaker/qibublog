@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using QiBuBlog.Entity;
+﻿using QiBuBlog.Entity;
 using QiBuBlog.Service;
 using QiBuBlog.WWW.Controllers;
+using System.Web.Mvc;
 
 namespace QiBuBlog.WWW.Areas.Manage.Controllers
 {
@@ -36,10 +32,11 @@ namespace QiBuBlog.WWW.Areas.Manage.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
-        public JsonResult Edit(Article model)
+        public ActionResult Edit(Article model)
         {
+            ViewBag.CategoryList = new CategoryService().GetList();
             new ArticleService().CreateOrUpdate(model);
-            return Json(null);
+            return View(model);
         }
 
         public ActionResult Delete(string id, int currentPage = 1, int pageSize = 10)
