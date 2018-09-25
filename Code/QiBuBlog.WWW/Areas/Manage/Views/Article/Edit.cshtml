@@ -80,9 +80,9 @@
                     <label for="State">状态：</label>
                 </th>
                 <td>
-                    <select id="State" name="State">
-                        <option value="0" @(Model.Status == 101 ? " selected=\"selected\"" : string.Empty)>有效</option>
-                        <option value="1" @(Model.Status == 103 ? " selected=\"selected\"" : string.Empty)>删除</option>
+                    <select id="Status" name="Status">
+                        <option value="101" @(Model.Status == 101 ? " selected=\"selected\"" : string.Empty)>有效</option>
+                        <option value="103" @(Model.Status == 103 ? " selected=\"selected\"" : string.Empty)>删除</option>
                     </select>
                     <span class="required">*</span>
                 </td>
@@ -128,7 +128,7 @@
                 { fields : "CategoryId", errorText : "请选择分类" },
                 { fields : "Weight", rules : "min:0;max:255", errorText : "权重必须为0-255" },
                 { fields : "SummarySize", rules : "min:0;max:9999", errorText : "摘要长度必须为0-9999" },
-                { fields : "State", errorText : "请选择文章状态" }
+                { fields: "Status", errorText : "请选择文章状态" }
             ]
         });
         $("#btnSubmit").click(function () {

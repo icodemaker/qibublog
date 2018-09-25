@@ -20,6 +20,7 @@ namespace QiBuBlog.Service
             {
                 exp.PushAnd(x => x.CategoryId == parameters.CategoryId);
             }
+            exp.PushAnd(x => x.Status == 101);
             var source = _articleView.Entities.Where(exp);
             var list = source.OrderBy(x => true).Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
             var totalRecord = source.Count();
