@@ -123,6 +123,14 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scripts\ueditor\net\App_Code\Config.cs" />
+    <Compile Include="Scripts\ueditor\net\App_Code\ConfigHandler.cs" />
+    <Compile Include="Scripts\ueditor\net\App_Code\CrawlerHandler.cs" />
+    <Compile Include="Scripts\ueditor\net\App_Code\Handler.cs" />
+    <Compile Include="Scripts\ueditor\net\App_Code\ListFileHandler.cs" />
+    <Compile Include="Scripts\ueditor\net\App_Code\NotSupportedHandler.cs" />
+    <Compile Include="Scripts\ueditor\net\App_Code\PathFormater.cs" />
+    <Compile Include="Scripts\ueditor\net\App_Code\UploadHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -160,16 +168,6 @@
     <Content Include="Scripts\pub.js" />
     <Content Include="Scripts\pub.src.js" />
     <Content Include="Scripts\sns-share.js" />
-    <Content Include="Scripts\ueditor\asp\action_config.asp" />
-    <Content Include="Scripts\ueditor\asp\action_crawler.asp" />
-    <Content Include="Scripts\ueditor\asp\action_list.asp" />
-    <Content Include="Scripts\ueditor\asp\action_upload.asp" />
-    <Content Include="Scripts\ueditor\asp\ASPJson.class.asp" />
-    <Content Include="Scripts\ueditor\asp\config_loader.asp" />
-    <Content Include="Scripts\ueditor\asp\controller.asp" />
-    <Content Include="Scripts\ueditor\asp\MultiformProcessor.class.asp" />
-    <Content Include="Scripts\ueditor\asp\PathFormatter.class.asp" />
-    <Content Include="Scripts\ueditor\asp\Uploader.Class.asp" />
     <Content Include="Scripts\ueditor\dialogs\anchor\anchor.html" />
     <Content Include="Scripts\ueditor\dialogs\attachment\attachment.css" />
     <Content Include="Scripts\ueditor\dialogs\attachment\attachment.html" />
@@ -309,7 +307,6 @@
     <Content Include="Scripts\ueditor\dialogs\wordimage\tangram.js" />
     <Content Include="Scripts\ueditor\dialogs\wordimage\wordimage.html" />
     <Content Include="Scripts\ueditor\dialogs\wordimage\wordimage.js" />
-    <Content Include="Scripts\ueditor\index.html" />
     <Content Include="Scripts\ueditor\lang\en\en.js" />
     <Content Include="Scripts\ueditor\lang\en\images\addimage.png" />
     <Content Include="Scripts\ueditor\lang\en\images\alldeletebtnhoverskin.png" />
@@ -332,6 +329,10 @@
     <Content Include="Scripts\ueditor\lang\zh-cn\images\music.png" />
     <Content Include="Scripts\ueditor\lang\zh-cn\images\upload.png" />
     <Content Include="Scripts\ueditor\lang\zh-cn\zh-cn.js" />
+    <Content Include="Scripts\ueditor\net\Bin\Newtonsoft.Json.dll" />
+    <Content Include="Scripts\ueditor\net\Bin\Newtonsoft.Json.pdb" />
+    <Content Include="Scripts\ueditor\net\Bin\Newtonsoft.Json.xml" />
+    <Content Include="Scripts\ueditor\net\net.sln" />
     <Content Include="Scripts\ueditor\themes\default\css\ueditor.css" />
     <Content Include="Scripts\ueditor\themes\default\css\ueditor.min.css" />
     <Content Include="Scripts\ueditor\themes\default\dialogbase.css" />
@@ -408,8 +409,9 @@
     <Content Include="Scripts\ueditor\third-party\jquery-1.10.2.js" />
     <Content Include="Scripts\ueditor\third-party\jquery-1.10.2.min.js" />
     <Content Include="Scripts\ueditor\third-party\snapscreen\UEditorSnapscreen.exe" />
+    <Content Include="Scripts\ueditor\third-party\SyntaxHighlighter\shBrush.js" />
+    <Content Include="Scripts\ueditor\third-party\SyntaxHighlighter\shCore.css" />
     <Content Include="Scripts\ueditor\third-party\SyntaxHighlighter\shCore.js" />
-    <Content Include="Scripts\ueditor\third-party\SyntaxHighlighter\shCoreDefault.css" />
     <Content Include="Scripts\ueditor\third-party\video-js\video-js.css" />
     <Content Include="Scripts\ueditor\third-party\video-js\video-js.min.css" />
     <Content Include="Scripts\ueditor\third-party\video-js\video-js.swf" />
@@ -427,15 +429,11 @@
     <Content Include="Scripts\ueditor\third-party\webuploader\webuploader.min.js" />
     <Content Include="Scripts\ueditor\third-party\webuploader\webuploader.withoutimage.js" />
     <Content Include="Scripts\ueditor\third-party\webuploader\webuploader.withoutimage.min.js" />
-    <Content Include="Scripts\ueditor\third-party\xss.min.js" />
     <Content Include="Scripts\ueditor\third-party\zeroclipboard\ZeroClipboard.js" />
     <Content Include="Scripts\ueditor\third-party\zeroclipboard\ZeroClipboard.min.js" />
     <Content Include="Scripts\ueditor\third-party\zeroclipboard\ZeroClipboard.swf" />
     <Content Include="Scripts\ueditor\ueditor.all.js" />
-    <Content Include="Scripts\ueditor\ueditor.all.min.js" />
     <Content Include="Scripts\ueditor\ueditor.config.js" />
-    <Content Include="Scripts\ueditor\ueditor.parse.js" />
-    <Content Include="Scripts\ueditor\ueditor.parse.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -534,13 +532,17 @@
     <Content Include="Areas\Manage\Views\Article\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\ueditor\asp\config.json" />
-    <Content Include="Scripts\ueditor\asp\README.md" />
+    <Content Include="Scripts\ueditor\net\config.json" />
+    <Content Include="Scripts\ueditor\net\controller.ashx" />
+    <Content Include="Scripts\ueditor\net\Web.config" />
     <Content Include="Scripts\ueditor\third-party\jquery-1.10.2.min.map" />
     <Content Include="Scripts\ueditor\third-party\video-js\font\vjs.eot" />
     <Content Include="Scripts\ueditor\third-party\video-js\font\vjs.svg" />
     <Content Include="Scripts\ueditor\third-party\video-js\font\vjs.ttf" />
     <Content Include="Scripts\ueditor\third-party\video-js\font\vjs.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Scripts\ueditor\net\upload\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
