@@ -10,10 +10,11 @@ namespace QiBuBlog.WWW.Controllers
         //
         // GET: /Article/
 
-        public ActionResult Index(int currentPage = 1, int pageSize = 10)
+        public ActionResult Index(string id, int currentPage = 1, int pageSize = 10)
         {
+            ViewBag.CurrentPosition = id;
             ViewBag.CategoryList = new CategoryService().GetList();
-            var data = new ArticleService().GetPageList(null, currentPage, pageSize);
+            var data = new ArticleService().GetPageList(new ArticleListView() { CategoryId = id }, currentPage, pageSize, string.IsNullOrWhiteSpace(id));
             return View(data);
         }
 

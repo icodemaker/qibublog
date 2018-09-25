@@ -18,7 +18,16 @@
                 <ul>
                     @foreach (var m in ViewBag.Menu)
                     {
-                        <li @Html.Raw(ViewBag.CurrentPosition != null ? (m.MenuId == ViewBag.CurrentPosition ? " class=\"current\"" : string.Empty) : (m.MenuName == "首页" ? " class=\"current\"" : string.Empty))><a href="@(m.TargetUrl!=null?m.TargetUrl:Url.Action("index", "article", new { id = m.MenuId }))">@m.MenuName</a></li>
+                        var isCurr = string.Empty;
+                        if (m.CategoryId == ViewBag.CurrentPosition && m.TargetUrl == null)
+                        {
+                            isCurr = "current";
+                        }
+                        else if (ViewBag.CurrentPosition == null && Request.RawUrl == m.TargetUrl)
+                        {
+                            isCurr = "current";
+                        }
+                        <li class="@isCurr"><a href="@(m.TargetUrl !=null ? m.TargetUrl:Url.Action("index", "article", new { id = m.CategoryId }))">@m.MenuName</a></li>
                     }
                 </ul>
             </nav>
@@ -31,19 +40,21 @@
         <div class="boundary clearfix">
             <nav>
                 当前位置：
-                <span id="current-position" class="current-position">首页</span>
+                <span id="current-position" class="current-position"></span>
                 <ul id="express-nav" class="express-nav">
                     @foreach (var m in ViewBag.Menu)
                     {
-                        <li><a href="#">@m.MenuName</a></li>
+                        <li><a href="@(m.TargetUrl != null? m.TargetUrl:Url.Action("index", "article", new { id = m.MenuId }))">@m.MenuName</a></li>
                     }
                 </ul>
             </nav>
-            @if (ViewBag.User != null)
+            @if (ViewBag.CurrentUser != null)
             {
-
+                <div class="manage-info">
+                    @ViewBag.CurrentUser.DisplayName（<a href="@Url.Action("index","dashboard", new { Area = "manage" } )" target="_blank">后台管理</a>&nbsp;&nbsp;<a href="@Url.Action("logout","login", new { Area = "" })">退出</a>）
+                </div>
             }
-            <div class="copyright">Copyright &copy; 2009-@DateTime.UtcNow.ToString("yyyy") <a href="http://@ViewBag.Setup.SiteDomain">@ViewBag.Setup.SiteName</a></div>
+            <div class="copyright">Copyright &copy; 2009-@DateTime.UtcNow.ToString("yyyy") <a href="@Url.Content(ViewBag.Setup.SiteDomain)">@ViewBag.Setup.SiteName</a></div>
         </div>
     </footer>
     <script src="@Url.Content("~/Scripts/jquery.js")" type="text/javascript"></script>
@@ -51,3 +62,9 @@
     @RenderSection("Script", false)
 </body>
 </html>
+<script>
+    $(function () {
+        var curr = $(".current").children().html();
+        $("#current-position").html(curr != null ? curr : "首页");
+    });
+</script>

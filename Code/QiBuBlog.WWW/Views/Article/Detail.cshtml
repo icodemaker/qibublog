@@ -31,7 +31,7 @@
             <div class="comment-form">
                 <h2 class="titlebar">参与讨论</h2>
                 <form action="@Url.Action("Post", "Comment", null)" method="post" class="clearfix">
-                    @if (ViewBag.User == null)
+                    @if (ViewBag.CurrentUser == null)
                     {
                         <div class="col-l">
                             <p class="form-field textbox-with-label">
@@ -64,7 +64,7 @@
                         <p class="form-field textbox-with-label">
                             <textarea class="form-text" name="Content" id="Content" rows="5" cols="40"></textarea><label for="Content">请填写评论内容 <span class="required">*</span></label>
                         </p>
-                        <p class="comment-user">以身份 <strong>@ViewBag.User.DisplayName</strong> 发表评论</p>
+                        <p class="comment-user">以身份 <strong>@ViewBag.CurrentUser.DisplayName</strong> 发表评论</p>
                         <p class="form-button">
                             <input type="submit" value="发 表" class="button" />
                         </p>
@@ -81,7 +81,6 @@
 
 <aside class="sidebar"></aside>
 @section Script{
-    <script type="text/javascript" src="@Url.Content("~/Scripts/sns-share.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/captcha.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/comment.js")"></script>

@@ -1,3 +1,52 @@
-﻿@{
-    ViewBag.Title = "Article";
+﻿@using System.Globalization;
+@{
+    ViewBag.Title = "Home";
 }
+<div class="main">
+    <div class="inner">
+        @if (Model.List.Count > 0)
+        {
+            foreach (var article in Model.List)
+            {
+                var routeValues = new { id = article.ArticleId };
+                var postTime = article.CreateTime;
+                <article class="article">
+                    <header>
+                        <time datetime="@postTime.ToString("yyyy-MM-ddThh:mm:sszzz")" class="article-postdate"><span class="day">@postTime.Day</span>@postTime.ToString("MMM", CultureInfo.CreateSpecificCulture("zh-CN")).ToUpper()</time>
+                        <h2 class="article-title"><a href="@Url.Action("detail", "article", routeValues)">@article.Title</a></h2>
+                        <ul class="clearfix">
+                            <li>分类：<a href="@Url.Action("index", new { id = article.CategoryId })">@article.CategoryName</a></li>
+                            <li>浏览次数：<a href="@Url.Action("detail", "article", routeValues)">@article.ViewCount</a></li>
+                            <li>评论次数：<a href="@Url.Action("detail", "article", routeValues)#comment-list">@article.CommentCount</a></li>
+                        </ul>
+                    </header>
+                    <div class="article-content">@Html.Raw(article.Summary)</div>
+                    <footer>
+                        <ul class="clearfix">
+                            <li class="article-posttime">
+                                <address>@article.CreateUserName</address> 发表于
+                                <time datetime="@postTime.ToString("yyyy-MM-ddThh:mm:sszzz")">@postTime.ToString("yyyy-M-d H:mm")</time>
+                            </li>
+                            <li class="article-entry"><a href="@Url.Action("detail", "article", routeValues)">阅读全文 &raquo;</a></li>
+                        </ul>
+                    </footer>
+                </article>
+            }
+        }
+    </div>
+</div>
+
+<aside class="sidebar">
+    @{
+        Html.RenderPartial("SidebarLinks");
+    }
+</aside>
+<script src="~/Scripts/jquery.js"></script>
+<script src="~/Scripts/ueditor/third-party/SyntaxHighlighter/shCore.js"></script>
+<link href="~/Scripts/ueditor/third-party/SyntaxHighlighter/shCore.css" rel="stylesheet" />
+<script>
+    $(function () {
+        SyntaxHighlighter.defaults['toolbar'] = false;
+        SyntaxHighlighter.highlight();
+    });
+</script>
