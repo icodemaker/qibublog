@@ -114,21 +114,21 @@
                     <label for="CreateTime">发表时间：</label>
                 </th>
                 <td colspan="3">
-                    <input type="text" id="CreateTime" name="CreateTime" value="@DateTime.Now" size="20" />
+                    <input type="text" id="CreateTime" name="CreateTime" value="@(Model.CreateTime.ToString() == "0001/1/1 0:00:00" ? DateTime.Now : Model.CreateTime)" size="20" />
                 </td>
             </tr>
         </tbody>
     </table>
 </form>
 <script>
-    $(function() {
+    $(function () {
         $("form").validate({
             flow: [
-                { fields : "Title", errorText : "标题不能为空" },
-                { fields : "CategoryId", errorText : "请选择分类" },
-                { fields : "Weight", rules : "min:0;max:255", errorText : "权重必须为0-255" },
-                { fields : "SummarySize", rules : "min:0;max:9999", errorText : "摘要长度必须为0-9999" },
-                { fields: "Status", errorText : "请选择文章状态" }
+                { fields: "Title", errorText: "标题不能为空" },
+                { fields: "CategoryId", errorText: "请选择分类" },
+                { fields: "Weight", rules: "min:0;max:255", errorText: "权重必须为0-255" },
+                { fields: "SummarySize", rules: "min:0;max:9999", errorText: "摘要长度必须为0-9999" },
+                { fields: "Status", errorText: "请选择文章状态" }
             ]
         });
         $("#btnSubmit").click(function () {
