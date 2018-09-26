@@ -16,8 +16,9 @@ namespace QiBuBlog.WWW.Controllers
             ViewBag.CurrentPosition = id;
             ViewBag.CategoryList = new CategoryService().GetList();
             var data = article.GetPageList(new ArticleListView() { CategoryId = id }, currentPage, pageSize, string.IsNullOrWhiteSpace(id));
-            ViewBag.SidebarArticle = article.GetTopView(200, 10);
-            ViewBag.SidebarRank = article.GetRecommends();
+            ViewBag.SidebarArticle = article.GetRecommends(); 
+            ViewBag.SidebarRank = article.GetTopView(200, 10);
+            ViewBag.SidebarGroup = article.GetGroupList();
             return View(data);
         }
 

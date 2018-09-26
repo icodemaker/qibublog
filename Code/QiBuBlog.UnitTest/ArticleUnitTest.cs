@@ -8,21 +8,9 @@ namespace QiBuBlog.UnitTest
     public class ArticleUnitTest
     {
         [TestMethod]
-        public void Add()
+        public void Test()
         {
-            var res = new SetupService().GetSetup();
-        }
-
-        [TestMethod]
-        public void PageList()
-        {
-
-        }
-
-        [TestMethod]
-        public void Del()
-        {
-
+            new ArticleService().GetGroupList();
         }
     }
 }

@@ -5,16 +5,17 @@ using QiBuBlog.Util;
 using System.Linq;
 using System.Web;
 using QiBuBlog.Entity.Helper;
+using QiBuBlog.Entity.DTO;
 
 namespace QiBuBlog.Service
 {
     public class ArticleService
     {
         private readonly EFRepositoryBase<Article, object> _article = new EFRepositoryBase<Article, object>();
-        private readonly EFRepositoryBase<ArticleListView, object> _articleView = new EFRepositoryBase<ArticleListView, object>();
 
         public DataPaging<ArticleListView> GetPageList(ArticleListView parameters, int currentPage, int pageSize, bool isIndex = true)
         {
+            var _articleView = new EFRepositoryBase<ArticleListView, object>();
             var exp = new PredicatePack<ArticleListView>();
             if (!isIndex)
             {
@@ -46,12 +47,22 @@ namespace QiBuBlog.Service
 
         public List<Article> GetTopView(byte minWeight, byte pageSize)
         {
-            return _article.Entities.Where(x => x.Weight >= minWeight).Take(pageSize).ToList();
+            return _article.Entities.Where(x => x.Weight >= minWeight && x.Status == 101).OrderByDescending(x => x.ViewCount).Take(pageSize).ToList();
         }
 
         public List<Article> GetRecommends()
         {
-            return _article.Entities.Where(x => x.Weight >= 200).ToList();
+            return _article.Entities.Where(x => x.Weight >= 200 && x.Status == 101).ToList();
+        }
+
+        public List<ArticleGroup> GetGroupList()
+        {
+            var sql = @"SELECT TOP (100) CONVERT(VARCHAR(7), CreateTime, 120) AS GroupName, COUNT(1) AS Amount
+                        FROM dbo.Article
+                        GROUP BY CONVERT(VARCHAR(7), CreateTime, 120),Status
+                        HAVING (Status = 101)
+                        ORDER BY GroupName DESC";
+            return _article.ExcSql<ArticleGroup>(sql).ToList();
         }
 
         public bool IsExist(string articleId)

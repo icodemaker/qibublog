@@ -58,6 +58,7 @@
     <Compile Include="Comment.cs">
       <DependentUpon>QiBuBlog.tt</DependentUpon>
     </Compile>
+    <Compile Include="DTO\ArticleGroup.cs" />
     <Compile Include="GetArticleById_Result.cs">
       <DependentUpon>QiBuBlog.tt</DependentUpon>
     </Compile>

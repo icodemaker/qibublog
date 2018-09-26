@@ -1,13 +1,13 @@
 ﻿@model List<QiBuBlog.Entity.Article>
 @if (Model != null)
 {
-<section>
-    <h2 class="titlebar">推荐文章</h2>
-    <ol class="sidebar-articlelist">
-    @foreach (var article in Model)
-    {
-        <li><a href="@Url.Action("Detail", new { id = article.ArticleId })" target="_blank" title="@article.Title">@article.Title</a></li>
-    }
-    </ol>
-</section>
+    <section>
+        <h2 class="titlebar">推荐文章</h2>
+        <ol class="sidebar-articlelist">
+            @foreach (var article in Model)
+            {
+                <li><a href="@Url.Action("Detail", new { id = article.ArticleId })" target="_blank" title="@article.Title">@article.Title</a></li>
+            }
+        </ol>
+    </section>
 }

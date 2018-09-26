@@ -544,8 +544,7 @@ body.article-content {
     text-align: justify;
     padding-bottom: 6px;
     margin-top: 6px;
-    border-bottom: 1px dotted #bbb;
-
+    /*border-bottom: 1px dotted #bbb;*/
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;

@@ -203,7 +203,7 @@ FROM [dbo].[ArticleListView] AS [ArticleListView]</DefiningQuery>
           <EntitySet Name="User" EntityType="QibuBlog.Entity.User" />
           <EntitySet Name="UserGroup" EntityType="QibuBlog.Entity.UserGroup" />
           <EntitySet Name="ArticleListView" EntityType="QibuBlog.Entity.ArticleListView" />
-        </EntityContainer>
+          </EntityContainer>
         <ComplexType Name="GetArticleById_Result">
           <Property Type="String" Name="ArticleId" Nullable="false" MaxLength="32" />
           <Property Type="String" Name="CategoryId" Nullable="false" MaxLength="32" />
@@ -534,7 +534,7 @@ FROM [dbo].[ArticleListView] AS [ArticleListView]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
