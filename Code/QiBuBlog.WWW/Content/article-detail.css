@@ -14,6 +14,12 @@
 
 
 /* 评论 */
+.comment-main {
+    box-shadow: 0 0 6px #deeaef;
+    background: #fff;
+    border-radius: 5px;
+    padding: 18px 20px;
+}
 .comment-list .titlebar { margin-bottom: 5px; }
 .comment-list .comment-count {
     color: #f03;

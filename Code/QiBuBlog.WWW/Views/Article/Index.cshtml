@@ -38,6 +38,9 @@
 
 <aside class="sidebar">
     @{
+        Html.RenderPartial("SidebarArticle", ViewBag.SidebarArticle as List<QiBuBlog.Entity.Article>);
+        Html.RenderPartial("SidebarRank", ViewBag.SidebarRank as List<QiBuBlog.Entity.Article>);
+        Html.RenderPartial("SidebarGroup");
         Html.RenderPartial("SidebarLinks");
     }
 </aside>

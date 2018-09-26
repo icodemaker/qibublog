@@ -545,6 +545,10 @@ body.article-content {
     padding-bottom: 6px;
     margin-top: 6px;
     border-bottom: 1px dotted #bbb;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
     .sidebar-articlelist li:last-child {
@@ -554,15 +558,18 @@ body.article-content {
 
 /* 边栏文章排行 */
 .sidebar-articlerank-viewcount {
-    width: 25%;
+    width: 15%;
     float: left;
     color: #f03;
     font-family: Georgia, serif;
 }
 
 .sidebar-articlerank-title {
-    width: 75%;
+    width: 85%;
     float: right;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 
@@ -625,7 +632,7 @@ body.article-content {
     background-position: 8px -214px;
 }
 
-::-webkit-scrollbar {
+/*::-webkit-scrollbar {
     width: 10px;
     background-color: #F5F5F5;
 }
@@ -634,4 +641,4 @@ body.article-content {
     background-color: #AAA;
     border-radius: 10px;
     background-image: -webkit-linear-gradient(90deg, rgba(0, 0, 0, .2) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, .2) 50%, rgba(0, 0, 0, .2) 75%, transparent 75%, transparent);
-}
+}*/

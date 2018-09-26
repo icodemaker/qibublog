@@ -1,4 +1,4 @@
-﻿@model QiBuBlog.Entity.Article
+﻿@model List<QiBuBlog.Entity.Article>
 @if (Model != null)
 {
 <section>
@@ -6,7 +6,7 @@
     <ol class="sidebar-articlelist">
     @foreach (var article in Model)
     {
-        <li><a href="@Url.Action("Detail", new { id = article.ArticleId })" target="_blank">@article.Title</a></li>
+        <li><a href="@Url.Action("Detail", new { id = article.ArticleId })" target="_blank" title="@article.Title">@article.Title</a></li>
     }
     </ol>
 </section>

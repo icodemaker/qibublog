@@ -23,56 +23,57 @@
 
         @if (true)
         {
-            <section id="comment-list" class="comment-list">
-                <h2 class="titlebar">评论（共<em class="comment-count">@Model.CommentCount</em>条）</h2>
-                <div></div>
-            </section>
+            <div class="comment-main">
+                <section id="comment-list" class="comment-list">
+                    <h2 class="titlebar">评论（共<em class="comment-count">@Model.CommentCount</em>条）</h2>
+                    <div></div>
+                </section>
 
-            <div class="comment-form">
-                <h2 class="titlebar">参与讨论</h2>
-                <form action="@Url.Action("Post", "Comment", null)" method="post" class="clearfix">
-                    @if (ViewBag.CurrentUser == null)
-                    {
-                        <div class="col-l">
-                            <p class="form-field textbox-with-label">
-                                <textarea class="form-text" name="Content" id="Content" rows="5" cols="40" style="height: 125px;"></textarea><label for="Content">请填写评论内容 <span class="required">*</span></label>
-                            </p>
-                        </div>
-                        <div class="col-r">
-                            <p class="form-field textbox-with-label">
-                                <input type="text" name="AuthorName" id="AuthorName" class="form-text" maxlength="20" /><label for="AuthorName">您的称呼 <span class="required">*</span></label>
-                            </p>
-                            <p class="form-field textbox-with-label">
-                                <input type="text" name="Email" id="Email" class="form-text" /><label for="Email">Email（选填，保密）</label>
-                            </p>
-                            <p class="form-field textbox-with-label">
-                                <input type="text" name="HomePage" id="HomePage" class="form-text" /><label for="HomePage">个人博客或主页（选填）</label>
-                            </p>
-                            <div class="captcha">
-                                <span class="form-field textbox-with-label">
-                                    <input type="text" name="captcha" id="captcha" class="form-text" maxlength="4" /><label for="captcha">验证码  <span class="required">*</span></label>
-                                </span>
-                                <img data-src="@Url.Content("/Login/GetCaptcha")" data-bgcolor="255,255,255" data-formname="comment" class="captcha-img" alt="点击更换验证码" />
+                <div class="comment-form">
+                    <h2 class="titlebar">参与讨论</h2>
+                    <form action="@Url.Action("Post", "Comment", null)" method="post" class="clearfix">
+                        @if (ViewBag.CurrentUser == null)
+                        {
+                            <div class="col-l">
+                                <p class="form-field textbox-with-label">
+                                    <textarea class="form-text" name="Content" id="Content" rows="5" cols="40" style="height: 125px;"></textarea><label for="Content">请填写评论内容 <span class="required">*</span></label>
+                                </p>
                             </div>
+                            <div class="col-r">
+                                <p class="form-field textbox-with-label">
+                                    <input type="text" name="AuthorName" id="AuthorName" class="form-text" maxlength="20" /><label for="AuthorName">您的称呼 <span class="required">*</span></label>
+                                </p>
+                                <p class="form-field textbox-with-label">
+                                    <input type="text" name="Email" id="Email" class="form-text" /><label for="Email">Email（选填，保密）</label>
+                                </p>
+                                <p class="form-field textbox-with-label">
+                                    <input type="text" name="HomePage" id="HomePage" class="form-text" /><label for="HomePage">个人博客或主页（选填）</label>
+                                </p>
+                                <div class="captcha">
+                                    <span class="form-field textbox-with-label">
+                                        <input type="text" name="captcha" id="captcha" class="form-text" maxlength="4" /><label for="captcha">验证码  <span class="required">*</span></label>
+                                    </span>
+                                    <img data-src="@Url.Content("/Login/GetCaptcha")" data-bgcolor="255,255,255" data-formname="comment" class="captcha-img" alt="点击更换验证码" />
+                                </div>
+                                <p class="form-button">
+                                    <input type="submit" value="发 表" class="button" />
+                                </p>
+                            </div>
+                        }
+                        else
+                        {
+                            <p class="form-field textbox-with-label">
+                                <textarea class="form-text" name="Content" id="Content" rows="5" cols="40"></textarea><label for="Content">请填写评论内容 <span class="required">*</span></label>
+                            </p>
+                            <p class="comment-user">以身份 <strong>@ViewBag.CurrentUser.DisplayName</strong> 发表评论</p>
                             <p class="form-button">
                                 <input type="submit" value="发 表" class="button" />
                             </p>
-                        </div>
-                    }
-                    else
-                    {
-                        <p class="form-field textbox-with-label">
-                            <textarea class="form-text" name="Content" id="Content" rows="5" cols="40"></textarea><label for="Content">请填写评论内容 <span class="required">*</span></label>
-                        </p>
-                        <p class="comment-user">以身份 <strong>@ViewBag.CurrentUser.DisplayName</strong> 发表评论</p>
-                        <p class="form-button">
-                            <input type="submit" value="发 表" class="button" />
-                        </p>
-                    }
-                </form>
+                        }
+                    </form>
+                </div>
             </div>
         }
-
         <div class="adjacent-articles">
 
         </div>
@@ -89,7 +90,7 @@
 <script src="~/Scripts/ueditor/third-party/SyntaxHighlighter/shCore.js"></script>
 <link href="~/Scripts/ueditor/third-party/SyntaxHighlighter/shCore.css" rel="stylesheet" />
 <script>
-    $(function() {
+    $(function () {
         SyntaxHighlighter.defaults['toolbar'] = false;
         SyntaxHighlighter.highlight();
     });

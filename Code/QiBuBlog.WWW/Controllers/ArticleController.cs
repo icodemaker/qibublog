@@ -12,9 +12,12 @@ namespace QiBuBlog.WWW.Controllers
 
         public ActionResult Index(string id, int currentPage = 1, int pageSize = 10)
         {
+            var article = new ArticleService();
             ViewBag.CurrentPosition = id;
             ViewBag.CategoryList = new CategoryService().GetList();
-            var data = new ArticleService().GetPageList(new ArticleListView() { CategoryId = id }, currentPage, pageSize, string.IsNullOrWhiteSpace(id));
+            var data = article.GetPageList(new ArticleListView() { CategoryId = id }, currentPage, pageSize, string.IsNullOrWhiteSpace(id));
+            ViewBag.SidebarArticle = article.GetTopView(200, 10);
+            ViewBag.SidebarRank = article.GetRecommends();
             return View(data);
         }
 

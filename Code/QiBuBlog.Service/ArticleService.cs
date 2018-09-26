@@ -44,14 +44,14 @@ namespace QiBuBlog.Service
             return result;
         }
 
-        public Article[] GetTopView(string categoryId, byte minWeight, byte pageSize)
+        public List<Article> GetTopView(byte minWeight, byte pageSize)
         {
-            return _article.Entities.Where(x => x.CategoryId == categoryId && x.Weight >= minWeight).Take(pageSize).ToArray();
+            return _article.Entities.Where(x => x.Weight >= minWeight).Take(pageSize).ToList();
         }
 
-        public Article[] GetRecommends()
+        public List<Article> GetRecommends()
         {
-            return _article.Entities.Where(x => x.Weight >= 200).ToArray();
+            return _article.Entities.Where(x => x.Weight >= 200).ToList();
         }
 
         public bool IsExist(string articleId)
