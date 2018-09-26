@@ -180,13 +180,10 @@ input[type=button], input[type=reset], input[type=submit] {
 .main {
     width: 692px;
     float: left;
-    box-shadow: 0 0 6px #deeaef;
-    background: #fff;
-    border-radius: 5px;
 }
 
     .main .inner {
-        margin: 18px 20px;
+        /*margin: 18px 20px;*/
     }
 
 .sidebar {
@@ -375,6 +372,10 @@ input[type=button], input[type=reset], input[type=submit] {
 
 .article {
     margin-bottom: 25px; /*border-bottom: 1px dotted #999;*/
+    box-shadow: 0 0 6px #deeaef;
+    background: #fff;
+    border-radius: 5px;
+    padding: 18px 20px;
 }
 
 .article-posttime address, .article-posttime time {
