@@ -24,7 +24,10 @@ namespace QiBuBlog.WWW.Controllers
 
         public ActionResult Detail(string id)
         {
-            var model = new ArticleService().GetArticleById(id);
+            var article = new ArticleService();
+            var model = article.GetArticleById(id);
+            ViewBag.SidebarArticle = article.GetRecommends();
+            ViewBag.SidebarRank = article.GetTopView(200, 10);
             return View(model);
         }
     }

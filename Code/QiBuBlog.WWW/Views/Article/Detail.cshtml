@@ -80,7 +80,12 @@
     </div>
 </div>
 
-<aside class="sidebar"></aside>
+<aside class="sidebar">
+    @{
+        Html.RenderPartial("SidebarArticle", ViewBag.SidebarArticle as List<QiBuBlog.Entity.Article>);
+        Html.RenderPartial("SidebarRank", ViewBag.SidebarRank as List<QiBuBlog.Entity.Article>);
+    }
+</aside>
 @section Script{
     <script type="text/javascript" src="@Url.Content("~/Scripts/captcha.js")"></script>
     <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
