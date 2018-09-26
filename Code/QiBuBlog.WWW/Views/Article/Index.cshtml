@@ -18,6 +18,13 @@
                             <li>分类：<a href="@Url.Action("index", new { id = article.CategoryId })">@article.CategoryName</a></li>
                             <li>浏览次数：<a href="@Url.Action("detail", "article", routeValues)">@article.ViewCount</a></li>
                             <li>评论次数：<a href="@Url.Action("detail", "article", routeValues)#comment-list">@article.CommentCount</a></li>
+                            <li>
+                                标签：
+                                @foreach (var item in article.Keywords.Split(','))
+                                {
+                                    <a href="javascript:;">@item.ToLower()</a><span>&nbsp;</span>
+                                }
+                            </li>
                         </ul>
                     </header>
                     <div class="article-content">@Html.Raw(article.Summary)</div>
