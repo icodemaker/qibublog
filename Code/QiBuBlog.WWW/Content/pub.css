@@ -632,13 +632,19 @@ body.article-content {
     background-position: 8px -214px;
 }
 
-/*::-webkit-scrollbar {
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    height: 10px;
     width: 10px;
-    background-color: #F5F5F5;
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #AAA;
-    border-radius: 10px;
-    background-image: -webkit-linear-gradient(90deg, rgba(0, 0, 0, .2) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, .2) 50%, rgba(0, 0, 0, .2) 75%, transparent 75%, transparent);
-}*/
+    background: rgba(0,0,0,.2);
+    border-radius: 3px;
+    cursor: pointer;
+    transition: color .2s ease;
+}
+::-webkit-scrollbar-track {
+    background: rgba(0,0,0,.1);
+    border-radius: 0;
+}
